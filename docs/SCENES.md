@@ -49,7 +49,7 @@ process in a calm loop (the ram comes down, the sheet bends, the disc spins onto
 - **fourLoads** — the L2·S4 figure: four blocks deforming under tension · compression · shear · torsion.
 - **tension** — a bar pulled apart: it lengthens and thins.
 - **compression** — a block squashed: it shortens and bulges.
-- **shear** — two layers sliding past each other (a pair of blocks, or a rivet between plates).
+- **shearStress** — two layers sliding past each other (a pair of blocks, or a rivet between plates).
 - **torsion** — a shaft twisting about its long axis (a crankshaft is the slide's example).
 - **elastic** — load on, it stretches; load off, back to the original (a spring or band: BEFORE / AFTER).
 - **plastic** — load on, it stretches; load off, it stays stretched.
@@ -132,7 +132,7 @@ process in a calm loop (the ram comes down, the sheet bends, the disc spins onto
 - **cutTree** — the four cutting families: punching & shearing · chip forming · nonchip forming · thermal/flame.
 - **machining** — chip forming to a tolerance: a cutter (spinning) taking a precise cut, chips flying.
 - **thermal** — gas, laser and plasma: three heads cutting, a kerf line glowing, sparks (group 8).
-- **shear** — a guillotine shear: the upper blade comes down past the lower one, cutting the sheet to size.
+- **shearing** — a guillotine shear: the upper blade comes down past the lower one, cutting the sheet to size.
 - **clearance** — punch and die with the gap c (C/2 each side): too small (break lines miss: double burnish, more force),
   right, too large (metal pinched and bent). Three cases side by side.
 - **punchDie ★** — the punch (convex, male) comes down through the sheet into the die (concave, female); the slug drops

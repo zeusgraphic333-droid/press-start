@@ -31,7 +31,7 @@ export const SCENES_BY_ZONE = {
     fourLoads: ['Four loads', 'أربع أنواع إجهاد', 'Tension · compression · shear · torsion'],
     tension: ['Tension', 'إجهاد الشد', 'Pulled apart'],
     compression: ['Compression', 'إجهاد الضغط (الكبس)', 'Pushed together'],
-    shear: ['Shear', 'إجهاد القص', 'Sliding past each other'],
+    shearStress: ['Shear', 'إجهاد القص', 'Sliding past each other'],
     torsion: ['Torsion', 'إجهاد اللي', 'Twisted about its axis'],
     elastic: ['Elasticity', 'المرونة', 'Back to its original shape'],
     plastic: ['Plasticity', 'اللدونة', 'Keeps its new shape'],
@@ -104,7 +104,7 @@ export const SCENES_BY_ZONE = {
     cutTree: ['Metal cutting', 'قطع المعادن', 'Four ways to cut'],
     machining: ['Machining', 'التشغيل بالماكينات', 'Chip forming, to a tolerance'],
     thermal: ['Thermal cutting', 'القطع الحراري', 'Gas · laser · plasma'],
-    shear: ['Shearing', 'القص', 'Like scissors: punch against die'],
+    shearing: ['Shearing', 'القص', 'Like scissors: punch against die'],
     clearance: ['Clearance', 'الخلوص', 'The gap decides the cut'],
     punchDie: ['Punch & die', 'البنش والداي', 'Convex male, concave female'],
     punchVsBlank: ['Punching vs blanking', 'تخريم ولا بلانكينج', 'Which piece do you keep?'],
@@ -123,6 +123,6 @@ export const SCENES_BY_ZONE = {
     nebula: ['Raw stock', 'خامة لسه ما اتشكّلتش', 'Before it takes shape']
   }
 };
-export const SCENE_INFO = Object.assign({}, ...Object.values(SCENES_BY_ZONE));
+export const SCENE_INFO = Object.assign({}, ...Object.values(SCENES_BY_ZONE)); // names are unique across zones
 /** the zone each scene belongs to (special scenes: 'special') */
 export const SCENE_ZONE = Object.fromEntries(Object.entries(SCENES_BY_ZONE).flatMap(([z, o]) => Object.keys(o).map(n => [n, z])));
