@@ -6,6 +6,8 @@
 //   node build.mjs --dev --scenes2d         → dist/dev-scenes2d.html (drafting scenes: #/ contact sheet · #/z/<zone> · #/s/<name>)
 //   node build.mjs --dev --scenes3d         → dist/dev-scenes3d.html (particle scenes: #/s/<name>; qa/scenes3d.js makes contact sheets)
 //   --out <file.html> writes to dist/<file.html> instead (parallel work: never two people building the same file)
+//   --only <zone[,zone]> builds with every OTHER zone's bank/study/figs/scenes/scenes2d files replaced by empty stubs, so
+//     a half-written file elsewhere can't break your build (a --zone build does this for its own zone automatically)
 //   any dev page: ?lang=en|ar and ?mode=illustrated|immersive
 import * as esbuild from 'esbuild';
 import fs from 'node:fs';
@@ -51,7 +53,22 @@ const scenes3d = argv.includes('--scenes3d');
 const identArg = argv.includes('--ident');
 const langArg = argv.includes('--lang') ? argv[argv.indexOf('--lang') + 1] : '';
 
-const common = { bundle: true, format: 'iife', target: ['es2020'], minify, write: false, legalComments: 'none', charset: 'utf8', define: { 'process.env.NODE_ENV': '"production"' }, logLevel: 'error' };
+const ZONE_IDS = ['design', 'materials', 'strength', 'props', 'iron', 'bend', 'compound', 'cut'];
+const onlyArg = argv.includes('--only') ? argv[argv.indexOf('--only') + 1].split(',') : zone && ZONE_IDS.includes(zone) ? [zone] : null;
+/** --only: other zones' per-zone files become stubs (lessons/games are only imported by the full build) */
+const isolate = !onlyArg ? [] : [{
+  name: 'isolate-zones',
+  setup(b) {
+    const re = new RegExp(`/(data/bank|data/study|data/figs|world/scenes|world/scenes2d)/(${ZONE_IDS.join('|')})\\.js$`);
+    b.onLoad({ filter: /\.js$/ }, args => {
+      const m = args.path.match(re); if (!m || onlyArg.includes(m[2])) return;
+      const kind = m[1];
+      const contents = kind === 'data/bank' ? 'export default [];' : kind === 'data/study' ? 'export const terms = [], pairs = [], triggers = [];' : kind === 'world/scenes' ? 'export default () => ({});' : 'export default {};';
+      return { contents, loader: 'js' };
+    });
+  }
+}];
+const common = { plugins: isolate, bundle: true, format: 'iife', target: ['es2020'], minify, write: false, legalComments: 'none', charset: 'utf8', define: { 'process.env.NODE_ENV': '"production"' }, logLevel: 'error' };
 let opts;
 const sfx = langArg === 'en' ? '.en' : '';
 if (zone || sample) {

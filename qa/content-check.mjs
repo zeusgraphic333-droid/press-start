@@ -8,15 +8,25 @@ globalThis.matchMedia = globalThis.matchMedia || (() => ({ matches: false }));
 globalThis.localStorage = globalThis.localStorage || { getItem: () => null, setItem() { }, removeItem() { } };
 globalThis.window = globalThis.window || globalThis; window.addEventListener = () => { };
 
-const { QBY, QUESTIONS, TOPIC_ZONE } = await import(new URL('data/index.js', root));
-const { FIG } = await import(new URL('data/figs/index.js', root));
+// with zone arguments, only those zones' bank and figure files are loaded (a half-written file elsewhere can't break the check)
+const only = process.argv.slice(2);
+const { ZONES: ZL } = await import(new URL('content/zones.js', root));
+const TOPIC_ZONE = Object.fromEntries(ZL.flatMap(z => z.tp.map(tp => [tp, z.id])));
+let QUESTIONS = [], FIG = {};
+if (only.length) {
+  for (const z of only) {
+    try { QUESTIONS.push(...(await import(new URL(`data/bank/${z}.js`, root))).default); } catch (e) { console.log(`  ✗ data/bank/${z}.js import failed — ${e.message}`); }
+    try { Object.assign(FIG, (await import(new URL(`data/figs/${z}.js`, root))).default); } catch (e) { console.log(`  ✗ data/figs/${z}.js import failed — ${e.message}`); }
+    try { const st = await import(new URL(`data/study/${z}.js`, root)); console.log(`${z} archive: ${st.terms.length} terms · ${st.pairs.length} traps · ${st.triggers.length} trigger words`); } catch (e) { console.log(`  ✗ data/study/${z}.js import failed — ${e.message}`); }
+  }
+} else { ({ QUESTIONS } = await import(new URL('data/index.js', root))); ({ FIG } = await import(new URL('data/figs/index.js', root))); }
+const QBY = Object.fromEntries(QUESTIONS.map(q => [q.id, q]));
 const { SCENE_INFO } = await import(new URL('world/scenes/info.js', root));
 const { ZONES } = await import(new URL('content/zones.js', root));
 const BLOCKS = new Set(['say', 'p', 'h', 'quote', 'list', 'example', 'why', 'trap', 'tip', 'art', 'compare', 'grid', 'table', 'demo', 'check', 'fig', 'divider']);
 let errors = 0, warns = 0; const err = m => { errors++; console.log('  ✗ ' + m); }; const warn = m => { warns++; console.log('  ! ' + m); };
 const sceneOk = n => n in SCENE_INFO;
 const usedQ = new Set(); const chapterIds = new Set();
-const only = process.argv.slice(2);
 for (const z of ZONES) {
   if (z.id === 'boss' || (only.length && !only.includes(z.id))) continue;
   const file = new URL(`content/lessons/${z.id}.js`, root);

@@ -153,8 +153,14 @@ node qa/shoot.js '{"file":"dev-bend.html","hash":"/dev/game/0","w":390,"h":844,"
 node qa/content-check.mjs bend                # lesson ↔ bank ↔ scenes ↔ figures integrity, bank sanity
 node qa/en-check.mjs bend                     # the English edition mirrors the Arabic one
 ```
-Screenshots land in `shots/`. Scenes for other zones may still be missing while you work (the stage shows a placeholder):
-that's expected. A build must stay clean (no console errors). Check both languages, both modes, a phone and a desktop.
+Screenshots land in `shots/` (give yours a prefix of your own). Scenes for other zones may still be missing while you work
+(the stage shows a placeholder): that's expected. A build must stay clean (no console errors). Check both languages,
+both modes, a phone and a desktop. Add `noworld` to the query (`"query":"noworld"` or `"query":"noworld&mode=illustrated"`)
+when you only need the text: the particle stage renders on a software GPU here and is slow.
+- Parallel work: several people build at once on a 2-CPU machine. A `--zone` build only includes your zone's data and
+  scene files (the others are stubbed), so a half-written file elsewhere can't break you; `--only a,b` does the same for
+  other builds, `--out <name>.html` keeps your output from overwriting someone else's. Keep screenshot runs small.
+- Node prints a `MODULE_TYPELESS_PACKAGE_JSON` warning for the qa scripts: ignore it.
 
 ## Done means
 Lesson (AR + EN), 2–3 trials (AR + EN), the bank, the archive tables, figures and styles for your zone; content-check
