@@ -1,4 +1,4 @@
-/* ---------- illustrated mode: the 2D stage (riso-print SVG scenes) ---------- */
+/* ---------- illustrated mode: the 2D stage (drafting-room SVG scenes) ---------- */
 .stage2d { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
 .st2-frame { position: absolute; left: 0; top: 0; width: 0; height: 0; }
 .st2-scene { position: absolute; inset: 0; }

@@ -3,7 +3,7 @@ import { reducedMotion } from './util.js';
 import { emit } from './state.js';
 
 /** thin radiating sparks around an element */
-export function burst(elm, color = '#FFC93C', n = 12) {
+export function burst(elm, color = '#FFB347', n = 12) {
   if (!elm || reducedMotion()) return;
   const r = elm.getBoundingClientRect();
   const b = document.createElement('div'); b.className = 'fx-burst'; b.style.left = (r.left + r.width / 2) + 'px'; b.style.top = (r.top + r.height / 2) + 'px'; b.style.setProperty('--c', color);
@@ -12,7 +12,7 @@ export function burst(elm, color = '#FFC93C', n = 12) {
   ring(elm, color);
 }
 export const burstAt = burst;
-export function ring(elm, color = '#FFC93C') {
+export function ring(elm, color = '#FFB347') {
   if (!elm || reducedMotion()) return;
   const r = elm.getBoundingClientRect(); const o = document.createElement('div'); o.className = 'fx-ring';
   o.style.left = (r.left + r.width / 2) + 'px'; o.style.top = (r.top + r.height / 2) + 'px'; o.style.setProperty('--c', color);
@@ -26,7 +26,7 @@ export function confetti(o = {}) {
   if (!cv) { cv = document.createElement('canvas'); cv.className = 'fx-streaks'; cv.setAttribute('aria-hidden', 'true'); document.body.appendChild(cv); }
   const dpr = Math.min(2, devicePixelRatio || 1); cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
   const x = cv.getContext('2d'); x.setTransform(dpr, 0, 0, dpr, 0, 0);
-  const cols = o.colors || ['#FFC93C', '#EDEBE6', getComputedStyle(document.documentElement).getPropertyValue('--zc').trim() || '#8B7BFF'];
+  const cols = o.colors || ['#FFB347', '#FF5A1F', '#ECE9E2', getComputedStyle(document.documentElement).getPropertyValue('--zc').trim() || '#E39B3C'];
   const n = o.n || (o.big ? 140 : 70);
   const ox = (o.origin?.x ?? .5) * innerWidth, oy = (o.origin?.y ?? 1.02) * innerHeight;
   const S = Array.from({ length: n }, () => { const a = -Math.PI / 2 + (Math.random() - .5) * (o.spread ? o.spread * Math.PI / 180 : 1.6); const v = (o.v || 16) * (.5 + Math.random() * .9); return { x: ox + (Math.random() - .5) * 60, y: oy, vx: Math.cos(a) * v, vy: Math.sin(a) * v, c: cols[Math.floor(Math.random() * cols.length)], l: 10 + Math.random() * 26, life: 1 }; });
@@ -47,7 +47,7 @@ export function confetti(o = {}) {
 export function confettiAt(elm, n = 40) {
   if (!elm) return confetti({ n });
   const r = elm.getBoundingClientRect();
-  burst(elm, '#FFC93C', 14);
+  burst(elm, '#FFB347', 14);
   confetti({ n, v: 11, spread: 70, origin: { x: (r.left + r.width / 2) / innerWidth, y: (r.top + r.height / 2) / innerHeight } });
 }
 /** "+15 XP" floating up from a point */

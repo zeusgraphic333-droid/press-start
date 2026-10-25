@@ -12,7 +12,7 @@ import { lessonProgress } from './learn.js';
 import { t, L, isEN, isRTL, setLang, lang } from '../core/i18n.js';
 import { setMode } from '../core/mode.js';
 /** the sheet inks: the zone's marker colour (fill) and its text ink on paper */
-const riso = id => (ZONES.find(q => q.id === id) || ZONES[0]).paper;
+const sheetInk = id => (ZONES.find(q => q.id === id) || ZONES[0]).paper;
 
 const reduced = () => document.documentElement.dataset.motion === 'reduce' || matchMedia('(prefers-reduced-motion: reduce)').matches;
 const zName = z => L(z.ar, z.en);
@@ -53,7 +53,7 @@ export function createHub2D(world, { lessons = {}, onEnter, onOpen }) {
         <div class="h2-stage" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </main>
       <nav class="h2-plates" role="listbox" aria-label="${esc(t('h2.zones'))}" aria-orientation="horizontal">
-        ${ZONES.map((z, i) => { const [c, ink] = riso(z.id); return `<button type="button" role="option" class="h2-plate${z.id === 'boss' ? ' h2-plate--boss' : ''}" data-i="${i}" style="--pc:${c};--pi:${ink}">
+        ${ZONES.map((z, i) => { const [c, ink] = sheetInk(z.id); return `<button type="button" role="option" class="h2-plate${z.id === 'boss' ? ' h2-plate--boss' : ''}" data-i="${i}" style="--pc:${c};--pi:${ink}">
           <span class="h2-plate__n h2-num">${String(z.n).padStart(2, '0')}</span>
           <span class="h2-plate__g">${GLYPH[ZONE_GLYPH[z.id]] || GLYPH.brand}</span>
           <b class="h2-plate__t">${esc(zName(z))}</b>
@@ -91,7 +91,7 @@ export function createHub2D(world, { lessons = {}, onEnter, onOpen }) {
     morphT = setTimeout(() => world.morph(ZONE_FORMATION[ZONES[i].id] || 'nebula', { dur: 1.4 }), instant ? 0 : 120);
   }
   function paint(z, instant) {
-    const [c, ink] = riso(z.id);
+    const [c, ink] = sheetInk(z.id);
     root.style.setProperty('--zc', c); root.style.setProperty('--zi', ink);
     const p = root.querySelector('.h2-panel');
     p.querySelector('.h2-meta__n').textContent = String(z.n).padStart(2, '0') + ' / ' + String(ZONES.length).padStart(2, '0');

@@ -1,4 +1,4 @@
-// The illustrated mode's stage: animated riso-print SVG scenes in place of the particle world.
+// The illustrated mode's stage: animated drafting-room SVG scenes in place of the particle world.
 // Same calls as world/particles.js where the app needs them (set · morph · setStage · start · stop · scatter · flash),
 // so lessons keep asking for scenes by name and do not care which mode is on.
 import gsap from 'gsap';
@@ -62,19 +62,21 @@ export function createStage2D(host) {
   }
 
   const confettiShapes = () => {
-    const c = [INK.blue, INK.pink, INK.yellow, INK.teal, INK.orange];
+    const c = [INK.hot, INK.hazard, INK.tblue, INK.violet, INK.gold];
     const b = document.createElement('div'); b.className = 'st2-burst';
     let s = '';
     for (let i = 0; i < 26; i++) {
       const k = i % 4, col = c[i % c.length], x = 300, y = 300;
-      s += k === 0 ? `<circle cx="${x}" cy="${y}" r="${8 + (i % 3) * 4}" fill="${col}"/>`
-        : k === 1 ? `<rect x="${x - 9}" y="${y - 9}" width="18" height="18" fill="${col}"/>`
-          : k === 2 ? `<polygon points="${x},${y - 12} ${x + 11},${y + 8} ${x - 11},${y + 8}" fill="${col}"/>`
-            : `<polygon points="${star(x, y, 13, 6).map(p => p.join(',')).join(' ')}" fill="${col}"/>`;
+      // the shop floor's confetti: washers, hex nuts, offcuts and sparks
+      const hex = Array.from({ length: 6 }, (_, q) => `${(x + 11 * Math.cos(q * Math.PI / 3)).toFixed(1)},${(y + 11 * Math.sin(q * Math.PI / 3)).toFixed(1)}`).join(' ');
+      s += k === 0 ? `<g><circle cx="${x}" cy="${y}" r="${9 + (i % 3) * 3}" fill="none" stroke="${col}" stroke-width="5"/></g>`
+        : k === 1 ? `<g><polygon points="${hex}" fill="${col}"/><circle cx="${x}" cy="${y}" r="4.5" fill="#fff"/></g>`
+          : k === 2 ? `<rect x="${x - 12}" y="${y - 4}" width="24" height="8" fill="${col}"/>`
+            : `<polygon points="${star(x, y, 13, 5, 4).map(p => p.join(',')).join(' ')}" fill="${col}"/>`;
     }
     b.innerHTML = `<svg viewBox="0 0 600 600">${s}</svg>`;
     frame.append(b);
-    const parts = b.querySelectorAll('circle,rect,polygon');
+    const parts = b.querySelectorAll('svg > *');
     gsap.fromTo(parts, { x: 0, y: 0, scale: .2, opacity: 1, transformOrigin: '300px 300px' }, {
       x: () => gsap.utils.random(-280, 280), y: () => gsap.utils.random(-280, 220), rotate: () => gsap.utils.random(-220, 220), scale: () => gsap.utils.random(.7, 1.5),
       duration: 1.3, ease: 'expo.out', stagger: .01, onComplete: () => gsap.to(parts, { opacity: 0, y: '+=60', duration: .6, onComplete: () => b.remove() })

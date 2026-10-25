@@ -1,22 +1,23 @@
-// Renders dist/og.png (1200×630) from the live eye.
+// Renders dist/og.jpg (1200×630): the particle press at work beside the title, glowing in temper colours.
 const { chromium } = require('playwright');
 const { installRoutes } = require('./fonts');
 (async () => {
   const b = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
   const p = await (await b.newContext({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 })).newPage();
   await installRoutes(p);
-  await p.addInitScript(() => { try { localStorage.setItem('mindgames.save.v1', JSON.stringify({ v: 2, name: 'OG', sigil: 'circle' })); } catch (e) { } });
-  await p.goto('file://' + __dirname + '/../dist/index.html?skipintro&hq');
+  await p.addInitScript(() => { try { localStorage.setItem('pressstart.save.v1', JSON.stringify({ v: 1, name: 'OG', sigil: 'gear', settings: { lang: 'ar', mode: 'immersive', sound: false, motion: 'auto' } })); } catch (e) { } });
+  await p.goto('file://' + __dirname + '/../dist/index.html?skipintro&hq&lang=ar&mode=immersive');
   await p.waitForTimeout(9000);
   await p.evaluate(() => {
     document.getElementById('hud').style.display = 'none';
     document.querySelectorAll('.cur').forEach(c => c.remove());
-    __mg.hub.hide(); const w = __mg.world; w.ring.material.uniforms.uO.value = 0; w.ring.visible = false; w.set('eye'); w.setStage({ cx: .31, cy: .5, z: 11 }, 0);
+    __mg.hub.hide(); const w = __mg.world; w.ring.material.uniforms.uO.value = 0; w.ring.visible = false; w.set('monolith'); w.setStage({ cx: .27, cy: .52, z: 11.5 }, 0);
+    const T = 'linear-gradient(270deg, #F6EBC0, #E8C368 22%, #E39B3C 40%, #C97A43 55%, #B9668A 68%, #9468D2 80%, #4F7FE6 92%, #86BDF0)';
     const o = document.createElement('div');
-    o.innerHTML = `<div style="position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:center;padding:0 70px;direction:rtl;pointer-events:none">
-      <p style="font:600 22px/1 Handjet;letter-spacing:.1em;color:#8B7BFF;margin:0 0 18px;direction:ltr;text-align:right">MIND GAMES · MDP001</p>
-      <h1 style="font:900 104px/1 Alexandria;color:#EDEBE6;margin:0;letter-spacing:-.02em">عقلك<br>بيشتغلك.</h1>
-      <p style="font:400 22px/1.5 'IBM Plex Sans Arabic';color:#B6B3C0;margin:22px 0 0">Graphic Fundamentals · Lecture 02 + 03</p></div>`;
+    o.innerHTML = `<div style="position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:0 76px;direction:rtl;pointer-events:none">
+      <p style="font:800 26px/1 'Big Shoulders Stencil Display';letter-spacing:.12em;color:#E39B3C;margin:0 0 14px;direction:ltr">PRESS START</p>
+      <h1 style="font:800 128px/1.02 Changa;margin:0;background:${T};-webkit-background-clip:text;background-clip:text;color:transparent">شدّ<br>حيلك.</h1>
+      <p style="font:400 23px/1.5 'Readex Pro';color:#B3B6BA;margin:20px 0 0;direction:ltr">Production Engineering · Lectures 1–5</p></div>`;
     document.body.appendChild(o);
   });
   await p.waitForTimeout(5000);

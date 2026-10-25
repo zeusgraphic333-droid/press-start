@@ -28,6 +28,6 @@ export function toast(html, glyph = 'star', ms = 3600) {
 }
 export function mountEvents() {
   // Arabic shows the Arabic name with the English one beside it; English shows the English name alone
-  on('levelup', lv => queue.push(done => { sfx('level'); const m = modal({ glyph: 'gear', kicker: `<b>Lv ${lv.n}</b> ${t('toast.newRank')}`, title: esc(L(lv.ar, lv.en)), body: `${isEN() ? '' : `<span dir="ltr">${esc(lv.en)}</span><br>`}${t('toast.rankBody')}`, acts: [{ label: t('toast.keepGoing'), primary: true }] }, done); burstAt(m.querySelector('.glyph-xl'), '#FFC93C', 22); }) && next());
+  on('levelup', lv => queue.push(done => { sfx('level'); const m = modal({ glyph: 'gear', kicker: `<b>Lv ${lv.n}</b> ${t('toast.newRank')}`, title: esc(L(lv.ar, lv.en)), body: `${isEN() ? '' : `<span dir="ltr">${esc(lv.en)}</span><br>`}${t('toast.rankBody')}`, acts: [{ label: t('toast.keepGoing'), primary: true }] }, done); burstAt(m.querySelector('.glyph-xl'), '#FFB347', 22); }) && next());
   on('badge', b => { sfx('badge'); toast(isEN() ? `<b>${esc(b.en)}</b><br><small>${esc(b.dEn || b.d)}</small>` : `<b>${esc(b.ar)}</b> <span class="label">${esc(b.en)}</span><br><small>${esc(b.d)}</small>`, b.icon); });
 }

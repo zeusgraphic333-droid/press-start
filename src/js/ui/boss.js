@@ -14,7 +14,7 @@ import { modal } from './events.js';
 import { t, L, isEN } from '../core/i18n.js';
 import { SCENE_INFO } from '../world/scenes/info.js';
 
-const RED = '#FF3B30';
+const RED = '#FF5A1F'; // the forge (ZONE.boss.color)
 /** the exam covers every topic of every zone that has questions */
 const inScope = () => ZONES.flatMap(z => z.tp).filter(tp => QUESTIONS.some(q => q.tp === tp));
 
@@ -45,7 +45,7 @@ export function grade(pct) { const s = pct * 100; return s >= 95 ? 'A' : s >= 90
 let worldRef = null;
 export function openBoss(mode, world) {
   worldRef = world;
-  const scr = openScreen({ id: 'boss', title: t('boss.title'), en: t('boss.sub'), glyph: 'monolith', color: RED, dark: '#B3201A' });
+  const scr = openScreen({ id: 'boss', title: t('boss.title'), en: t('boss.sub'), glyph: 'monolith', color: RED, dark: '#B53A0E' });
   scr.setCaption(0, ...capOf(SCENE_INFO.monolith));
   if (world?.real && world.current !== 'monolith') world.morph('monolith', { dur: 1.6 });
   const pane = scr.panes.main;
@@ -124,8 +124,8 @@ function bossFight(pane, scr, go) {
     clearInterval(timer); const q = qs[i]; recordAnswer(q.id, ok);
     if (ok) {
       hits++; combo++; const dmg = 9 + Math.min(combo - 1, 5) * 2; hp = Math.max(0, hp - dmg);
-      sfx('hit'); burst(btn, '#FF3B30', 16); floatFrom($('.fight__hpn'), '−' + dmg, 'fx-float--bad');
-      worldRef?.scatter?.(.22, { out: .14, back: .9 }); worldRef?.flash?.('#FF3B30', .12);
+      sfx('hit'); burst(btn, '#FFB347', 16); floatFrom($('.fight__hpn'), '−' + dmg, 'fx-float--bad');
+      worldRef?.scatter?.(.22, { out: .14, back: .9 }); worldRef?.flash?.('#FF5A1F', .12);
       $('.fight__bar i').style.setProperty('--p', hp / 100); setTimeout(() => $('.fight__bar .fight__ghost')?.style.setProperty('--p', hp / 100), 450);
       $('.fight__hpn').textContent = hp; taunt(TAUNT(hp < 35 ? 'low' : 'hit'));
       const c = $('.fight__combo'); c.hidden = combo < 2; c.querySelector('b').textContent = '×' + combo;
@@ -133,7 +133,7 @@ function bossFight(pane, scr, go) {
       next.hidden = false; setTimeout(() => { if (!over && h?.answered()) { i++; show(); } }, 1600);
     } else {
       misses++; combo = 0; lives--; missed.push(q); $('.fight__combo').hidden = true;
-      sfx('roar'); shake(card); worldRef?.flash?.('#FF3B30', .32);
+      sfx('roar'); shake(card); worldRef?.flash?.('#FF5A1F', .32);
       const L = [...pane.querySelectorAll('.fight__lives i')]; L[lives]?.classList.add('is-lost');
       taunt(TAUNT('miss'));
       if (lives <= 0) { over = true; next.hidden = false; next.innerHTML = `${t('common.results')} ${ICON.next}`; next.onclick = () => end(false); return; }

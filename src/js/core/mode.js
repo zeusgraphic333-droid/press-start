@@ -1,4 +1,4 @@
-// Experience mode: 'illustrated' (light riso-print world, 2D SVG stage; the default) or 'immersive' (dark particle world, WebGL).
+// Experience mode: 'illustrated' (the drafting room: light paper, 2D SVG stage; the default) or 'immersive' (the night shift: dark particle world, WebGL).
 // Saved in settings.mode and mirrored on <html data-mode>. Switching emits 'mode'.
 import { state, save, emit } from './state.js';
 
