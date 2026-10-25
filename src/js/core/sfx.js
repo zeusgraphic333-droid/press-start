@@ -31,7 +31,7 @@ function noise(dur, { vol = 0.4, at = 0, from = 2000, to = 400, q = 1 } = {}) {
   src.connect(f); f.connect(g); g.connect(master); src.start(t); src.stop(t + dur);
 }
 const N = { C5: 523.25, D5: 587.33, E5: 659.25, G5: 783.99, A5: 880, B5: 987.77, C6: 1046.5, D6: 1174.7, E6: 1318.5, G6: 1568, B6: 1975.5 };
-/* refined palette: sine glass, soft noise, low thuds — nothing chiptune */
+/* refined palette: sine glass, soft noise, low thuds, metal — nothing chiptune */
 const BANK = {
   pop: () => tone(740, 1110, 0.07, { vol: 0.22 }),
   click: () => noise(0.035, { vol: 0.16, from: 3200, to: 2400, q: 3 }),
@@ -44,7 +44,11 @@ const BANK = {
   whoosh: () => noise(0.7, { vol: 0.22, from: 300, to: 2600, q: 0.6 }),
   swoosh: () => noise(0.32, { vol: 0.14, from: 2400, to: 500, q: 0.6 }),
   hit: () => { noise(0.16, { vol: 0.35, from: 1600, to: 160, q: 0.7 }); tone(110, 46, 0.32, { vol: 0.6 }); },
-  roar: () => { tone(72, 48, 0.9, { type: 'triangle', vol: 0.32 }); noise(0.7, { vol: 0.12, from: 420, to: 90, q: 2 }); },
+  /* the press: a heavy slam, a metallic ring, then the hydraulics breathe out */
+  roar: () => { tone(92, 38, 0.45, { type: 'triangle', vol: 0.5 }); noise(0.09, { vol: 0.3, from: 2600, to: 900, q: 1.4 }); tone(1870, 1790, 0.5, { type: 'triangle', vol: 0.05, at: 0.02 }); noise(0.9, { vol: 0.07, from: 5200, to: 3600, q: 0.5, at: 0.35 }); },
+  press: () => { tone(92, 38, 0.45, { type: 'triangle', vol: 0.5 }); noise(0.09, { vol: 0.3, from: 2600, to: 900, q: 1.4 }); tone(1870, 1790, 0.5, { type: 'triangle', vol: 0.05, at: 0.02 }); },
+  clank: () => { tone(1420, 1380, 0.25, { type: 'triangle', vol: 0.1 }); tone(2170, 2120, 0.18, { type: 'triangle', vol: 0.06, at: 0.01 }); noise(0.05, { vol: 0.18, from: 3000, to: 1500, q: 2 }); },
+  hiss: () => noise(0.8, { vol: 0.09, from: 5600, to: 3400, q: 0.5 }),
   tick: () => tone(2200, 2200, 0.02, { vol: 0.05 }),
   flip: () => noise(0.14, { vol: 0.12, from: 1800, to: 900, q: 1.2 }),
   win: () => [N.C5, N.E5, N.G5, N.C6, N.E6].forEach((f, i) => tone(f, f, 0.9, { vol: 0.13, at: i * 0.1, attack: 0.02 })),

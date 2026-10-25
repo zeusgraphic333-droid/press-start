@@ -94,7 +94,8 @@ overbend to beat springback, pick the clearance, assemble the flat length, match
 stress–strain curve, sort operations by "what is kept / what is scrap". Each round set ends with
 `api.finishGame(id, score, max, fromEl)` (returns `{ stars, xp }`), then an end card with Play again (`ctx.again()`) and
 All trials (`ctx.back()`).
-- `api`: `sfx(name)` (pop · click · good · bad · coin · win · boop · flip · swoosh · whoosh · level), `award`, `once`,
+- `api`: `sfx(name)` (pop · click · good · bad · coin · win · boop · flip · swoosh · whoosh · level · tick · hit · and the
+  workshop: press (a slam) · clank (metal) · hiss (hydraulics)), `award`, `once`,
   `confetti`, `confettiAt`, `burst(el, color)`, `ring`, `shake(el)`, `pulse(el)`, `GLYPH`, `glyph(k)`, `fig(id)`, `esc`,
   `rich`, `shuffle`, `seeded`, `sleep`, `pick`, `q(id)`, `optionsOf(q)`, `scene(name)` (asks the stage for a scene!),
   `lang`, `mode`, `L(ar, en)`, `t(key)`. Read `src/js/core/api.js`.
