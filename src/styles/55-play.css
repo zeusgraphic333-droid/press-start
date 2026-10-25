@@ -1,0 +1,76 @@
+/* ---------- trials list + stage ---------- */
+.gamelist { display: grid; border-top: 1px solid var(--line); }
+.gamecard { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto 28px; align-items: center; gap: 18px; text-align: start; padding: 24px 4px; font: inherit; color: inherit; background: none; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .35s, padding .35s var(--ease-out); }
+.gamecard:hover { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--zc) 7%, transparent)); padding-inline-start: 12px; }
+html[dir="ltr"] .gamecard:hover { background: linear-gradient(270deg, transparent, color-mix(in srgb, var(--zc) 7%, transparent)); }
+.gamecard__n { font-size: 34px; line-height: .8; color: var(--fg-4); transition: color .3s; }
+.gamecard:hover .gamecard__n { color: var(--zc); }
+.gamecard__txt { display: grid; gap: 4px; }
+.gamecard__txt > b { font: 800 clamp(21px, 2.2vw, 27px)/1.2 var(--f-display); }
+.gamecard__txt bdi { font: 500 13px/1.2 var(--f-text); color: var(--zc); }
+.gamecard__how { font-size: 15px; line-height: 1.7; color: var(--fg-2); margin-top: 4px; }
+.gamecard__meta { display: grid; justify-items: end; gap: 4px; font-size: 12.5px; color: var(--fg-3); }
+.gamecard__go { color: var(--fg-3); transition: transform .4s var(--ease-out), color .3s; }
+.gamecard__go svg { width: 22px; height: 22px; }
+.gamecard:hover .gamecard__go { color: var(--zc); transform: translateX(-6px); }
+html[dir="ltr"] .gamecard:hover .gamecard__go { transform: translateX(6px); }
+.gamestage, .gamestage * { scroll-margin-top: 16px; }
+.gamestage__bar { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+.gamestage__bar b { font: 700 20px/1.2 var(--f-display); }
+
+/* shared pieces mini-games reuse */
+.g-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 20px; }
+.g-hud { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.g-hud .hud-num { font-size: 20px; color: var(--fg); }
+.g-prompt { font: 800 clamp(22px, 2.6vw, 30px)/1.3 var(--f-display); text-align: center; margin: 6px 0 18px; }
+.g-choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+/* four answers never break 3 + 1: a 2×2 block reads as one set */
+.g-choices:has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g-choice { appearance: none; background: rgba(236, 233, 226, .025); border: 1px solid var(--line-2); border-radius: 16px; padding: 16px 12px; display: grid; justify-items: center; gap: 8px; font: 600 16px/1.3 var(--f-display); color: var(--fg); transition: border-color .25s, background .25s, transform .15s; }
+.g-choice:hover:not(:disabled) { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 8%, transparent); }
+.g-choice:active:not(:disabled) { transform: scale(.98); }
+.g-choice:disabled { cursor: default; }
+.g-choice.is-right { border-color: var(--good); background: rgba(70, 227, 160, .1); }
+.g-choice.is-wrong { border-color: var(--bad); background: rgba(255, 77, 94, .1); animation: fx-shake .4s; }
+.g-choice svg { width: 72px; height: 72px; }
+.g-end { text-align: center; display: grid; justify-items: center; gap: 10px; padding: 30px 18px; }
+.g-end .glyph { width: 56px; height: 56px; }
+.g-end h3 { font: 900 clamp(34px, 4vw, 48px)/1.1 var(--f-display); }
+.g-end .marks svg { width: 34px; height: 34px; }
+.g-acts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.g-timer { height: 3px; border-radius: 99px; overflow: hidden; background: var(--line-2); }
+.g-timer > i { display: block; height: 100%; background: var(--zc); box-shadow: 0 0 10px var(--zglow); width: calc(var(--t, 1) * 100%); transition: width .1s linear; }
+
+/* ---------- zone quiz ---------- */
+.qstart h2 { font: 900 clamp(34px, 4.4vw, 58px)/1.05 var(--f-display); margin: 10px 0 12px; }
+.qstart > p { color: var(--fg-2); font-size: 17px; max-width: 36em; }
+.qstart__row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin: 22px 0 26px; }
+.qstart__best { display: grid; gap: 4px; font-size: 12.5px; color: var(--fg-3); }
+.qstart__rules { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--line); display: grid; gap: 10px; color: var(--fg-2); font-size: 15.5px; }
+.qstart__rules .hud-num { color: var(--zc); font-size: 17px; margin-inline-end: 8px; }
+.qrun__top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; margin-bottom: 22px; }
+.qrun__n { font: 500 22px/1 var(--f-hud); color: var(--fg); order: -1; }
+.qrun__combo { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font-size: 13px; animation: rise .4s var(--ease-out); }
+.qrun__combo .glyph, .qrun__combo svg { width: 18px; height: 18px; }
+.qrun__combo .hud-num { font-size: 20px; }
+.qrun__card { border: 1px solid var(--line-2); border-radius: 22px; background: var(--card); padding: 22px clamp(16px, 3vw, 28px) 20px; }
+.qrun__acts { display: flex; justify-content: flex-start; margin-top: 18px; min-height: 60px; }
+.qend { text-align: center; display: grid; justify-items: center; gap: 8px; padding-top: 10px; }
+.qend__score { display: flex; align-items: baseline; gap: 6px; direction: ltr; }
+.qend__score > .hud-num:first-child { font-size: clamp(110px, 16vw, 180px); line-height: .78; color: var(--fg); }
+.qend__of { font-size: 40px; color: var(--fg-3); }
+.qend__line { font: 600 20px/1.5 var(--f-display); }
+.qend__acts { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin: 10px 0 6px; }
+.qend__review { width: 100%; text-align: start; margin-top: 26px; display: grid; gap: 8px; border-top: 1px solid var(--line); padding-top: 20px; }
+.qend__review h4 { font: 700 18px/1.3 var(--f-display); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.rev { border: 1px solid var(--line); border-radius: 14px; background: var(--card); padding: 12px 16px; }
+.rev summary { cursor: pointer; font-weight: 500; text-align: left; color: var(--fg); }
+.rev p { margin: 8px 0 0; color: var(--fg-2); }
+.rev__a { color: var(--good) !important; font-weight: 600; }
+
+@media (max-width: 760px) {
+  .gamecard { grid-template-columns: 40px minmax(0, 1fr) 20px; gap: 12px; }
+  .gamecard__meta { grid-column: 2; justify-items: start; grid-auto-flow: column; justify-content: start; align-items: center; gap: 10px; }
+  .gamecard__go { grid-row: 1; grid-column: 3; }
+  .gamecard__n { font-size: 26px; }
+}

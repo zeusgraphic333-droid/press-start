@@ -1,0 +1,10 @@
+node_modules/
+shots/
+dist/dev-*.html
+qa/gal/
+*.log
+.DS_Store
+# work-in-progress builds (only the release build is published)
+dist/*.html
+!dist/index.html
+qa/dbg-*.js

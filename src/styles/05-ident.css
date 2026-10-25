@@ -1,0 +1,74 @@
+/* ---------- Erebus Studios ident (the loader) — always English, always dark ---------- */
+.ident {
+  --gold: #E8C77F; --gold-hi: #FFF4DA; --gold-lo: #9E7337; --p: 0; --glow: 0;
+  --D: min(64vmin, 560px);
+  position: fixed; inset: 0; z-index: 2000; background: #040405; color: var(--gold-hi);
+  display: grid; place-items: center; overflow: hidden; cursor: default; user-select: none;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.ident.is-black { background: #000; }
+.ident__stage { position: relative; width: var(--D); height: var(--D); display: grid; place-items: center; transform: translateY(-4vh); }
+
+/* the corona: thin rays outside the disc, growing with the progress */
+.ident__rays {
+  position: absolute; inset: -42%; border-radius: 50%;
+  background: repeating-conic-gradient(from 0deg, rgb(255 228 170 / 0) 0deg 2.6deg, rgb(255 228 170 / .09) 3deg 3.4deg),
+    radial-gradient(closest-side, rgb(232 199 127 / .22), rgb(232 199 127 / .06) 60%, transparent 72%);
+  -webkit-mask: radial-gradient(closest-side, transparent 66%, #000 69%, rgb(0 0 0 / .5) 82%, transparent 100%);
+  mask: radial-gradient(closest-side, transparent 66%, #000 69%, rgb(0 0 0 / .5) 82%, transparent 100%);
+  opacity: calc(.15 + var(--p) * .7 + var(--glow) * .6);
+  animation: ident-spin 80s linear infinite;
+}
+@keyframes ident-spin { to { transform: rotate(360deg); } }
+
+.ident__ring { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ident__track { fill: none; stroke: rgb(232 199 127 / .1); stroke-width: .6; }
+.ident__arc { fill: none; stroke: url(#ident-gold); stroke-width: 1.1; stroke-linecap: round; stroke-dasharray: 0 1;
+  filter: drop-shadow(0 0 2px rgb(255 236 190 / .9)) drop-shadow(0 0 7px rgb(232 199 127 / .55)); }
+.ident__halo { fill: none; stroke: var(--gold); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 0 1;
+  opacity: calc(.12 + var(--glow) * .5); filter: blur(5px); }
+.ident__disc { position: absolute; inset: 2.6%; border-radius: 50%; background: radial-gradient(circle at 50% 46%, #0b0b0d, #000 62%); box-shadow: inset 0 0 0 1px rgb(255 240 210 / .03); }
+
+/* the head of the corona: a bead of light travelling round */
+.ident__orbit { position: absolute; inset: 0; pointer-events: none; }
+.ident__bead { position: absolute; left: 50%; top: 2%; width: 6px; height: 6px; margin: -3px 0 0 -3px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 6px 2px #fff, 0 0 18px 6px rgb(255 226 160 / .85), 0 0 60px 16px rgb(232 199 127 / .45); }
+.ident__flare { position: absolute; left: 0; right: 0; top: calc(50% - 4vh - var(--D) / 2 * .96); height: 2px; margin-top: -1px; opacity: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 236 200 / .15) 22%, #fff 50%, rgb(255 236 200 / .15) 78%, transparent);
+  filter: blur(.6px) drop-shadow(0 0 8px rgb(255 226 160 / .9)); transform-origin: 50% 50%; pointer-events: none; }
+
+/* the word */
+.ident__word { position: relative; text-align: center; display: grid; justify-items: center; gap: calc(var(--D) * .03); z-index: 2; }
+.ident__erebus { margin: 0; font: 400 calc(var(--D) * .258)/.9 'Italiana', 'Didot', 'Bodoni 72', serif; letter-spacing: .01em; padding-left: .01em; white-space: nowrap;
+  background: linear-gradient(100deg, var(--gold-lo) 0%, var(--gold) 32%, var(--gold-hi) 47%, #fff 50%, var(--gold-hi) 53%, var(--gold) 68%, var(--gold-lo) 100%);
+  background-size: 260% 100%; background-position: -20% 0; -webkit-background-clip: text; background-clip: text; color: transparent;
+  text-shadow: none; }
+/* the word's glow is a blurred twin behind it (filter on the clipped text would fight the reveal) */
+.ident__word::before { content: ''; position: absolute; inset: 18% -6%; border-radius: 50%; background: radial-gradient(closest-side, rgb(232 199 127 / calc(.12 + var(--glow) * .35)), transparent); filter: blur(18px); z-index: -1; }
+.ident__studios { margin: 0; font: 500 calc(var(--D) * .028)/1 'Archivo', sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: .9em; padding-left: .9em; color: rgb(232 199 127 / .82); }
+
+/* the credit, under the eclipse */
+.ident__credit { position: absolute; left: 0; right: 0; bottom: max(9vh, 64px); display: grid; justify-items: center; gap: 16px; }
+.ident__rule { display: block; width: 72px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.ident__name { margin: 0; font: 400 clamp(12px, 1.2vw, 15px)/1 'Archivo', sans-serif; font-stretch: 112%; text-transform: uppercase; letter-spacing: .42em; padding-left: .42em; color: rgb(246 240 226 / .92); }
+.ident__name span { display: inline-block; }
+.ident__name .sp { width: .55em; }
+
+.ident__meta { position: absolute; left: max(4vw, 18px); right: max(4vw, 18px); bottom: max(3.4vh, 18px); display: flex; justify-content: space-between;
+  font: 500 10.5px/1 'Archivo', sans-serif; font-stretch: 110%; text-transform: uppercase; letter-spacing: .32em; color: rgb(232 199 127 / .45); }
+.ident__pct { font-variant-numeric: tabular-nums; letter-spacing: .2em; }
+
+.ident__grain { position: absolute; inset: -50%; pointer-events: none; opacity: .09; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: ident-grain 1s steps(6) infinite; }
+@keyframes ident-grain { 0% { transform: translate(0, 0); } 33% { transform: translate(-3%, 2%); } 66% { transform: translate(2%, -3%); } 100% { transform: translate(-1%, 1%); } }
+
+@media (max-width: 600px) {
+  .ident { --D: min(78vw, 420px); }
+  .ident__erebus { font-size: calc(var(--D) * .215); }
+  .ident__studios { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .ident__rays, .ident__grain { animation: none; } }
+/* before and under the ident: dark, whatever the experience (no paper flash), and the stage waits */
+html.booting body { background: #050507; }
+html.booting #world, html.booting #stage2d { opacity: 0; }

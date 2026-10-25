@@ -1,0 +1,130 @@
+/* =====================================================================================================
+   ILLUSTRATED EXPERIENCE — the drafting room (html[data-mode="illustrated"])
+   Same components, drawn as an engineering drawing set: drafting film with a fine grid, graphite lines in ISO
+   weights, sharp corners, the district's temper colour as a marker, red pencil for what matters, non-photo blue
+   for construction and hints, safety orange for force and heat. No glows, no blur: ink on film.
+   ===================================================================================================== */
+html[data-mode="illustrated"] {
+  --void: #EDF1EE; --bg: #EDF1EE; --panel: #FFFFFF; --card: #FFFFFF; --card-2: #F5F8F6; --card-3: #E4EBE6;
+  --line: #D2DCD5; --line-2: #B4C3B9; --line-3: #7D8D84;
+  --fg: #1B2630; --fg-2: #3B4A54; --fg-3: #5C6B74; --fg-4: #93A0A7;
+  --hot: #F05A1E; --spark: #F7C600; --steel: #8A99A5; --steel-2: #5D6E7B;
+  --violet: #6A4FC1; --red: #D7263D; --ice: #3E7BD6; --sun: #C9822E; --ultra: #3B6FD8; --pink: #9B4F7E; --stone: #B86B3C;
+  --alarm: #D7263D; --good: #12805A; --bad: #D7263D; --gold: #C98A12;
+  --zc: #C9822E; --zd: #8A5718; --zon: #FFFFFF; --zglow: transparent; --zt: var(--zd);
+  --graphite: #1B2630; --npblue: #3E7BD6; --redpencil: #D7263D; --film: #EDF1EE; --sheet: #FBFCFB;
+  --ink: #1B2630; --ink-2: #46545E; --ink-3: #7B8992; --fig-steel: #AEB9C1; --fig-hot: #F05A1E; --fig-hatch: rgba(27, 38, 48, .55);
+  --grid-1: rgba(62, 123, 214, .09); --grid-2: rgba(62, 123, 214, .17);
+  --r-xs: 2px; --r-s: 3px; --r-m: 4px; --r-l: 5px;
+  color-scheme: light;
+}
+html[data-mode="illustrated"] body {
+  background-color: var(--film);
+  background-image: linear-gradient(var(--grid-2) 1px, transparent 1px), linear-gradient(90deg, var(--grid-2) 1px, transparent 1px),
+    linear-gradient(var(--grid-1) 1px, transparent 1px), linear-gradient(90deg, var(--grid-1) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+  background-position: -1px -1px;
+}
+html[data-mode="illustrated"] ::selection { background: color-mix(in srgb, var(--zc) 45%, #fff); color: var(--graphite); }
+html[data-mode="illustrated"] * { scrollbar-color: rgba(27, 38, 48, .25) transparent; }
+html[data-mode="illustrated"] ::-webkit-scrollbar-thumb { background: rgba(27, 38, 48, .22); background-clip: content-box; }
+html[data-mode="illustrated"] .hud-num { font-weight: 600; letter-spacing: .03em; }
+html[data-mode="illustrated"] :focus-visible { outline: 2px solid var(--npblue); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- light → ink: no glow anywhere ---------- */
+html[data-mode="illustrated"] .bar { height: 4px; background: var(--card-3); border-radius: 0; }
+html[data-mode="illustrated"] .bar > i { box-shadow: none; border-radius: 0; background: var(--zd); }
+html[data-mode="illustrated"] .segs i { border-radius: 0; }
+html[data-mode="illustrated"] .segs i.on { box-shadow: none; background: var(--zd); }
+html[data-mode="illustrated"] .marks .on { color: var(--hot); filter: none; }
+html[data-mode="illustrated"] .marks .off { color: var(--line-2); }
+html[data-mode="illustrated"] .glyph, html[data-mode="illustrated"] .screen__glyph { filter: none; color: var(--zd); }
+html[data-mode="illustrated"] .fx-float { text-shadow: none; color: var(--graphite); background: #fff; padding: 6px 10px; border: 1.5px solid var(--graphite); border-radius: 2px; box-shadow: inset 0 -3px 0 var(--zc); }
+html[data-mode="illustrated"] .fx-float--bad { color: #fff; background: var(--bad); border-color: var(--bad); box-shadow: none; }
+html[data-mode="illustrated"] .fx-float--good { color: #fff; background: var(--good); border-color: var(--good); box-shadow: none; }
+html[data-mode="illustrated"] .fx-burst i { box-shadow: none; }
+html[data-mode="illustrated"] .tabs__ink { box-shadow: none; height: 3px; background: var(--zd) !important; }
+html[data-mode="illustrated"] .g-timer > i { box-shadow: none; }
+
+/* ---------- buttons: square-cornered, graphite, a strip of the district's colour along the base ---------- */
+html[data-mode="illustrated"] .btn { border-width: 1.5px; border-radius: 3px; --bb: var(--graphite); --fill: var(--graphite); --ft: #fff; font-weight: 600; }
+html[data-mode="illustrated"] .btn--solid { --bc: var(--graphite); --bt: #fff; --bb: var(--graphite); --fill: var(--zd); --ft: #fff; box-shadow: inset 0 -4px 0 var(--zc); }
+html[data-mode="illustrated"] .btn--zone { --bc: var(--zc); --bt: var(--zon); --bb: var(--graphite); --fill: var(--graphite); --ft: #fff; }
+html[data-mode="illustrated"] .btn--good { --bt: #fff; }
+html[data-mode="illustrated"] .btn--ghost { --bb: transparent; }
+html[data-mode="illustrated"] .btn .xp { background: rgba(255, 255, 255, .22); border-radius: 2px; }
+html[data-mode="illustrated"] .chip { border-width: 1.5px; border-radius: 2px; border-color: var(--line-2); background: #fff; }
+html[data-mode="illustrated"] .chip--zone { border-color: var(--zd); color: var(--zd); background: color-mix(in srgb, var(--zc) 14%, #fff); }
+html[data-mode="illustrated"] .arc__f[aria-checked="true"] { background: var(--graphite); border-color: var(--graphite); color: #fff; }
+html[data-mode="illustrated"] .card { border-width: 1.5px; border-color: var(--line-2); border-radius: 3px; }
+html[data-mode="illustrated"] .label { font-weight: 600; color: var(--fg-3); }
+html[data-mode="illustrated"] .label b { color: var(--zd); }
+/* a highlighter stroke in the district colour, the way a checker marks a drawing */
+html[data-mode="illustrated"] mark { color: var(--graphite); background: linear-gradient(transparent 52%, color-mix(in srgb, var(--zc) 55%, transparent) 52%, color-mix(in srgb, var(--zc) 55%, transparent) 92%, transparent 92%); }
+
+/* ---------- toasts, modals ---------- */
+html[data-mode="illustrated"] .toast { background: #fff; backdrop-filter: none; border: 1.5px solid var(--graphite); border-radius: 3px; box-shadow: inset 0 -4px 0 var(--zc); }
+html[data-mode="illustrated"] .modal { background: rgba(237, 241, 238, .86); backdrop-filter: none; }
+html[data-mode="illustrated"] .modal__card { border: 1.5px solid var(--graphite); border-radius: 3px; box-shadow: 6px 6px 0 rgba(27, 38, 48, .14); }
+html[data-mode="illustrated"] .modal__card .glyph-xl { color: var(--zd); }
+
+/* ---------- cursor ---------- */
+html[data-mode="illustrated"] .cur--dot { background: var(--graphite); mix-blend-mode: normal; }
+html[data-mode="illustrated"] .cur--ring { border-color: rgba(27, 38, 48, .45); border-radius: 0; }
+html[data-mode="illustrated"] .cur--ring::before, html[data-mode="illustrated"] .cur--ring::after { content: ''; position: absolute; background: rgba(27, 38, 48, .35); }
+html[data-mode="illustrated"] .cur--ring::before { left: 50%; top: -6px; bottom: -6px; width: 1px; }
+html[data-mode="illustrated"] .cur--ring::after { top: 50%; left: -6px; right: -6px; height: 1px; }
+
+/* ---------- a level: the drawing sheet + the film the stage is plotted on ---------- */
+html[data-mode="illustrated"] .screen__main { background: rgba(251, 252, 251, .97); backdrop-filter: none; border-inline-end: 1.5px solid var(--graphite); }
+html[data-mode="illustrated"] .screen--full .screen__main { background: rgba(251, 252, 251, .985); }
+html[data-mode="illustrated"] .screen__bar { border-bottom: 1.5px solid var(--graphite); }
+html[data-mode="illustrated"] .stage__frame i { border-color: var(--graphite); opacity: .6; border-radius: 0; }
+html[data-mode="illustrated"] .stage__n { color: var(--zd); font-weight: 700; }
+html[data-mode="illustrated"] .zhero__title { color: var(--graphite); }
+@media (max-width: 980px) {
+  html[data-mode="illustrated"] .screen__main { background: transparent; border: 0; }
+  html[data-mode="illustrated"] .screen__bar { background: rgba(251, 252, 251, .95); backdrop-filter: none; }
+  html[data-mode="illustrated"] .screen__body { background: linear-gradient(to bottom, transparent 0, transparent 26vh, rgba(251, 252, 251, .985) 38vh, rgba(251, 252, 251, .985) 100%); background-attachment: local; }
+  html[data-mode="illustrated"] .screen--full .screen__body { background: rgba(251, 252, 251, .985); }
+}
+
+/* ---------- per-district marker inks on paper (beat the inline glowing colours of the night shift) ----------
+   --zc fills and marks, --zd carries text, --zon is the text on a --zc fill */
+html[data-mode="illustrated"] [data-screen="zone-design"] { --zc: #E2B93B !important; --zd: #7A5A0E !important; --zon: #1B2630 !important; }
+html[data-mode="illustrated"] [data-screen="zone-materials"] { --zc: #D99A3A !important; --zd: #84520F !important; --zon: #1B2630 !important; }
+html[data-mode="illustrated"] [data-screen="zone-strength"] { --zc: #D0782A !important; --zd: #8A4512 !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen="zone-props"] { --zc: #B8643A !important; --zd: #7A3C1C !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen="zone-iron"] { --zc: #9B4F7E !important; --zd: #6C2E55 !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen="zone-bend"] { --zc: #6A4FC1 !important; --zd: #46308F !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen="zone-compound"] { --zc: #3B6FD8 !important; --zd: #234A9E !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen="zone-cut"] { --zc: #4E9AD8 !important; --zd: #1F5E94 !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen^="boss"], html[data-mode="illustrated"] .screen[data-screen*="boss"] { --zc: #F05A1E !important; --zd: #B53A0E !important; --zon: #fff !important; }
+html[data-mode="illustrated"] [data-screen="archive"] { --zc: #3E7BD6 !important; --zd: #1F4E9A !important; --zon: #fff !important; }
+html[data-mode="illustrated"] .screen { --zt: var(--zd) !important; }
+/* the district colour as text always uses its dark partner on paper */
+html[data-mode="illustrated"] :is(.tab[aria-selected="true"] .tab__n, .zhero__meta .hud-num, .chap__en, mark, .chip--zone) { color: var(--zd); }
+
+/* ---------- lesson blocks on the sheet ---------- */
+html[data-mode="illustrated"] .blk-quote { background: #fff; border: 1.5px solid var(--graphite); border-radius: 3px; box-shadow: none; }
+html[data-mode="illustrated"] .blk-trap { background: color-mix(in srgb, var(--redpencil) 6%, #fff); border: 1.5px solid var(--redpencil); border-inline-start-width: 5px; border-radius: 3px; box-shadow: none; color: var(--graphite); }
+html[data-mode="illustrated"] .blk-trap .blk-tag { color: var(--redpencil); }
+html[data-mode="illustrated"] .blk-tip { background: color-mix(in srgb, var(--npblue) 7%, #fff); border: 1.5px dashed var(--npblue); border-radius: 3px; }
+html[data-mode="illustrated"] .blk-tip .blk-tag { color: var(--npblue); }
+html[data-mode="illustrated"] .blk-why { border-radius: 3px; }
+html[data-mode="illustrated"] .blk-demo { border: 1.5px solid var(--graphite); background: #fff; border-radius: 3px; box-shadow: inset 0 -4px 0 var(--zc); }
+html[data-mode="illustrated"] .blk-art, html[data-mode="illustrated"] .blk-ex__art, html[data-mode="illustrated"] .blk-cmp__art, html[data-mode="illustrated"] .gcard__art { border-radius: 3px; }
+html[data-mode="illustrated"] .gamestage__in { border: 1.5px solid var(--graphite); border-radius: 3px; background: #fff; padding: clamp(12px, 2vw, 22px); }
+html[data-mode="illustrated"] .blk-check__card, html[data-mode="illustrated"] .qrun__card, html[data-mode="illustrated"] .qc { border-width: 1.5px; border-radius: 3px; }
+html[data-mode="illustrated"] .opt { border-width: 1.5px; background: #fff; border-radius: 3px; }
+html[data-mode="illustrated"] .gamecard { border-radius: 3px; }
+html[data-mode="illustrated"] .gamecard:hover { background: color-mix(in srgb, var(--zc) 9%, #fff); }
+/* opt-in dark stock for a figure that must stay on black (.plate on the art's wrapper) */
+html[data-mode="illustrated"] .plate { --ink: #ECE9E2; --ink-2: #B3B6BA; --ink-3: #7C8188; --fig-hatch: rgba(236, 233, 226, .45); background: #13171C; color: #ECE9E2; }
+
+/* ---------- the onboarding card ---------- */
+html[data-mode="illustrated"] .onb { background: rgba(237, 241, 238, .6); }
+html[data-mode="illustrated"] .onb__card { background: #fff; border: 1.5px solid var(--graphite); border-radius: 3px; box-shadow: 6px 6px 0 rgba(27, 38, 48, .14); }
+html[data-mode="illustrated"] .sigil { border-radius: 3px; }
+html[data-mode="illustrated"] .sigil[aria-checked="true"] { box-shadow: inset 0 -4px 0 var(--zc); border-color: var(--graphite); }
+html[data-mode="illustrated"] .onb__name { border-radius: 0; }

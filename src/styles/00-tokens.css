@@ -1,0 +1,87 @@
+/* PRESS START — the night shift: a dark plant floor, metal that glows in its temper colours, one colour per district. */
+:root {
+  --void: #0A0C0F;
+  --bg: #0A0C0F;
+  --panel: #0F1216;
+  --card: #13171C;
+  --card-2: #191E24;
+  --card-3: #20262E;
+  --line: rgba(236, 233, 226, .11);
+  --line-2: rgba(236, 233, 226, .2);
+  --line-3: rgba(236, 233, 226, .36);
+  --fg: #ECE9E2;
+  --fg-2: #B3B6BA;
+  --fg-3: #7C8188;
+  --fg-4: #545960;
+
+  /* heat and metal */
+  --hot: #FF5A1F;
+  --spark: #FFB347;
+  --steel: #9AA9B8;
+  --steel-2: #5E7186;
+  /* steel's temper colours (the districts, straw → blue) */
+  --t-straw: #F2E2A0;
+  --t-gold: #E8C368;
+  --t-amber: #E39B3C;
+  --t-bronze: #C97A43;
+  --t-plum: #B9668A;
+  --t-violet: #9468D2;
+  --t-blue: #4F7FE6;
+  --t-ice: #86BDF0;
+
+  /* the older names the shared components use, mapped onto this palette */
+  --violet: var(--t-violet);
+  --red: #E8432B;
+  --ice: var(--t-ice);
+  --sun: var(--t-gold);
+  --ultra: var(--t-blue);
+  --pink: var(--t-plum);
+  --stone: var(--t-bronze);
+  --alarm: var(--hot);
+  --good: #46E3A0;
+  --bad: #FF4D5E;
+  --gold: #F2C14E;
+
+  /* the current district (set per screen) */
+  --zc: var(--t-amber);
+  --zd: #9C6118;
+  --zon: #0A0C0F;
+  --zglow: rgba(227, 155, 60, .35);
+  /* the zone colour for text and fine lines (night shift: the glow itself · drafting room: its dark partner) */
+  --zt: var(--zc);
+
+  --r-xs: 4px;
+  --r-s: 8px;
+  --r-m: 12px;
+  --r-l: 16px;
+
+  /* type: Changa (Arabic display, squared like stamped lettering) · Big Shoulders (Latin display, condensed like
+     plant signage) · Readex Pro (text, both scripts) · Barlow Condensed (numbers and readouts, DIN-like) */
+  --f-display: 'Changa', 'Readex Pro', system-ui, sans-serif;
+  --f-latin: 'Big Shoulders Display', 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --f-stencil: 'Big Shoulders Stencil Display', 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --f-text: 'Readex Pro', 'Changa', system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif;
+  --f-hud: 'Barlow Condensed', 'Readex Pro', system-ui, sans-serif;
+  --f-sans: var(--f-text);
+  --f-serif: var(--f-text);
+  --f-mono: 'Barlow Condensed', ui-monospace, monospace;
+
+  /* aliases used by the figure library: figures draw with these, so they read in both modes */
+  --ink: var(--fg);
+  --ink-2: var(--fg-2);
+  --ink-3: var(--fg-3);
+  --paper: transparent;
+  --blue: var(--zc);
+  --pink-deep: var(--pink);
+  --fig-steel: #8C9BAA;
+  --fig-hot: var(--hot);
+  --fig-hatch: rgba(236, 233, 226, .45);
+
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+  --ease-io: cubic-bezier(.65, 0, .35, 1);
+  --ease-back: cubic-bezier(.34, 1.4, .64, 1);
+  color-scheme: dark;
+}
+/* English pages: headings in the condensed signage face */
+html[lang="en"] { --f-display: 'Big Shoulders Display', 'Changa', 'Arial Narrow', sans-serif; }
+html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3 { letter-spacing: .005em; }

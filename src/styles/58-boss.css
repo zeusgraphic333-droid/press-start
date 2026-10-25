@@ -1,0 +1,106 @@
+/* ---------- the exam tower ---------- */
+.boss__bonus { display: flex; align-items: center; gap: 10px; margin-top: 22px; font-size: 14.5px; color: var(--fg-2); cursor: pointer; }
+.boss__bonus input { width: 18px; height: 18px; accent-color: var(--zc); }
+
+/* boss fight */
+.fight__top { display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-bottom: 10px; }
+.fight__boss { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+.fight__glyph { width: 40px; height: 40px; color: var(--alarm); filter: drop-shadow(0 0 12px rgba(255, 59, 48, .5)); }
+.fight__hp { flex: 1; min-width: 0; display: grid; gap: 6px; }
+.fight__hpl { display: flex; justify-content: space-between; align-items: baseline; }
+.fight__hpl b { font: 700 16px/1 var(--f-display); }
+.fight__hpn { font-size: 24px; line-height: .8; color: var(--alarm); }
+.fight__bar { position: relative; height: 8px; border-radius: 99px; background: var(--line-2); overflow: hidden; }
+.fight__bar i { position: absolute; inset: 0 0 0 auto; width: calc(var(--p) * 100%); background: var(--alarm); border-radius: inherit; box-shadow: 0 0 14px rgba(255, 59, 48, .6); transition: width .35s var(--ease-out); z-index: 1; }
+.fight__bar .fight__ghost { background: #FFD1C4; box-shadow: none; z-index: 0; transition: width .8s var(--ease-io); }
+html[dir="ltr"] .fight__bar i { inset: 0 auto 0 0; }
+.fight__me { display: flex; align-items: center; gap: 14px; }
+.fight__lives { display: flex; gap: 6px; }
+.fight__lives i { width: 14px; height: 14px; transform: rotate(45deg); background: var(--fg); box-shadow: 0 0 10px rgba(236, 233, 226, .45); transition: background .3s, box-shadow .3s, transform .4s var(--ease-back); }
+.fight__lives i.is-lost { background: transparent; border: 1px solid var(--fg-4); box-shadow: none; transform: rotate(45deg) scale(.8); }
+.fight__combo { display: inline-flex; align-items: center; gap: 4px; color: var(--gold); }
+.fight__combo .glyph, .fight__combo svg { width: 18px; height: 18px; }
+.fight__combo b { font-size: 22px; }
+.fight__taunt { font: 500 17px/1.6 var(--f-display); color: var(--fg-2); margin: 6px 0 12px; min-height: 1.6em; }
+.fight__taunt.in { animation: rise .5s var(--ease-out); }
+.fight__taunt::before { content: '— '; color: var(--alarm); }
+.fight__timer { margin-bottom: 16px; }
+.fight__timer > i { background: var(--alarm); box-shadow: 0 0 10px rgba(255, 59, 48, .5); }
+
+/* portal exam */
+.portal__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+.portal__qn { font: 800 clamp(24px, 2.6vw, 32px)/1.2 var(--f-display); margin-top: 6px; }
+.portal__qn .hud-num { font-size: 1.15em; color: var(--zc); }
+.portal__clock { display: grid; justify-items: end; gap: 2px; }
+.portal__time { font-size: 44px; line-height: .8; color: var(--fg); letter-spacing: .04em; }
+.portal__time.is-low { color: var(--alarm); animation: fx-pulse 1s infinite; }
+.portal__grid { display: grid; grid-template-columns: minmax(0, 1fr) 230px; gap: 22px; align-items: start; }
+.portal__acts { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; justify-content: space-between; }
+.portal__flag.is-on { --bb: var(--gold); color: var(--gold); }
+.portal__nav { position: sticky; top: 12px; border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: var(--card); display: grid; gap: 12px; }
+.portal__dots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.pdot { position: relative; aspect-ratio: 1; display: grid; place-items: center; border: 1px solid var(--line-2); border-radius: 8px; background: transparent; color: var(--fg-3); padding: 0; min-width: 0; transition: border-color .2s, background .2s, color .2s; }
+.pdot .hud-num { font-size: 16px; }
+.pdot:hover { border-color: var(--fg-3); }
+.pdot.is-ans { background: rgba(236, 233, 226, .1); color: var(--fg); border-color: var(--line-3); }
+.pdot.is-cur { border-color: var(--zc); box-shadow: 0 0 0 1px var(--zc); color: var(--fg); }
+.pdot.is-flag::after { content: ''; position: absolute; top: 3px; right: 3px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.portal__legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--fg-3); margin: 0; }
+.portal__legend span { display: inline-flex; align-items: center; gap: 5px; }
+.portal__legend .pdot { width: 14px; aspect-ratio: 1; border-radius: 4px; display: inline-block; }
+.portal__sum { border: 1px solid var(--line-2); border-radius: 20px; padding: 20px; background: var(--card); }
+.portal__sum h3 { font: 800 24px/1.2 var(--f-display); margin-bottom: 8px; }
+.portal__sum .bad, .result .bad { color: var(--bad); }
+.portal__tbl { width: 100%; border-collapse: collapse; margin: 12px 0 6px; font-size: 14.5px; }
+.portal__tbl th, .portal__tbl td { text-align: start; padding: 7px 8px; border-bottom: 1px solid var(--line); }
+.portal__tbl th { font: 600 13px var(--f-display); color: var(--fg-3); }
+.flagged { color: var(--gold); }
+.linkish { background: none; border: 0; padding: 0; color: var(--fg); text-decoration: underline; text-decoration-color: var(--line-3); text-underline-offset: .25em; }
+
+/* results */
+.result { padding-top: 6px; }
+.result__big { font: 900 clamp(40px, 5.6vw, 76px)/1.05 var(--f-display); margin: 10px 0 12px; }
+.result.is-win .result__big { color: var(--fg); text-shadow: 0 0 40px rgba(255, 201, 60, .25); }
+.result__line { font: 500 19px/1.7 var(--f-display); color: var(--fg-2); max-width: 32em; }
+.result__hero { display: flex; align-items: flex-end; gap: clamp(20px, 5vw, 60px); margin: 8px 0 6px; flex-wrap: wrap; }
+.result__pct { display: flex; align-items: baseline; direction: ltr; }
+.result__pct .hud-num:first-child { font-size: clamp(120px, 17vw, 210px); line-height: .78; color: var(--fg); }
+.result__pc { font-size: 54px; color: var(--fg-3); }
+.result__grade { display: grid; gap: 4px; padding-bottom: 12px; }
+.result__grade b { font-size: 76px; line-height: .8; color: var(--zc); }
+.result__stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin: 24px 0; padding: 18px 0; border-block: 1px solid var(--line); }
+.result__stats > div { display: grid; gap: 6px; }
+.result__stats b { font-size: 32px; line-height: .9; }
+.result__tps { display: grid; gap: 10px; margin: 6px 0 22px; }
+.result__tps h3 { font: 800 22px/1.2 var(--f-display); margin-bottom: 6px; }
+.tprow { display: grid; grid-template-columns: 130px minmax(0, 1fr) 48px; gap: 12px; align-items: center; font-size: 14.5px; color: var(--fg-2); }
+.tprow .hud-num { font-size: 18px; color: var(--fg); text-align: left; }
+html[dir="ltr"] .tprow .hud-num { text-align: right; }
+.result__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 22px; }
+.rcard { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: var(--card); display: grid; gap: 6px; align-content: start; }
+.rcard b { font: 800 20px/1.25 var(--f-display); }
+.rcard .hud-num { font-size: 28px; color: var(--zc); line-height: .9; }
+.rcard--weak .hud-num { color: var(--gold); }
+.rcard .btn { justify-self: start; margin-top: 6px; }
+.result__acts { display: flex; gap: 10px; flex-wrap: wrap; margin: 6px 0 10px; }
+.rev__x { color: var(--bad) !important; }
+.rev__e { font-size: 13.5px; color: var(--fg-3) !important; }
+
+@media (max-width: 900px) {
+  .portal__grid { grid-template-columns: 1fr; }
+  /* one column: the question comes first, the navigator follows it (as on the real portal's phone view) */
+  .portal__nav { position: static; }
+  .portal__dots { grid-template-columns: repeat(10, 1fr); }
+  .result__cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .result__stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .portal__dots { grid-template-columns: repeat(10, 1fr); gap: 4px; }
+  .pdot { border-radius: 6px; }
+  .portal__acts { display: grid; grid-template-columns: 1fr 1fr; }
+  .portal__acts .btn { justify-content: center; }
+  .portal__flag { order: 3; grid-column: 1 / -1; }
+  .pdot .hud-num { font-size: 14px; }
+  .tprow { grid-template-columns: 100px minmax(0, 1fr) 40px; }
+  .portal__time { font-size: 34px; }
+}

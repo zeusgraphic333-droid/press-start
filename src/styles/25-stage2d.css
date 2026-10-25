@@ -1,0 +1,9 @@
+/* ---------- illustrated mode: the 2D stage (riso-print SVG scenes) ---------- */
+.stage2d { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.st2-frame { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.st2-scene { position: absolute; inset: 0; }
+.st2-scene svg, .st2-burst svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; overflow: visible; direction: ltr; }
+/* the whole print multiplies onto the paper (never blend inside a scene: see kit.js) */
+.st2-scene svg { mix-blend-mode: multiply; }
+.st2-burst { position: absolute; inset: 0; pointer-events: none; }
+.stage2d.is-paused .st2-scene *, .st2-scene.is-paused * { animation-play-state: paused !important; }
