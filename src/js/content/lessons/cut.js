@@ -195,7 +195,7 @@ export default {
         { t: 'say', who: 'press', text: 'ده أشهر سؤال في المحاضرة. نفس البنش، ونفس الداي، ونفس الضربة. الفرق كله: انت شايل أنهي حتة؟' },
         { t: 'quote', ref: 'L5 · S13', text: '1-2-1- Punching (Piercing): It is a cutting operation by which various shaped holes are made in sheet metal. Punching is similar to blanking except that in punching, the hole is the desired product, the material punched out to form the hole being waste.', ar: 'التخريم عملية قطع بتعمل فتحات بأشكال مختلفة في الصاج. شبه البلانكينج، بس في التخريم الفتحة هي المنتج المطلوب، والمعدن اللي اتخرم خردة.' },
         { t: 'quote', ref: 'L5 · S13', text: '1-2-2- Blanking: Blanking is the operation of cutting a flat shape sheet metal. The article punched out is called the blank and is the required product of the operation. The hole and metal left behind is discarded as waste.', ar: 'البلانكينج عملية بتقطع شكل مسطح من الصاج. الحتة اللي اتخرمت اسمها blank، وهي المنتج المطلوب. والفتحة والمعدن اللي فاضل بيترموا خردة.' },
-        { t: 'art', html: art('pb'), caption: 'زي رسمة السلايد 13: نفس القطع. في التخريم بنشيل اللوح اللي فيه الفتحة. في البلانكينج بنشيل الحتة اللي وقعت. والمتشطّب هو اللي اترمى (Discarded).' },
+        { t: 'art', html: art('pb'), caption: 'زي رسمة السلايد 13: نفس القطع. في التخريم بناخد اللوح اللي فيه الفتحة. في البلانكينج بناخد الحتة اللي وقعت. والمتشطّب هو اللي اترمى (Discarded).' },
         { t: 'demo', id: 'ct-keep', title: 'خد ولا ارمي؟', caption: 'اضغط «اخرم»، وبعدين اختار الحتة اللي هتروح للزبون. اسم العملية هيظهر. جرّب الاختيارين.', mount: (el, api) => mountKeep(el, api, KEEP) },
         { t: 'check', q: 'ct28' },
         { t: 'check', q: 'ct29' },

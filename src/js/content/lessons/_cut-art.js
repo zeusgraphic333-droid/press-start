@@ -399,7 +399,7 @@ A.emboss = ({ small = false } = {}) => {
   let s = block(top, { dir: 1 }) + plate([sheet], { sh: 0, tint: V.zc, op: .5, sw: 1.4 }) + block(bot, { dir: -1 });
   s += tx(70, 44, 'MALE', { size: 16, fill: V.ink, halo: true }) + tx(70, 106, 'FEMALE', { size: 16, fill: V.ink, halo: true }) + tx(260, 44, 'punch', { size: 12, halo: true }) + tx(260, 106, 'die', { size: 12, halo: true });
   if (!small) s += arrow(170, 0, 170, 14) + lead(300, 68, 330, 68, '', {}) + tx(332, 72, 'sheet', { anchor: 'start', size: 13, fill: V.zt });
-  return [small ? '0 0 340 128' : '0 0 380 130', s, 'Embossing: a male punch and a female die of the same contour in opposite direction, with the sheet between'];
+  return [small ? '0 0 340 128' : '0 0 380 130', s, 'A male punch and a female die of the same contour in opposite direction, with the sheet between'];
 };
 A.coin = () => {
   const zig = (x0, x1, y, a, n, up) => { const pts = []; for (let i = 0; i <= n; i++) pts.push([x0 + (x1 - x0) * i / n, y + (i % 2 ? (up ? -a : a) : 0)]); return pts; };
