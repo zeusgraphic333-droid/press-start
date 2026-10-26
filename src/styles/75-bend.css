@@ -1,1 +1,129 @@
-/* Zone styles — bend: its trials, demos and lesson art. Scope every rule under .z-bend or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* ---------- bend (Lecture 3): demos, trials, the quick-fire scope. Tokens only, so both experiences work. ---------- */
+
+/* shared bits: segmented switch, range, readout */
+.bnd-seg { display: inline-flex; gap: 3px; padding: 3px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--card-2); }
+.bnd-seg button { appearance: none; border: 0; background: transparent; color: var(--fg-2); font: 600 15px/1 var(--f-hud); letter-spacing: .05em; padding: 9px 18px; border-radius: 9px; cursor: pointer; transition: background .2s, color .2s; }
+.bnd-seg button:hover { color: var(--fg); }
+.bnd-seg button[aria-checked="true"] { background: var(--zc); color: var(--zon); }
+.bnd-range { display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 6px 10px; }
+.bnd-range input { grid-column: 1 / -1; width: 100%; accent-color: var(--zc); margin: 0; }
+.bnd-range .hud-num { font-size: 22px; color: var(--fg); }
+.bnd-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.bnd-read { display: grid; gap: 4px; margin: 0; min-height: 3.4em; }
+.bnd-read b { font: 700 16.5px/1.4 var(--f-display); color: var(--fg); }
+.bnd-read small { font-size: 14px; line-height: 1.65; color: var(--fg-2); }
+.bnd-eq { font: 600 15px/1.4 var(--f-hud) !important; letter-spacing: .02em; color: var(--zt) !important; }
+
+/* demos: drawing + controls, side by side when the lesson column is wide enough */
+.bnd-demo > div { min-width: 0; }
+.bnd-demo { display: grid; gap: 14px; }
+.bnd-demo__fig svg { width: 100%; height: auto; max-height: 290px; display: block; margin: 0 auto; }
+.bnd-demo__side { display: grid; gap: 14px; align-content: start; }
+/* wide lesson column: controls on one side, the readout on the other, under the full-width drawing */
+@media (min-width: 900px) { .bnd-demo__side { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-items: start; } .bnd-demo__side > * { grid-column: 1; } .bnd-demo__side > .bnd-read { grid-column: 2; grid-row: 1 / span 6; padding-inline-start: 18px; border-inline-start: 1px solid var(--line); } }
+.bnd-k__math { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 10px 12px; border: 1px dashed var(--line-2); border-radius: 12px; font: 600 15px/1 var(--f-hud); color: var(--fg-2); }
+.bnd-k__math b { font-size: 20px; color: var(--zt); }
+.bnd-k__bar { height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.bnd-k__bar i { display: block; height: 100%; width: calc(var(--p, .5) * 100%); background: var(--zc); border-radius: inherit; transition: width .2s; }
+.bnd-spr__chips { min-height: 30px; }
+.bnd-spr__st[hidden] { display: none; }
+.bnd-spr__dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 0; font: 500 14px/1.4 var(--f-hud); letter-spacing: .02em; }
+.bnd-spr__dl dt { color: var(--fg-3); }
+.bnd-spr__dl dd { margin: 0; text-align: end; font-size: 17px; color: var(--fg); }
+
+/* trials: intro and end cards */
+.bnd-intro { display: grid; gap: 12px; padding: 24px clamp(18px, 3vw, 30px); }
+.bnd-intro__t { font: 900 clamp(28px, 3.4vw, 40px)/1.15 var(--f-display); }
+.bnd-intro__p { margin: 0; max-width: 40em; color: var(--fg-2); font-size: 16.5px; line-height: 1.8; }
+.bnd-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 9px; color: var(--fg-2); font-size: 15px; line-height: 1.6; }
+.bnd-rules li { display: flex; align-items: baseline; gap: 12px; }
+.bnd-rules .hud-num { flex: none; color: var(--zc); font-size: 17px; }
+.bnd-intro__acts { justify-content: flex-start; align-items: center; }
+.bnd-kbd { font-size: 13px; color: var(--fg-3); }
+.bnd-kbd kbd, .bnd-key { font: 500 13px/1 var(--f-hud); }
+.bnd-kbd kbd { border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.bnd-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.bnd-end__score > .hud-num:first-child { font-size: clamp(88px, 12vw, 140px); line-height: .8; color: var(--fg); }
+.bnd-end__of { font-size: 34px; color: var(--fg-3); }
+.bnd-end__marks { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.bnd-fb { margin: 0; min-height: 2.6em; font-size: 15px; line-height: 1.7; color: var(--fg-2); }
+.bnd-fb b { color: var(--fg); }
+.bnd-ok { color: var(--good) !important; }
+.bnd-no { color: var(--bad) !important; }
+
+/* trial 1 · beat the springback */
+.bnd-sb__grid { display: grid; gap: 16px; }
+@media (min-width: 900px) { .bnd-sb__grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; } }
+.bnd-sb__fig { border: 1px solid var(--line); border-radius: 16px; background: var(--card-2); padding: 8px; }
+.bnd-sb__fig svg { width: 100%; height: auto; max-height: 300px; display: block; }
+.bnd-sb__side { display: grid; gap: 12px; align-content: start; }
+.bnd-sb__target { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.bnd-sb__target b { font-size: 34px; line-height: 1; color: var(--good); }
+.bnd-sb__info { margin: 0; padding: 10px 12px; border-radius: 12px; background: color-mix(in srgb, var(--zc) 8%, transparent); border: 1px solid color-mix(in srgb, var(--zc) 28%, transparent); font-size: 14.5px; line-height: 1.7; color: var(--fg-2); }
+.bnd-sb__info b { color: var(--fg); }
+.bnd-tool { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; gap: 8px; }
+.bnd-tool .btn { justify-content: center; font: 700 22px/1 var(--f-hud); padding: 8px 0; min-height: 44px; }
+.bnd-tool__v { text-align: center; font-size: 34px; line-height: 1; color: var(--zt); }
+.bnd-tool__lab { display: grid; gap: 6px; }
+.bnd-tool__lab input { width: 100%; accent-color: var(--zc); margin: 0; }
+
+/* trial 2 · flat length */
+.bnd-fl__fig { display: grid; place-items: center; margin: 0 auto 4px; width: min(100%, 340px); }
+.bnd-fl__fig svg { width: 100%; height: auto; }
+.bnd-fl__given { margin: 0; text-align: center; font: 600 18px/1.4 var(--f-hud); letter-spacing: .03em; color: var(--zt); min-height: 1.4em; }
+.bnd-fl__q { margin: 8px 0 14px; }
+.bnd-fl .g-choice { position: relative; min-height: 58px; font: 600 17px/1.3 var(--f-hud); letter-spacing: .02em; }
+.bnd-key { position: absolute; top: 7px; inset-inline-end: 9px; color: var(--fg-4); }
+.bnd-fl .bnd-fb { text-align: center; margin-top: 14px; }
+.bnd-fl .g-acts { min-height: 46px; }
+
+/* trial 3 · the quick-fire engine (games/_cte-kit.js) has no shared styles yet: scoped here */
+.bnd-qf .cte-intro { display: grid; gap: 12px; padding: 24px clamp(18px, 3vw, 30px); }
+.bnd-qf .cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.bnd-qf .cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.bnd-qf .cte-intro__t { font: 900 clamp(28px, 3.4vw, 40px)/1.15 var(--f-display); }
+.bnd-qf .cte-intro__p { color: var(--fg-2); font-size: 16.5px; max-width: 38em; margin: 0; }
+.bnd-qf .cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.bnd-qf .cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.bnd-qf .cte-rules .hud-num { color: var(--zc); font-size: 17px; flex: none; }
+.bnd-qf .cte-kbd { font-size: 13px; color: var(--fg-3); }
+.bnd-qf .cte-kbd kbd, .bnd-qf .cte-key { font: 500 13px/1 var(--f-hud); }
+.bnd-qf .cte-kbd kbd { border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.bnd-qf .cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.bnd-qf .cte-streak { color: var(--gold); }
+.bnd-qf .cte-streak[hidden] { display: none; }
+.bnd-qf .cte-round .g-timer { margin: -4px 0 16px; }
+.bnd-qf .cte-art { display: grid; place-items: center; margin: 0 auto 10px; width: min(100%, 300px); border: 1px solid var(--line); border-radius: 14px; background: var(--card-2); padding: 6px; }
+.bnd-qf .cte-art svg { width: 100%; height: auto; max-height: 190px; }
+.bnd-qf .g-prompt { font-size: clamp(19px, 2.2vw, 25px); }
+.bnd-qf .cte-choices .g-choice { position: relative; min-height: 60px; font-size: 16px; }
+.bnd-qf .cte-key { position: absolute; top: 7px; inset-inline-end: 9px; color: var(--fg-4); }
+.bnd-qf .cte-round--row .cte-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.bnd-qf .cte-round--yn .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bnd-qf .cte-fb { min-height: 2.8em; margin: 16px 0 0; text-align: center; color: var(--fg-2); font-size: 15px; line-height: 1.6; }
+.bnd-qf .cte-ok { color: var(--good); }
+.bnd-qf .cte-no { color: var(--bad); }
+.bnd-qf .cte-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.bnd-qf .cte-end__score > .hud-num:first-child { font-size: clamp(88px, 12vw, 140px); line-height: .8; color: var(--fg); }
+.bnd-qf .cte-end__of { font-size: 34px; color: var(--fg-3); }
+.bnd-qf .cte-end__marks { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.bnd-qf .cte-end__meta { font-size: 13.5px; color: var(--fg-3); }
+.bnd-qf .cte-end__meta .hud-num { color: var(--gold); font-size: 17px; }
+
+/* phones: 360 px must work */
+@media (max-width: 560px) {
+  .bnd-seg button { padding: 9px 14px; }
+  .bnd-tool__v { font-size: 30px; }
+  .bnd-sb__target b { font-size: 28px; }
+  .bnd-fl .g-choices { grid-template-columns: 1fr 1fr; }
+  .bnd-qf .cte-round--row .cte-choices { grid-template-columns: 1fr; }
+  .bnd-qf .cte-round--row .g-choice { min-height: 50px; padding: 10px; }
+  .bnd-qf .cte-choices .g-choice { font-size: 15px; padding: 12px 8px; }
+}
+
+/* the drafting room: sharp corners, ink instead of glow */
+html[data-mode="illustrated"] .bnd-seg, html[data-mode="illustrated"] .bnd-seg button, html[data-mode="illustrated"] .bnd-k__math,
+html[data-mode="illustrated"] .bnd-sb__fig, html[data-mode="illustrated"] .bnd-sb__info, html[data-mode="illustrated"] .bnd-qf .cte-art { border-radius: 3px; }
+html[data-mode="illustrated"] .bnd-sb__fig, html[data-mode="illustrated"] .bnd-qf .cte-art { background: #fff; border: 1.5px solid var(--line-2); }
+html[data-mode="illustrated"] .bnd-k__bar { border-radius: 0; background: var(--card-3); }
+html[data-mode="illustrated"] .bnd-k__bar i { border-radius: 0; background: var(--zd); }
