@@ -77,7 +77,7 @@ export const SCENES_BY_ZONE = {
     stamping: ['Punch · die · press', 'البنش والداي والمكبس', 'Sheet metal terminology'],
     neutralAxis: ['Neutral axis', 'المحور المتعادل', 'Outside stretches, inside squeezes'],
     flatLength: ['Bend allowance & deduction', 'الطول المفرود', 'Lt = A + B + BA · Lt = A + B − BD'],
-    kFactor: ['K-factor', 'معامل K', 'K = t / T'],
+    kFactor: ['K-factor', 'معامل K', 'Where the neutral axis sits'],
     relief: ['Bend relief', 'فتحة التخفيف', 'Tear · obround · rectangle'],
     bendRadius: ['Bend radius', 'نصف قطر الثني', 'Bend it without kinking'],
     vBend: ['V-bending', 'الثني على شكل V', 'Low production · press brake'],
