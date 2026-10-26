@@ -164,7 +164,7 @@ export function artNatural(lang) {
 export function artIngots(lang) {
   const en = lang === 'en';
   const list = L2_LEAVES.filter(l => l.g === 'nonferrous');
-  return svg(`0 0 600 ${en ? 128 : 146}`, list.map((l, i) => { const x = 50 + i * 100; return `<path d="M${x - 38} 78l10-34h56l10 34z" ${steel('.32')} ${st()}/><path d="M${x - 28} 44l6-14h44l6 14" ${st(V.ink2, 1.4)} fill="${V.zc}" fill-opacity=".12"/><path d="M${x - 38} 78v6h76v-6" ${st(V.ink2, 1.4)}/>${tx(x, 106, l.en, { c: V.zt, size: 16, weight: 700 })}${en ? '' : tx(x, 128, l.ar, { c: V.ink3, size: 12.5, font: F.ar, weight: 400 })}`; }).join(''), en ? 'Six non-ferrous ingots: aluminium, copper, lead, silver, tin, zinc' : 'ست سبايك غير حديدية');
+  return svg(`0 0 600 ${en ? 128 : 146}`, list.map((l, i) => { const x = 50 + i * 100; return `<path d="M${x - 38} 78l10-34h56l10 34z" ${steel('.32')} ${st()}/><path d="M${x - 28} 44l6-14h44l6 14" ${st(V.ink2, 1.4)} fill="${V.zc}" fill-opacity=".12"/><path d="M${x - 38} 78v6h76v-6" ${st(V.ink2, 1.4)}/>${tx(x, 106, l.en, { c: V.zt, size: 16, weight: 700 })}${en ? '' : tx(x, 128, l.ar, { c: V.ink3, size: 12.5, font: F.ar, weight: 400 })}`; }).join(''), en ? 'Six non-ferrous ingots: aluminium, copper, lead, silver, tin, zinc' : 'ست كتل معدن غير حديدية');
 }
 /** background picture: a thermosetting net (cross-linked) vs thermoplastic chains (loose) */
 export const NET = svg('0 0 200 120', (() => {

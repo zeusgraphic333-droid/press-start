@@ -191,7 +191,7 @@ function treeTrial(lang) {
         }
         tries++; slips++; $('[data-m]').textContent = slips; btn.classList.add('is-wrong'); btn.disabled = true; api.sfx('bad'); api.shake(btn);
         const home = t.rows.find((r, ri) => ri !== at.ri && r.need.includes(name));
-        const why = DECOY_WHY[name] ? (en ? DECOY_WHY[name].en : DECOY_WHY[name].ar) : home ? `${W.under} ${bdi(home.label)}.` : '';
+        const why = t.decoys.includes(name) && DECOY_WHY[name] ? (en ? DECOY_WHY[name].en : DECOY_WHY[name].ar) : home ? `${W.under} ${bdi(home.label)}.` : '';
         if (tries >= 2) {
           locked = true; const give = row.need.find((n, j) => !filled[at.ri][j]); place(at.ri, give, true);
           $('.mat-tb__fb').innerHTML = `<b class="mat-no">${W.notHere}</b> ${why} ${W.placed} ${bdi(`${row.label} → ${give}`)}.`;

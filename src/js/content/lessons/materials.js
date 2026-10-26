@@ -138,7 +138,7 @@ export default {
       blocks: [
         { t: 'say', who: 'ingot', text: 'الفرع التاني: معادن مفيهاش حديد خالص. ستة على السلايد، وبعدهم <en>etc</en>.' },
         { t: 'quote', ref: 'L2 · S2', text: 'NON-FERROUS (CONTAINS NO IRON): ALUMINIUM · COPPER · LEAD · SILVER · TIN · ZINC, etc', ar: 'غير الحديدية (مفيهاش حديد): ألومنيوم، ونحاس، ورصاص، وفضة، وقصدير، وزنك، وغيرهم.' },
-        { t: 'art', html: K.artIngots('ar'), caption: 'ست سبايك، ولا واحدة فيها حديد.' },
+        { t: 'art', html: K.artIngots('ar'), caption: 'ست كتل معدن، ولا واحدة فيها حديد.' },
         { t: 'p', text: 'كلمة <en>etc</en> في الآخر معناها «وغيرهم». يعني فيه معادن غير حديدية تانية. بس الامتحان بيسأل على الستة دول.' },
         { t: 'check', q: 'mt25' },
         { t: 'check', q: 'mt26' },

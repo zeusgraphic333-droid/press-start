@@ -73,7 +73,7 @@ export default {
         { t: 'check', q: 'dg11' },
         { t: 'trap', text: 'فيه كلمات بتتكرر عشان توقعك. <en>material selection</en> مكتوبة في الصفين تحت <en>Synthesis</en>. و<en>ergonomics</en> موضوعية تحت <en>Aesthetics</en> وتحت <en>Analysis</en>. و<en>marketing/advertising</en> شخصية، لكن <en>marketing</en> لوحدها موضوعية.', wrong: 'CAID = objective', right: 'CAID = personal · CAD/CAM = objective (both under Synthesis)' },
         { t: 'check', q: 'dg13' },
-        { t: 'tip', text: 'لو الحاجة ليها رقم، أو قانون، أو مورّد: غالبًا موضوعية. لو من إيدك ودماغك (اسكتش، ماكيت، ستايل): شخصية. والاستثناء اللي تحفظه: <en>research</en> شخصية.' }
+        { t: 'tip', text: 'لو الحاجة ليها رقم، أو قانون، أو مورّد: غالبًا موضوعية. لو من إيدك ودماغك (اسكتش، ماكيت، ستايل): شخصية. واستثناء كمان تحفظه: <en>research</en> شخصية.' }
       ]
     },
     {

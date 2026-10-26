@@ -72,7 +72,7 @@ export default {
         { t: 'check', q: 'dg11' },
         { t: 'trap', text: 'Some words repeat to catch you. <en>material selection</en> appears in both rows under <en>Synthesis</en>. <en>ergonomics</en> is objective under both <en>Aesthetics</en> and <en>Analysis</en>. And <en>marketing/advertising</en> is personal, while plain <en>marketing</en> is objective.', wrong: 'CAID = objective', right: 'CAID = personal · CAD/CAM = objective (both under Synthesis)' },
         { t: 'check', q: 'dg13' },
-        { t: 'tip', text: 'If it has a number, a law or a supplier: usually objective. If it comes from your hand and head (a sketch, a mock-up, a style): personal. The one exception to remember: <en>research</en> is personal.' }
+        { t: 'tip', text: 'If it has a number, a law or a supplier: usually objective. If it comes from your hand and head (a sketch, a mock-up, a style): personal. One more exception to remember: <en>research</en> is personal.' }
       ]
     },
     {
