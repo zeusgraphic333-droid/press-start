@@ -58,7 +58,10 @@ paint a background), graphite lines in ISO weights, a red pencil for corrections
   `anchor: 'start' | 'end'` lands on the same side in either page direction.
 - **Kit extras:** `k.hatch('steel', { flip: true })` hatches the other way (two touching parts of one material);
   `k.center()` lines carry `class="k-center"`; `k.text(x, y, 'L_{0}')` / `'mm^{2}'` for subscripts and superscripts;
-  `k.plot()` gives dashed and centre lines their pattern back at the end of the draw, also under reduced motion.
+  `k.plot()` gives dashed and centre lines their pattern back at the end of the draw, also under reduced motion, and
+  holds arrowheads back until the pen reaches them; `k.dim(…, { upright: true })` keeps a value horizontal.
+- **Inline styles win:** an entrance `t.from(el, { opacity: 0 })` leaves an inline `opacity` on the element, which
+  beats a later `setAttribute('opacity', …)`. Animate it with GSAP again (`gsap.to/set`), not with attributes.
 - **Markers:** arrowheads are shared markers (`url(#arr)`, `arr-red`, `arr-blue`, `arr-hot`, `dot`); `plot()` animates
   lines with markers fine.
 

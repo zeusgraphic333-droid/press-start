@@ -117,8 +117,9 @@ export function text(x, y, s, { size = 16, fill = INK.graphite, family = 'dim', 
   return `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" font-family="${fam}" font-size="${size}" font-weight="${weight}" fill="${fill}"${spacing ? ` letter-spacing="${spacing}"` : ''}${tr} ${extra} direction="${d}">${scripts(s, size)}</text>`;
 }
 /** an aligned dimension between two points: extension lines, a dimension line with arrows, the value on top.
- *  off = distance from the feature (sign picks the side) · color for a highlighted dimension (INK.red) */
-export function dim(x1, y1, x2, y2, label = '', { off = 28, color = INK.graphite, size = 16, ext = true, cls = '' } = {}) {
+ *  off = distance from the feature (sign picks the side) · color for a highlighted dimension (INK.red) ·
+ *  upright: keep the value horizontal on a sloped/vertical dimension (a one-letter value like "T" reads better upright) */
+export function dim(x1, y1, x2, y2, label = '', { off = 28, color = INK.graphite, size = 16, ext = true, cls = '', upright = false } = {}) {
   const a = Math.atan2(y2 - y1, x2 - x1), nx = -Math.sin(a), ny = Math.cos(a);
   const ax = x1 + nx * off, ay = y1 + ny * off, bx = x2 + nx * off, by = y2 + ny * off;
   const g = Math.sign(off) * 5, e = Math.sign(off) * 7;
@@ -126,7 +127,7 @@ export function dim(x1, y1, x2, y2, label = '', { off = 28, color = INK.graphite
   const mk = color === INK.red ? 'arr-red' : color === INK.blue ? 'arr-blue' : 'arr';
   let deg = a * 180 / Math.PI; if (deg > 90 || deg <= -90) deg += 180;
   const mx = (ax + bx) / 2 + nx * Math.sign(off || 1) * 9, my = (ay + by) / 2 + ny * Math.sign(off || 1) * 9;
-  return `<g class="k-dim ${cls}">${exts}<line x1="${f1(ax)}" y1="${f1(ay)}" x2="${f1(bx)}" y2="${f1(by)}" stroke="${color}" stroke-width="${W.thin}" marker-start="url(#${mk})" marker-end="url(#${mk})"/>${label !== '' ? text(mx, my + size * .35, label, { size, fill: color, rotate: Math.abs(deg) < .5 ? 0 : deg }) : ''}</g>`;
+  return `<g class="k-dim ${cls}">${exts}<line x1="${f1(ax)}" y1="${f1(ay)}" x2="${f1(bx)}" y2="${f1(by)}" stroke="${color}" stroke-width="${W.thin}" marker-start="url(#${mk})" marker-end="url(#${mk})"/>${label !== '' ? text(mx, my + size * .35, label, { size, fill: color, rotate: upright || Math.abs(deg) < .5 ? 0 : deg }) : ''}</g>`;
 }
 /** a leader: from a feature (x, y) to a note at (tx, ty), with a short shoulder; dot = true ends on a dot instead of an arrow */
 export function leader(x, y, tx, ty, label = '', { color = INK.graphite, size = 16, dot = false, family = 'dim', weight = 600 } = {}) {
@@ -174,10 +175,12 @@ export function plot(t, els, { at = 0, stagger = .08, dur = .7, ease = 'power2.i
     let L = 0; try { L = el.getTotalLength(); } catch (e) { }
     if (!L) { t.from(el, { opacity: 0, duration: .3 }, at + i * stagger); return; }
     L = Math.ceil(L) + 2;
-    t.fromTo(el, { strokeDasharray: `${L} ${L}`, strokeDashoffset: L }, { strokeDashoffset: 0, duration: dur, ease }, at + i * stagger);
+    // arrowheads (markers) wait for the pen to reach them
+    const mk = el.hasAttribute('marker-start') || el.hasAttribute('marker-end') ? { markerStart: 'none', markerEnd: 'none' } : {};
+    t.fromTo(el, { strokeDasharray: `${L} ${L}`, strokeDashoffset: L, ...mk }, { strokeDashoffset: 0, duration: dur, ease }, at + i * stagger);
     // then hand the line back its own dash pattern (centre, hidden lines): a zero-length set, so it also lands when
     // the stage jumps an entrance to its end (reduced motion), where onComplete callbacks are skipped
-    t.set(el, { clearProps: 'strokeDasharray,strokeDashoffset' }, at + i * stagger + dur);
+    t.set(el, { clearProps: 'strokeDasharray,strokeDashoffset' + (mk.markerEnd ? ',markerStart,markerEnd' : '') }, at + i * stagger + dur);
   });
   return t;
 }

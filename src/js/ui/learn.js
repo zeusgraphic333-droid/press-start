@@ -45,6 +45,8 @@ const R = {
 export function chapterDone(ch) { return !!state().seen[ch.id]; }
 export function lessonProgress(lesson) { const n = lesson?.chapters?.length || 0; const d = (lesson?.chapters || []).filter(chapterDone).length; return { done: d, total: n, pct: n ? d / n : 0 }; }
 
+/** a block with `scene: 'name'` is a waypoint: when it scrolls into place the stage switches to that scene */
+const sceneMark = (html, b) => b.scene ? html.replace(/^\s*<[a-z][a-z0-9-]*/i, m => `${m} data-scene="${esc(b.scene)}"`) : html;
 /** mounts all chapters; returns cleanup */
 export function renderLesson(root, lesson, zone, { onProgress } = {}) {
   const cleanups = [];
@@ -57,7 +59,7 @@ export function renderLesson(root, lesson, zone, { onProgress } = {}) {
           <div><h3 id="h-${esc(ch.id)}">${T(ch.title)}</h3>${ch.en ? `<p class="chap__en" dir="ltr">${esc(ch.en)}</p>` : ''}</div>
           ${ch.ref ? `<span class="chip chap__ref" dir="ltr">${esc(ch.ref)}</span>` : ''}
         </header>
-        <div class="chap__body">${(ch.blocks || []).map(b => (R[b.t] || (() => ''))(b)).join('')}</div>
+        <div class="chap__body">${(ch.blocks || []).map(b => sceneMark((R[b.t] || (() => ''))(b), b)).join('')}</div>
         <footer class="chap__foot">
           <button type="button" class="btn btn--good chap__done" ${chapterDone(ch) ? 'disabled' : ''}>${chapterDone(ch) ? `${ICON.check} ${t('learn.done')}` : `${t('learn.next')} <span class="xp" dir="ltr">+20 XP</span>`}</button>
         </footer>

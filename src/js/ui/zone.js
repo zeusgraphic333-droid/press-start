@@ -78,19 +78,24 @@ function mountLearn(pane, z, lesson, scr) {
   };
   const clean = renderLesson(root, lesson, z, { onProgress: refresh });
   refresh();
-  // each chapter can ask the stage for a scene; the chapter crossing 35% of the view wins
+  // each chapter can ask the stage for a scene, and so can a block inside it (`scene: 'name'` on the block):
+  // the last waypoint above 35% of the view wins
   const chs = lesson.chapters;
+  const steps = [...root.querySelectorAll('.path__step')];
+  const marks = [...root.querySelectorAll('.path__step, .path__step [data-scene]')];
   let cur = -1;
   const pick = () => {
     if (pane.hidden) return; // other tabs share the scroller; only the visible lesson drives the stage
-    const steps = [...root.querySelectorAll('.path__step')]; const top = scr.body.getBoundingClientRect().top + scr.body.clientHeight * .35;
-    let idx = -1; steps.forEach((s, i) => { if (s.getBoundingClientRect().top < top) idx = i; });
+    const top = scr.body.getBoundingClientRect().top + scr.body.clientHeight * .35;
+    let idx = -1; marks.forEach((s, i) => { if (s.getBoundingClientRect().top < top) idx = i; });
     if (idx === cur) return; cur = idx;
-    const ch = idx < 0 ? null : chs[idx];
-    const name = ch?.scene || ZONE_FORMATION[z.id];
+    const m = marks[idx], step = m?.closest('.path__step'), ci = step ? steps.indexOf(step) : -1;
+    const ch = ci < 0 ? null : chs[ci];
+    const own = m && m !== step ? m.dataset.scene : '';
+    const name = own || ch?.scene || ZONE_FORMATION[z.id];
     emit('scene', { name });
-    const [title, line] = capOf(ch?.cap || SCENE_INFO[name] || []);
-    scr.setCaption(idx + 1, title, line);
+    const [title, line] = capOf((own ? SCENE_INFO[own] : ch?.cap || SCENE_INFO[name]) || []);
+    scr.setCaption(ci + 1, title, line);
   };
   let tick = 0;
   const onScroll = () => { if (tick) return; tick = requestAnimationFrame(() => { tick = 0; pick(); }); };

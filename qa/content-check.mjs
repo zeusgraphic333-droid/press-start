@@ -33,7 +33,7 @@ for (const z of ZONES) {
   const src = fs.readFileSync(file, 'utf8');
   let L; try { L = (await import(file)).default; } catch (e) { err(`${z.id}: import failed — ${e.message}`); continue; }
   const chs = L.chapters || [];
-  const zq = new Set(); let blocks = 0, checks = 0, demos = 0, quotes = 0, scenes = 0;
+  const zq = new Set(); let blocks = 0, checks = 0, demos = 0, quotes = 0, scenes = 0, waypoints = 0;
   console.log(`\n${z.id}: ${chs.length} chapters`);
   if (!chs.length) err(`${z.id}: no chapters`);
   for (const ch of chs) {
@@ -44,6 +44,7 @@ for (const z of ZONES) {
     for (const b of ch.blocks || []) {
       blocks++;
       if (!BLOCKS.has(b.t)) err(`${ch.id}: unknown block type "${b.t}"`);
+      if (b.scene) { waypoints++; if (!sceneOk(b.scene)) err(`${ch.id}: block ${b.t} asks for unknown scene "${b.scene}"`); }
       if (b.t === 'check') { checks++; hasCheck = true; const q = QBY[b.q]; if (!q) err(`${ch.id}: unknown question ${b.q}`); else { if (TOPIC_ZONE[q.tp] !== z.id) warn(`${ch.id}: ${b.q} is from topic ${q.tp} (zone ${TOPIC_ZONE[q.tp]})`); if (zq.has(b.q)) warn(`${ch.id}: ${b.q} used twice in ${z.id}`); zq.add(b.q); usedQ.add(b.q); } }
       if (b.t === 'quote') { quotes++; hasQuote = true; if (!b.text) err(`${ch.id}: empty quote`); }
       if (b.t === 'fig' && !FIG[b.id]) err(`${ch.id}: unknown figure ${b.id}`);
@@ -59,7 +60,7 @@ for (const z of ZONES) {
     if (!hasQuote) warn(`${ch.id}: no slide quote`);
   }
   const pool = QUESTIONS.filter(q => z.tp.includes(q.tp)).length;
-  console.log(`  blocks ${blocks} · checks ${checks} (${zq.size} unique of ${pool} in bank) · quotes ${quotes} · demos ${demos} · scenes ${scenes}/${chs.length}`);
+  console.log(`  blocks ${blocks} · checks ${checks} (${zq.size} unique of ${pool} in bank) · quotes ${quotes} · demos ${demos} · scenes ${scenes}/${chs.length}${waypoints ? ` + ${waypoints} block waypoint(s)` : ''}`);
   // trials
   try {
     const G = (await import(new URL(`games/${z.id}.js`, root))).default || [];
