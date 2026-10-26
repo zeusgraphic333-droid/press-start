@@ -74,7 +74,7 @@ export default {
         { t: 'art', html: beamArt(), caption: 'A beam with a load in the middle. The bottom face (the outside of the bend) stretches. The top face (the inside) is squeezed.' },
         { t: 'p', text: '**Fibers**: picture the part made of many long threads. A **beam** is a long part carrying a load. The dashed middle line is what sheet-metal bending calls the neutral axis.' },
         { t: 'check', q: 'pr08' },
-        { t: 'trap', text: 'The exam flips them. **Outside = tension** (stretched). **Inside = compression** (squeezed). And notice: bending uses only two of the four loads, tension and compression; no shear, no torsion.', wrong: 'Outside fibers in compression, inside fibers in tension', right: 'Outside fibers in tension, inside fibers in compression' },
+        { t: 'trap', text: 'The exam flips them. **Outside = tension** (stretched). **Inside = compression** (squeezed). And notice: the slide describes bending with only two of the four loads: tension and compression.', wrong: 'Outside fibers in compression, inside fibers in tension', right: 'Outside fibers in tension, inside fibers in compression' },
         { t: 'check', q: 'pr09' },
         { t: 'tip', text: 'Outside = stretched = tension. Inside = squeezed = compression. You’ll see the same thing in sheet-metal bending (Lecture 3).' }
       ]

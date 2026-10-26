@@ -8,7 +8,7 @@ export default [
     e: 'L2 · S11: Hardness is the ability of a material to resist penetration and scratching.',
     r: 'الصلادة: الخامة بتقاوم الغرز (penetration) والخدش (scratching).' },
   { id: 'pr02', tp: 'props', lv: 2, k: 'scn', ref: 'pr-hardness',
-    q: 'A workshop bench top must not get dented or scratched by the tools dropped on it all day. Which property matters most?',
+    q: 'A workshop bench top must not get dented or scratched by the tools used on it all day. Which property matters most?',
     o: ['Hardness', 'Toughness', 'Malleability', 'Castability'],
     e: 'Resisting dents (penetration) and scratches is hardness.',
     r: 'مقاومة النقر والخدوش = الصلادة.' },

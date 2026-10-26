@@ -50,7 +50,7 @@ export default {
       id: 'st-stress', title: 'الإجهاد: المعدن بيرد من جوه', en: 'Strength · stress', ref: 'L2 · S4', scene: 'stress',
       blocks: [
         { t: 'say', who: 'usta', text: 'علّق شنطة تقيلة في خطاف. الشنطة بتشد الخطاف لتحت. والخطاف من جوه بيشد نفسه عشان ما يتفكّش. الشدة اللي جوه دي ليها اسم: <en>stress</en>.' },
-        { t: 'p', text: 'المحاضرة بتبدأ كده: **خواص المعادن**، وأولها **الخواص الميكانيكية** <en>Mechanical Properties</en>. وأول خاصية في الليستة: الإجهاد.' },
+        { t: 'p', text: 'سلايد 4 بيبدأ كده: **خواص المعادن**، وأولها **الخواص الميكانيكية** <en>Mechanical Properties</en>. وأول خاصية في الليستة: الإجهاد.' },
         { t: 'quote', text: 'Strength: The Internal Resistance offered by a part to an externally applied Force is called as Stress. It is the ability of a Material to resist the externally applied Forces with Breakdown or Yielding.', ref: 'L2 · S4', ar: 'الإجهاد: المقاومة الداخلية اللي القطعة بتطلعها قدام قوة جاية من بره. يعني قدرة الخامة إنها تقاوم القوى اللي جاية عليها.' },
         { t: 'art', html: stressArt(), caption: 'القوة جاية **من بره** (برتقالي). المعدن بيرد **من جوه** (بلون المنطقة). الرد ده هو الـ <en>stress</en>.' },
         { t: 'p', text: 'كلمتين عليهم الدرجة: <en>externally applied Force</en> = القوة اللي جاية من بره. <en>Internal Resistance</en> = المقاومة اللي طالعة من جوه. القوة سبب. والإجهاد رد.' },

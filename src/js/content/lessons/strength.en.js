@@ -48,7 +48,7 @@ export default {
       id: 'st-stress', title: 'Stress: the metal pushes back from inside', en: 'Strength · stress', ref: 'L2 · S4', scene: 'stress',
       blocks: [
         { t: 'say', who: 'usta', text: 'Hang a heavy bag on a hook. The bag pulls the hook down. Inside, the hook holds itself together so it doesn’t come apart. That inside pull has a name: stress.' },
-        { t: 'p', text: 'The lecture starts like this: **Properties of Metals**, and first of all the **Mechanical Properties**. The first property on the list is strength, or stress.' },
+        { t: 'p', text: 'Slide 4 opens like this: **Properties of Metals**, and first of all the **Mechanical Properties**. The first property on the list is strength, or stress.' },
         { t: 'quote', text: 'Strength: The Internal Resistance offered by a part to an externally applied Force is called as Stress. It is the ability of a Material to resist the externally applied Forces with Breakdown or Yielding.', ref: 'L2 · S4' },
         { t: 'art', html: stressArt(), caption: 'The force comes **from outside** (orange). The metal answers **from inside** (the zone colour). That answer is the stress.' },
         { t: 'p', text: 'Two phrases carry the marks: **externally applied Force** is the force that comes from outside. **Internal Resistance** is the resistance that comes from inside. The force is the cause. The stress is the answer.' },

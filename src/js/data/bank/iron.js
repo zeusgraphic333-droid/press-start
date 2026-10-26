@@ -190,7 +190,7 @@ export default [
     q: 'Which property is <b>NOT</b> listed for nickel irons?',
     o: ['Oxidation and wear resistant', 'Nonmagnetic', 'Good corrosion resistance', 'Extremely low coefficient of thermal expansion'],
     e: 'Oxidation and wear resistance belong to high-chromium irons. Nickel irons are nonmagnetic, have good corrosion resistance and an extremely low thermal expansion.',
-    r: 'الأكسدة والتآكل دول بتوع الكروم العالي، مش النيكل.' },
+    r: 'الأكسدة والتآكل (oxidation and wear) دول بتوع الكروم العالي، مش النيكل. النيكل بيقاوم الصدأ (corrosion).' },
 
   /* ---------- the job ↔ iron map ---------- */
   { id: 'ir36', tp: 'iron', lv: 3, k: 'cls', ref: 'ir-match',

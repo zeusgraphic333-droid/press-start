@@ -75,7 +75,7 @@ export default {
         { t: 'art', html: beamArt(), caption: 'كمرة شايلة حمل في النص. البطن اللي تحت (بره الثنية) بتتمط. الضهر اللي فوق (جوه الثنية) بيتكبس.' },
         { t: 'p', text: '<en>fibers</en> = ألياف: تخيّل القطعة معمولة من خيوط طولية كتير. <en>beam</en> = كمرة: قطعة طويلة شايلة حمل. والخط المتقطع اللي في النص هتعرفه في ثني الصاج باسم المحور المتعادل.' },
         { t: 'check', q: 'pr08' },
-        { t: 'trap', text: 'الامتحان بيقلبهم. **بره = شد** (بيتمط). **جوه = ضغط** (بيتكبس). وخلي بالك: الثني بيستخدم اتنين بس من الأربع أحمال: الشد والضغط، مش القص ولا اللي.', wrong: '<en>Outside fibers in compression, inside fibers in tension</en>', right: '<en>Outside fibers in tension, inside fibers in compression</en>' },
+        { t: 'trap', text: 'الامتحان بيقلبهم. **بره = شد** (بيتمط). **جوه = ضغط** (بيتكبس). وخلي بالك: السلايد بيوصف الثني باتنين بس من الأربع أحمال: الشد والضغط.', wrong: '<en>Outside fibers in compression, inside fibers in tension</en>', right: '<en>Outside fibers in tension, inside fibers in compression</en>' },
         { t: 'check', q: 'pr09' },
         { t: 'tip', text: 'بره = بيتمط = Tension. جوه = بيتزنق = Compression. ونفس الكلام هتشوفه في ثني الصاج (المحاضرة 3).' }
       ]

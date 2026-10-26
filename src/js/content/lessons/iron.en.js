@@ -95,7 +95,7 @@ export default {
         { t: 'p', text: 'The lecturer also writes its Arabic name on the slide. And watch out: three of these jobs come back later with other irons. We’ll collect them at the end of the lesson.' },
         { t: 'quote', ref: 'L2 · S16', text: 'gray iron has excellent fatigue resistance and an ability to dampen vibration. This is important for applications such as machine tools.', ar: 'Great fatigue resistance, and it damps vibration: perfect for machine tools.' },
         { t: 'demo', id: 'irn-damp', title: 'Strike the base', caption: 'The same blow on two bases: one gray iron, one ductile iron. Watch which shake dies first.', mount: dampDemo(W_DAMP) },
-        { t: 'p', text: '**Fatigue** is a load that repeats millions of times: turn after turn, shake after shake. Gray iron takes it. And if a machine tool shakes, the part comes out badly. That’s why its base is gray iron.' },
+        { t: 'p', text: '**Fatigue** is the damage from a load that repeats millions of times: turn after turn, shake after shake. Gray iron takes it. And if a machine tool shakes, the part comes out badly. That’s why its base is gray iron.' },
         { t: 'check', q: 'ir08' },
         { t: 'quote', ref: 'L2 · S16', text: 'Although gray iron has poor tensile strength and a lower impact strength than that of most other cast ferrous metals, it has a high compressive strength.', ar: 'Weak when pulled or struck, strong when pushed.' },
         { t: 'compare', left: { title: 'Compression', en: 'pushed together', art: compressionArt(), text: 'Strong. Load it heavily and it holds, like a machine base carrying a ton.' }, right: { title: 'Tension', en: 'pulled apart', art: tensionArt(), text: 'Weak. Pull it from both ends and it can break. It doesn’t like a sudden blow (**impact**) either.' }, note: 'Gray iron = **poor tensile · high compressive**' },
@@ -123,7 +123,7 @@ export default {
     {
       id: 'ir-white', title: 'White iron: teeth of the crusher', en: 'White iron', ref: 'L2 · S18', scene: 'whiteIron',
       blocks: [
-        { t: 'say', who: 'usta', text: 'White iron is the tough guy of the family. Its job is grinding and rubbing, all day long.' },
+        { t: 'say', who: 'usta', text: 'White iron is the hard worker of the family. Its job is grinding and rubbing, all day long.' },
         { t: 'quote', ref: 'L2 · S18', text: '3- White iron is specified where wear and abrasion resistance are required for applications such as clay mixing and brickmaking equipment such as crushers, pulverizes, and nozzles; railroad brake shoes, and rolling-mill rolls.', ar: 'Wherever things grind and rub: crushers, pulverizers, nozzles, railroad brake shoes, rolling-mill rolls.' },
         { t: 'art', html: rollsArt(), caption: 'Rolling-mill rolls squeeze metal all day. Their surface must not wear away.' },
         { t: 'p', text: '⚠ The slide writes **pulverizes**. The right word is **pulverizers**: mills that grind material down to powder.' },
