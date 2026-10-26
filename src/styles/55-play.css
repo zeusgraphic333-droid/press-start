@@ -74,3 +74,60 @@ html[dir="ltr"] .gamecard:hover .gamecard__go { transform: translateX(6px); }
   .gamecard__go { grid-row: 1; grid-column: 3; }
   .gamecard__n { font-size: 26px; }
 }
+
+/* ---------- the quick-fire engine (games/_cte-kit.js): intro, rounds, end card ---------- */
+.cte-intro { display: grid; gap: 12px; padding: 26px clamp(18px, 3vw, 30px); }
+.cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.cte-intro__t { font: 900 clamp(30px, 3.6vw, 44px)/1.1 var(--f-display); }
+.cte-intro__p { color: var(--fg-2); font-size: 17px; max-width: 38em; margin: 0; }
+.cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.cte-rules .hud-num { color: var(--zt); font-size: 17px; flex: none; }
+.cte-kbd { font-size: 13px; color: var(--fg-3); }
+.cte-kbd kbd, .cte-key { font: 500 13px/1 var(--f-hud); }
+.cte-kbd kbd { border: 1px solid var(--line-3); border-radius: 4px; padding: 2px 6px; }
+.cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.cte-streak { color: var(--spark, var(--gold)); border-color: color-mix(in srgb, var(--spark, var(--gold)) 40%, transparent); }
+.cte-streak[hidden] { display: none; }
+.cte-round .g-timer { margin: -4px 0 16px; }
+.cte-art { display: grid; place-items: center; margin: 0 auto 14px; width: min(100%, 360px); }
+.cte-art svg { width: 100%; height: auto; }
+.cte-sub { text-align: center; color: var(--fg-3); margin: -10px 0 16px; font-size: 15px; }
+.cte-choices .g-choice { position: relative; min-height: 64px; }
+.cte-key { position: absolute; top: 7px; inset-inline-end: 9px; color: var(--fg-4); }
+.cte-round--swatch .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cte-round--swatch .g-choice { grid-auto-flow: column; justify-content: start; align-items: center; gap: 12px; padding: 14px 16px; }
+.cte-round--row .cte-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cte-round--yn .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cte-round--yn .g-choice { min-height: 76px; font-size: 19px; }
+.cte-round--list .cte-choices { grid-template-columns: 1fr; }
+.cte-round--list .g-choice { justify-items: start; text-align: start; padding: 14px 16px; padding-inline-end: 32px; font: 500 15.5px/1.5 var(--f-text); }
+.cte-round--list .g-choice > [dir="ltr"] { justify-self: stretch; text-align: left; }
+.cte-sw { width: 38px; height: 38px; border-radius: 50%; background: var(--c); border: 1px solid var(--line-3); box-shadow: 0 0 18px color-mix(in srgb, var(--c) 35%, transparent); flex: none; }
+.cte-sw__t { display: grid; gap: 2px; text-align: start; font: 600 16px/1.2 var(--f-display); }
+.cte-sw__t small { font: 500 12px/1 var(--f-text); color: var(--fg-3); }
+.cte-round--row .g-choice { gap: 10px; }
+.cte-round--row .cte-sw__t { text-align: center; }
+.cte-strip { display: grid; grid-auto-flow: column; gap: 3px; }
+.cte-strip i { width: 14px; height: 30px; border-radius: 3px; background: var(--c); }
+.cte-word { font: 700 clamp(34px, 5vw, 56px)/1 var(--f-display); letter-spacing: .02em; }
+.cte-fb { min-height: 2.8em; margin: 16px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.cte-ok { color: var(--good); }
+.cte-no { color: var(--bad); }
+.cte-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.cte-end__score > .hud-num:first-child { font-size: clamp(96px, 13vw, 150px); line-height: .78; color: var(--fg); }
+.cte-end__of { font-size: 36px; color: var(--fg-3); }
+.cte-end__marks { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.cte-end__meta { font-size: 13.5px; color: var(--fg-3); }
+.cte-end__meta .hud-num { color: var(--gold); font-size: 17px; }
+@media (max-width: 520px) {
+  .cte-round--row .cte-choices { grid-template-columns: 1fr; }
+  .cte-round--list .g-choices.cte-choices { grid-template-columns: 1fr; }
+  .cte-round--list .g-choice { min-height: 0; padding: 10px 14px; padding-inline-end: 30px; font-size: 14.5px; line-height: 1.45; }
+  .cte-round--row .g-choice { grid-auto-flow: column; justify-content: start; }
+  .cte-round--row .cte-sw__t { text-align: start; }
+  .cte-round--swatch .cte-choices { grid-template-columns: 1fr 1fr; }
+  .cte-round--swatch .g-choice { padding: 12px 10px; gap: 9px; }
+  .cte-sw { width: 30px; height: 30px; }
+}
