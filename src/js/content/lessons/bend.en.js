@@ -123,11 +123,11 @@ export default {
         { t: 'art', html: ART['bd-neutral'](), caption: 'Orange is stretched (tension). Purple is squeezed (compression). The dashed line is the neutral axis: its length doesn’t change.' },
         { t: 'compare', left: { title: 'Inside the bend', en: 'compression', text: 'The metal is squeezed: **compressed**.' }, right: { title: 'Outside the bend', en: 'tension', text: 'The metal is pulled: **stretched**.' }, note: 'Between them: the neutral axis, neither squeezed nor stretched.' },
         { t: 'check', q: 'bd16' },
-        { t: 'why', text: 'The outside face travels round a bigger curve, so it has to get longer. The inside travels round a smaller one, so it has to get shorter. In the middle sits a line whose length stays the same: the neutral axis. Lecture 2 said it too: <en>outside fibers in tension, inside fibers in compression</en>.' },
+        { t: 'why', text: 'The outside face travels round a bigger curve, so it has to get longer. The inside travels round a smaller one, so it has to get shorter. Somewhere between them sits a line whose length stays the same: the neutral axis. Lecture 2 said it too: <en>outside fibers in tension, inside fibers in compression</en>.' },
         { t: 'example', title: 'The phone stand', text: 'A phone stand made of bent sheet. If the bend is too sharp, the outside face can crack from all that stretching. That’s why there’s a thing called **bend radius**; we’ll meet it soon.' },
         { t: 'trap', text: 'The exam may flip it on you.', wrong: 'Inside is stretched, outside is compressed', right: 'Inside of neutral plane: compressed · outside: stretched' },
         { t: 'check', q: 'bd17' },
-        { t: 'tip', text: 'Inside = compression. Outside = tension. Middle = neutral axis, fixed length. That’s the line the flat length is measured on.' }
+        { t: 'tip', text: 'Inside = compression. Outside = tension. Between them = neutral axis, fixed length. That’s the line the flat length is measured on.' }
       ]
     },
     {

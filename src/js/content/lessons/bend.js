@@ -125,11 +125,11 @@ export default {
         { t: 'art', html: ART['bd-neutral'](), caption: 'البرتقالي بيتشد (<en>tension</en>). البنفسجي بيتكبس (<en>compression</en>). والخط المتقطّع هو المحور المتعادل: طوله ما بيتغيرش.' },
         { t: 'compare', left: { title: 'جوه الثنية', en: 'Inside · compression', text: 'المعدن بيتزنق ويتكبس <en>compressed</en>.' }, right: { title: 'بره الثنية', en: 'Outside · tension', text: 'المعدن بيتمط ويتشد <en>stretched</en>.' }, note: 'وبينهم: <en>neutral axis</en>، لا متكبس ولا متشد.' },
         { t: 'check', q: 'bd16' },
-        { t: 'why', text: 'الوش اللي بره ماشي في لفة أكبر، فلازم يطول. واللي جوه في لفة أصغر، فلازم يقصر. في النص خط طوله ثابت: ده المحور المتعادل. ونفس الكلام اتقال في محاضرة ٢: <en>outside fibers in tension, inside fibers in compression</en>.' },
+        { t: 'why', text: 'الوش اللي بره ماشي في لفة أكبر، فلازم يطول. واللي جوه في لفة أصغر، فلازم يقصر. وبينهم خط طوله ثابت: ده المحور المتعادل. ونفس الكلام اتقال في محاضرة ٢: <en>outside fibers in tension, inside fibers in compression</en>.' },
         { t: 'example', title: 'حامل الموبايل', text: 'حامل موبايل من صاج مثني. لو الثنية حادة أوي، الوش اللي بره ممكن يشرخ من كتر الشد. عشان كده في حاجة اسمها <en>bend radius</en>، هنقابلها كمان شوية.' },
         { t: 'trap', text: 'الامتحان ممكن يعكسها عليك.', wrong: 'Inside is stretched, outside is compressed', right: 'Inside of neutral plane: compressed · outside: stretched' },
         { t: 'check', q: 'bd17' },
-        { t: 'tip', text: 'جوه = <en>compression</en>. بره = <en>tension</en>. النص = <en>neutral axis</en>، وطوله ثابت. عليه هنحسب الطول المفرود.' }
+        { t: 'tip', text: 'جوه = <en>compression</en>. بره = <en>tension</en>. بينهم = <en>neutral axis</en>، وطوله ثابت. عليه هنحسب الطول المفرود.' }
       ]
     },
     {
