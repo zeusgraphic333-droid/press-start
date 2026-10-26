@@ -1,4 +1,56 @@
-// Archive tables — cut. Format: docs/BRIEF.md § Archive.
-export const terms = [];
-export const pairs = [];
-export const triggers = [];
+// Archive tables — cut (Lecture 5: metal cutting). Format: docs/BRIEF.md § Archive. Definitions are the slides' words.
+export const terms = [
+  { t: 'Machining', ar: 'التشغيل بالماكينات', lec: '05', d: 'When cutting into a block of metal (using a chip-forming cutter), the word machining is used to describe the processes. It is used because a special machine (that powers the cutting tool) is required to achieve a cut to a given precise tolerance.', r: 'قطع بلوك معدن بأداة بتعمل رايش. والاسم جاي من الماكينة اللي بتوصّل القطع لمقاس دقيق.', rEn: 'Cutting a metal block with a chip-forming cutter; the name comes from the machine that drives the tool to a precise tolerance.' },
+  { t: 'Nonchip forming cutting', ar: 'القطع من غير رايش', lec: '05', d: 'In nonchip forming cutting, chemical, chemical/electrical, electrical, mechanical, and/or thermal processes are used to cut materials.', r: 'قطع من غير رايش: كيميا، أو كيميا/كهربا، أو كهربا، أو ميكانيكا، أو حرارة.', rEn: 'Cutting without chips, by chemical, chemical/electrical, electrical, mechanical or thermal processes.' },
+  { t: 'Thermal cutting', ar: 'القطع الحراري', lec: '05', d: 'Thermal cutting processes use gas, laser, and/or plasma.', r: 'قطع بالحرارة: غاز، أو ليزر، أو بلازما.', rEn: 'Cutting with heat: gas, laser or plasma.' },
+  { t: 'Shearing', ar: 'القص', lec: '05', d: 'Shearing is a process for cutting sheet metal to size out of a larger stock. The shearing process is a scissor-like action between a punch and a die.', r: 'تقطيع الصاج للمقاس من لوح أكبر، بحركة شبه المقص بين بنش وداي.', rEn: 'Cutting sheet to size out of a larger stock, with a scissor-like action between a punch and a die.' },
+  { t: 'Clearance (c)', ar: 'الخلوص', lec: '05', d: 'CLEARANCE = THE MEASURED SPACE BETWEEN THE MATING MEMBERS OF A DIE SET (C). The quality of the cut depends on the “c” clearance.', r: 'المسافة المقاسة بين البنش والداي (أو بين سكينتين). جودة القطع بتعتمد عليها. وفي الرسمة C/2 على كل جنب.', rEn: 'The measured gap between punch and die (or two blades); the cut’s quality depends on it. C/2 on each side.' },
+  { t: 'Punch', ar: 'البنش', lec: '05', d: 'A convex tool for making holes by shearing, or making surface or displacing metal with a hammer.', r: 'أداة محدّبة (convex)، وهي الجزء الذكر (male).', rEn: 'The convex tool: the male part.' },
+  { t: 'Die', ar: 'الداي', lec: '05', d: 'A concave die, which is the female part as opposed to punch which is the male part.', r: 'داي مقعّر (concave)، وهو الجزء الأنثى (female).', rEn: 'The concave die: the female part.' },
+  { t: 'Punching (Piercing)', ar: 'التخريم', lec: '05', d: 'A cutting operation by which various shaped holes are made in sheet metal. In punching, the hole is the desired product, the material punched out to form the hole being waste.', r: 'بيعمل فتحات. الفتحة هي المنتج، والحتة اللي وقعت خردة.', rEn: 'Makes holes; the hole is the product and the punched-out piece is waste.' },
+  { t: 'Blanking', ar: 'البلانكينج', lec: '05', d: 'The operation of cutting a flat shape sheet metal. The article punched out is called the blank and is the required product of the operation. The hole and metal left behind is discarded as waste.', r: 'بيقطع شكل مسطح. الحتة اللي وقعت (الـ blank) هي المنتج، واللوح خردة.', rEn: 'Cuts a flat shape out; the piece punched out (the blank) is the product, the sheet is waste.' },
+  { t: 'Fine blanking', ar: 'البلانكينج الدقيق', lec: '05', d: 'A second force is applied under the sheet, directly opposite the punch, by an “ejector”. This technique produces a part with better flatness and smoother edges.', r: 'بلانكينج + قوة تانية من تحت قصاد البنش (ejector): قطعة أكثر استواءً وحروفها أنعم.', rEn: 'Blanking plus an ejector pushing from below, opposite the punch: flatter parts, smoother edges.' },
+  { t: 'Notching', ar: 'النوتشينج (حزّة في الحرف)', lec: '05', d: 'Punching the edge of a sheet, forming a notch in the shape of a portion of the punch.', r: 'تخريم على حرف الصاج، والحزّة على شكل جزء من البنش.', rEn: 'Punching the sheet’s edge: a notch shaped like part of the punch.' },
+  { t: 'Perforating', ar: 'البيرفوريتنج (تخريم كتير)', lec: '05', d: 'Punching a close arrangement of a large number of holes in a single operation.', r: 'فتحات كتير متقاربة، في عملية واحدة.', rEn: 'Many holes, close together, in one operation.' },
+  { t: 'Slotting', ar: 'السلوتينج (فتحات مستطيلة)', lec: '05', d: 'A punching operation that forms rectangular holes in the sheet.', r: 'تخريم بيعمل فتحات مستطيلة.', rEn: 'Punching rectangular holes.' },
+  { t: 'Lancing', ar: 'اللانسينج (قطع جزئي)', lec: '05', d: 'Creating a partial cut in the sheet, so that no material is removed. The material is left attached to be bent and form a shape, such as a tab, vent, or louver.', r: 'قطع جزئي، ومفيش معدن بيتشال. الحتة بتتثني وتعمل لسان أو فتحة تهوية أو شيش.', rEn: 'A partial cut, nothing removed; the piece is bent into a tab, vent or louver.' },
+  { t: 'Slitting', ar: 'السليتنج (شرايح)', lec: '05', d: 'Cutting straight lines in the sheet. No scrap material is produced.', r: 'خطوط مستقيمة، ومفيش خردة.', rEn: 'Straight cuts, no scrap.' },
+  { t: 'Cutoff', ar: 'الكت أوف (فصل بخط)', lec: '05', d: 'Separating a part from the remaining sheet, without producing any scrap. The punch will produce a cut line that may be straight, angled, or curved.', r: 'فصل قطعة بخط واحد، ومفيش خردة. الخط مستقيم أو مايل أو منحني.', rEn: 'Separating a part with one cut line and no scrap; the line can be straight, angled or curved.' },
+  { t: 'Parting', ar: 'البارتينج (فصل بحدّين)', lec: '05', d: 'Parting involves cutting a sheet metal strip by a punch with two cutting edges that match the opposite sides of the blank.', r: 'بنش بحدّين بيقطع شريط. اللي بين القطعتين بيقع خردة.', rEn: 'A two-edged punch cuts a strip; the material between the parts is scrap.' },
+  { t: 'Shaving', ar: 'الشيفينج (كشط الحرف)', lec: '05', d: 'Shearing away minimal material from the edges of a feature or part, using a small die clearance. Used to improve accuracy or finish. Tolerances of ±0.025 mm are possible.', r: 'شعرة من الحرف، بخلوص داي صغير، عشان الدقة والتشطيب: ±0.025 mm.', rEn: 'A hair off the edge with a small die clearance, for accuracy or finish: ±0.025 mm.' },
+  { t: 'Trimming', ar: 'التريمنج (قص الزيادة)', lec: '05', d: 'Punching away excess material from the perimeter of a part, such as trimming the flange from a drawn cup.', r: 'شيل الزيادة من حوالين القطعة، زي شفة الكوباية المسحوبة.', rEn: 'Removing the excess around a part, like the flange of a drawn cup.' },
+  { t: 'Nibbling', ar: 'النيبلنج (القرض)', lec: '05', d: 'Punching a series of small overlapping slits or holes along a path to cut-out a larger contoured shape.', r: 'فتحات صغيرة متداخلة على مسار، بتقطع شكل كبير بكنتور.', rEn: 'Small overlapping holes along a path cut out a big contoured shape.' },
+  { t: 'Embossing', ar: 'الإمبوسينج (البصم)', lec: '05', d: 'Creates hollows in sheet, such as elevated (or indented) lettering or reinforcement ribs. Punch and die are of the same contour but in opposite direction.', r: 'تجاويف في الصاج: حروف بارزة أو غاطسة، أو ضلوع تقوية. البنش والداي نفس الكنتور بالعكس.', rEn: 'Hollows such as lettering or ribs; punch and die have the same contour in opposite direction.' },
+  { t: 'Coining', ar: 'الكوينينج (السكّ)', lec: '05', d: 'Similar to embossing with the difference that similar or different impressions are obtained on both the sides of the sheet metal.', r: 'زي الإمبوسينج، بس الطبعة على الوشّين: نفس الطبعة أو طبعة مختلفة.', rEn: 'Like embossing, but impressions on both sides, the same or different.' }
+];
+
+export const pairs = [
+  ['Punching (Piercing)', 'the hole is the desired product; the material punched out is waste', 'Blanking', 'the article punched out (the blank) is the required product; the hole and metal left behind is waste', 'في التخريم بنشيل اللوح اللي فيه الفتحة. في البلانكينج بنشيل الحتة اللي وقعت.', 'Punching keeps the sheet with the hole; blanking keeps the piece that falls out.'],
+  ['Cutoff', 'separates a part from the remaining sheet without producing any scrap (one cut line)', 'Parting', 'a punch with two cutting edges that match the opposite sides of the blank; wasted material between the parts', 'كت أوف = خط واحد ومفيش خردة. بارتينج = حدّين، والخردة في النص.', 'Cutoff: one line, no scrap. Parting: two edges, scrap in between.'],
+  ['Slotting', 'a punching operation that forms rectangular holes in the sheet', 'Slitting', 'cutting straight lines in the sheet; no scrap material is produced', 'Slotting فتحات مستطيلة. Slitting خطوط مستقيمة من غير خردة.', 'Slotting punches rectangular holes; slitting cuts straight lines with no scrap.'],
+  ['Clearance too small', 'break lines pass each other, causing double buffing and larger force', 'Clearance too large', 'metal is pinched and bent between cutting edges', 'صغير = double buffing وقوة أكبر. كبير = المعدن يتقرص ويتثني.', 'Too small: double buffing and a larger force. Too large: pinched and bent.'],
+  ['Punch', 'a convex tool, the male part', 'Die', 'a concave die, the female part', 'البنش محدّب وmale. الداي مقعّر وfemale.', 'Punch: convex, male. Die: concave, female.'],
+  ['Embossing', 'hollows in the sheet; punch and die of the same contour but in opposite direction', 'Coining', 'similar or different impressions on both sides of the sheet metal', 'الإمبوسينج شكل واحد بالعكس. الكوينينج طبعة على الوشّين.', 'Embossing: one shape, reversed. Coining: impressions on both sides.'],
+  ['Shaving', 'minimal material from the edges, small die clearance, ±0.025 mm', 'Trimming', 'excess material from the perimeter, e.g. the flange of a drawn cup', 'الشيفينج شعرة للدقة. التريمنج الزيادة اللي حوالين القطعة.', 'Shaving takes a hair for accuracy; trimming takes the excess around the part.'],
+  ['Lancing', 'a partial cut, no material removed; bent into a tab, vent or louver', 'Perforating', 'a close arrangement of a large number of holes in a single operation', 'الـ Lancing مش بيشيل معدن. الـ Perforating بيخرم فتحات كتير.', 'Lancing removes nothing; perforating punches many holes out.']
+];
+
+export const triggers = [
+  ['the hole is the desired product', 'Punching (Piercing)', '05'],
+  ['the article punched out is the required product', 'Blanking', '05'],
+  ['second force under the sheet · ejector · better flatness, smoother edges', 'Fine blanking', '05'],
+  ['punching the edge of a sheet · a portion of the punch', 'Notching', '05'],
+  ['close arrangement of a large number of holes · single operation', 'Perforating', '05'],
+  ['rectangular holes', 'Slotting', '05'],
+  ['partial cut · no material removed · tab, vent, louver', 'Lancing', '05'],
+  ['straight lines · no scrap', 'Slitting', '05'],
+  ['without producing any scrap · straight, angled, or curved', 'Cutoff', '05'],
+  ['two cutting edges · opposite sides of the blank', 'Parting', '05'],
+  ['minimal material · small die clearance · ±0.025 mm', 'Shaving', '05'],
+  ['flange from a drawn cup · perimeter', 'Trimming', '05'],
+  ['small overlapping slits or holes along a path', 'Nibbling', '05'],
+  ['same contour but in opposite direction', 'Embossing', '05'],
+  ['impressions on both the sides', 'Coining', '05'],
+  ['double buffing and larger force', 'Clearance too small', '05'],
+  ['pinched and bent between cutting edges', 'Clearance too large', '05']
+];

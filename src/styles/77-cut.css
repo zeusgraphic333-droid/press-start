@@ -1,1 +1,187 @@
-/* Zone styles — cut: its trials, demos and lesson art. Scope every rule under .z-cut or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — cut (Lecture 5, metal cutting): lesson drawings, the three demos and the three trials.
+   Every class is prefixed .cut-; colours are tokens only, so the night shift and the drafting room both work. */
+
+/* ---------- drawings: labels always read left to right (the page may be RTL) ---------- */
+.cut-svg { display: block; width: 100%; height: auto; direction: ltr; overflow: visible; }
+[data-fig^="ct-"] svg { direction: ltr; }
+.blk-ex__art .cut-svg { max-height: 260px; }
+.blk-cmp__art .cut-svg { max-height: 180px; margin: 0 auto; }
+.gcard__art .cut-svg { width: 100%; height: 100%; }
+
+/* ---------- shared bits ---------- */
+.cut-range { display: grid; gap: 8px; }
+.cut-range input { width: 100%; accent-color: var(--zc); height: 28px; cursor: pointer; }
+.cut-read { display: grid; gap: 4px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--line); background: var(--card-2); min-height: 92px; align-content: start; }
+.cut-read b { font: 700 18px/1.3 var(--f-display); color: var(--fg); }
+.cut-read__line { font-size: 15px; line-height: 1.7; color: var(--fg-2); }
+.cut-read small { font-size: 12.5px; line-height: 1.5; color: var(--fg-3); text-align: left; }
+.cut-read small:empty { display: none; }
+.cut-read[data-st="small"], .cut-read[data-st="large"] { border-color: color-mix(in srgb, var(--bad) 45%, transparent); }
+.cut-read[data-st="small"] b, .cut-read[data-st="large"] b { color: var(--bad); }
+.cut-read[data-st="ok"], .cut-read[data-st="sheet"], .cut-read[data-st="blank"] { border-color: color-mix(in srgb, var(--good) 45%, transparent); }
+.cut-read[data-st="ok"] b, .cut-read[data-st="sheet"] b, .cut-read[data-st="blank"] b { color: var(--good); }
+.cut-ok { color: var(--good); }
+.cut-no { color: var(--bad); }
+.cut-kbd { font-size: 12.5px; color: var(--fg-3); }
+
+/* ---------- demo 1 · the clearance gap ---------- */
+.cut-gap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; align-items: center; }
+.cut-gap__fig { min-width: 0; }
+.cut-gap__side { display: grid; gap: 10px; min-width: 0; }
+.cut-gap__scale { display: flex; justify-content: space-between; margin-top: -6px; font: 500 12px/1 var(--f-hud); letter-spacing: .06em; color: var(--fg-3); }
+.cut-seen { display: flex; gap: 6px; }
+.cut-seen i { width: 28px; height: 4px; border-radius: 9px; background: var(--line-2); transition: background .3s; }
+.cut-seen i.on { background: var(--zc); }
+
+/* ---------- demo 2 · keep or scrap ---------- */
+.cut-keep { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; align-items: center; }
+.cut-keep__fig { min-width: 0; }
+.cut-keep__side { display: grid; gap: 12px; min-width: 0; }
+.cut-keep__acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.cut-keep__acts .btn { white-space: normal; text-align: center; line-height: 1.3; padding-block: 8px; }
+.cut-keep__slug { transition: transform .7s var(--ease-out); }
+.cut-keep .is-pick { cursor: pointer; }
+.cut-keep .is-pick:hover path:last-child { stroke: var(--zc); }
+
+/* ---------- demo 3 · cutoff vs parting on one strip ---------- */
+.cut-strip { display: grid; gap: 10px; }
+.cut-strip__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; }
+.cut-seg { display: inline-flex; border: 1px solid var(--line-2); border-radius: 12px; overflow: hidden; }
+.cut-seg button { appearance: none; border: 0; background: transparent; color: var(--fg-2); font: 600 15px/1 var(--f-hud); letter-spacing: .04em; padding: 10px 16px; min-height: 40px; cursor: pointer; transition: background .25s, color .25s; }
+.cut-seg button[aria-checked="true"] { background: color-mix(in srgb, var(--zc) 22%, transparent); color: var(--fg); }
+.cut-seg button + button { border-inline-start: 1px solid var(--line-2); }
+.cut-strip__pc { transition: transform .6s var(--ease-out); }
+.cut-strip__count { margin: 0; font-size: 15px; color: var(--fg-2); }
+.cut-strip__count .hud-num { font-size: 19px; color: var(--fg); margin-inline-end: 4px; }
+
+/* ---------- trials: shared ---------- */
+.cut-t { display: grid; gap: 12px; }
+.cut-t .g-hud { margin-bottom: 0; }
+.cut-hud-r { display: flex; gap: 8px; align-items: center; }
+.cut-combo { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.cut-combo[hidden] { display: none; }
+.cut-pc__n { font-size: 13px; color: var(--fg-4); }
+
+/* ---------- trial 1 · keep or scrap ---------- */
+.cut-kg__card { display: grid; gap: 12px; padding: 18px clamp(12px, 3vw, 22px); }
+.cut-kg__op { display: grid; gap: 4px; justify-items: center; text-align: center; }
+.cut-kg__name { font: 700 clamp(26px, 3.4vw, 36px)/1.05 var(--f-latin); letter-spacing: .02em; color: var(--zt); }
+.cut-kg__order { margin: 0; font-size: 15.5px; line-height: 1.6; color: var(--fg-2); }
+.cut-kg__q { margin: 2px 0 0; text-align: center; font: 700 clamp(18px, 2vw, 21px)/1.3 var(--f-display); }
+.cut-kg__pcs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.cut-kg__pcs[data-n="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cut-kg__pcs[data-n="2"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cut-kg__pcs[data-n="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cut-pc { position: relative; appearance: none; display: grid; justify-items: center; align-content: center; gap: 4px; min-height: 112px; padding: 10px 8px 8px; border: 1px solid var(--line-2); border-radius: 16px; background: color-mix(in srgb, var(--fg) 2.5%, transparent); color: var(--fg); font: 600 14px/1.3 var(--f-display); cursor: pointer; transition: border-color .25s, background .25s, transform .15s; }
+.cut-pc:hover:not(:disabled) { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 8%, transparent); }
+.cut-pc:active:not(:disabled) { transform: scale(.98); }
+.cut-pc:disabled { cursor: default; }
+.cut-pc .cut-pc__n { position: absolute; top: 7px; inset-inline-start: 10px; }
+.cut-pc__art { width: 100%; max-width: 150px; }
+.cut-pc__tag { min-height: 1.2em; font: 700 12.5px/1.2 var(--f-hud); letter-spacing: .08em; text-transform: uppercase; }
+.cut-pc.is-product .cut-pc__tag { color: var(--zt); }
+.cut-pc.is-scrap .cut-pc__tag { color: var(--bad); }
+.cut-pc--none { color: var(--fg-2); }
+.cut-pc--none b { font: 600 14px/1.35 var(--f-display); text-align: center; max-width: 16ch; }
+.cut-pc__bin { width: 40px; height: 40px; color: var(--fg-3); }
+.cut-pc__bin svg { width: 100%; height: 100%; }
+.cut-pc.is-right { border-color: var(--good); background: color-mix(in srgb, var(--good) 10%, transparent); }
+.cut-pc.is-wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, transparent); animation: fx-shake .4s; }
+.cut-kg__fb { min-height: 3.2em; margin: 0; text-align: center; font-size: 15.5px; line-height: 1.65; color: var(--fg-2); }
+.cut-kg__card.is-stamp .cut-pc { animation: cut-drop .45s var(--ease-out) both; }
+.cut-kg__card.is-stamp .cut-pc:nth-child(2) { animation-delay: .06s; }
+.cut-kg__card.is-stamp .cut-pc:nth-child(3) { animation-delay: .12s; }
+.cut-kg__card.is-stamp .cut-pc:nth-child(4) { animation-delay: .18s; }
+@keyframes cut-drop { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+
+/* ---------- trial 2 · set the clearance ---------- */
+.cut-gg__card { display: grid; gap: 12px; padding: 18px clamp(12px, 3vw, 22px); }
+.cut-gg__q { margin: 0; text-align: center; font: 700 clamp(18px, 2vw, 21px)/1.4 var(--f-display); }
+.cut-gg__sym { display: block; margin-top: 10px; padding: 12px 14px; border: 1px dashed var(--line-3); border-radius: 12px; font: 500 16px/1.7 var(--f-text); color: var(--fg); }
+.cut-gg__fig { width: min(100%, 460px); margin: 0 auto; }
+.cut-gg__fig[hidden] { display: none; }
+.cut-gg__ctrl { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+.cut-gg__ctrl .cut-range { flex: 1 1 220px; }
+.cut-gg__ctrl .cut-kbd { flex-basis: 100%; }
+.cut-gg__ch { flex: 1 1 100%; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+.cut-gg__ch .g-choice { position: relative; min-height: 76px; gap: 4px; }
+.cut-gg__ch .g-choice small { font: 500 12px/1.2 var(--f-text); color: var(--fg-3); }
+.cut-gg__ch .cut-pc__n { position: absolute; top: 6px; inset-inline-start: 9px; }
+.cut-gg__fb { min-height: 2.8em; margin: 0; text-align: center; font-size: 15.5px; line-height: 1.65; color: var(--fg-2); }
+.cut-gg__fig.is-hit .cut-clr__punch { animation: cut-ram .4s cubic-bezier(.55, 0, 1, .45) both; }
+.cut-gg__fig.is-hit .cut-crack { stroke-dasharray: 1; stroke-dashoffset: 1; animation: cut-draw .45s .35s ease-out forwards; }
+@keyframes cut-ram { from { transform: translateY(-12px); } to { transform: translateY(0); } }
+@keyframes cut-draw { to { stroke-dashoffset: 0; } }
+
+/* ---------- trial 3 · name the cut (the shared quick-fire engine, scoped) ---------- */
+.cut-qf .cte-intro { display: grid; gap: 12px; padding: 24px clamp(16px, 3vw, 28px); }
+.cut-qf .cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.cut-qf .cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.cut-qf .cte-intro__t { font: 900 clamp(28px, 3.4vw, 40px)/1.1 var(--f-display); }
+.cut-qf .cte-intro__p { color: var(--fg-2); font-size: 17px; margin: 0; }
+.cut-qf .cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.cut-qf .cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.cut-qf .cte-rules .hud-num { color: var(--zt); font-size: 17px; flex: none; }
+.cut-qf .cte-kbd { font-size: 13px; color: var(--fg-3); }
+.cut-qf .cte-kbd kbd { font: 500 13px/1 var(--f-hud); border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.cut-qf .cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.cut-qf .cte-streak { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.cut-qf .cte-streak[hidden] { display: none; }
+.cut-qf .cte-round .g-timer { margin: -4px 0 14px; }
+.cut-qf .cte-art { display: grid; place-items: center; margin: 0 auto 10px; width: min(100%, 380px); }
+.cut-qf .cte-art .cut-svg { max-height: 200px; }
+.cut-qf .g-prompt { margin: 6px 0 8px; font-size: clamp(20px, 2.2vw, 25px); }
+.cut-qf .cte-sub { text-align: center; color: var(--fg-2); margin: 0 0 14px; font-size: 15.5px; line-height: 1.6; }
+.cut-qf .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cut-qf .cte-choices .g-choice { position: relative; min-height: 64px; gap: 6px; }
+.cut-qf .cte-choices .g-choice b { font: 700 17px/1.2 var(--f-latin); letter-spacing: .02em; }
+.cut-qf .cte-key { position: absolute; top: 7px; inset-inline-end: 9px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.cut-qf .cte-fb { min-height: 2.8em; margin: 14px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.cut-qf .cte-ok { color: var(--good); }
+.cut-qf .cte-no { color: var(--bad); }
+.cut-qf .cte-end__score, .cut-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.cut-qf .cte-end__score .hud-num:first-child, .cut-end__score .hud-num:first-child { font-size: clamp(72px, 10vw, 110px); line-height: .85; color: var(--fg); }
+.cut-qf .cte-end__of, .cut-end__of { font-size: 30px; color: var(--fg-3); }
+.cut-qf .cte-end__marks, .cut-end__marks { display: flex; align-items: center; gap: 10px; justify-content: center; }
+.cut-qf .cte-end__meta { color: var(--fg-3); font-size: 14px; margin: 0; }
+
+/* ---------- the end card of the two hand-made trials ---------- */
+.cut-end h3 { margin-top: 4px; }
+.cut-end__line { max-width: 34em; color: var(--fg-2); }
+.cut-miss { width: 100%; text-align: start; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 4px; }
+.cut-miss ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.cut-miss li { font-size: 14.5px; line-height: 1.65; color: var(--fg-2); padding-inline-start: 14px; border-inline-start: 2px solid color-mix(in srgb, var(--bad) 55%, transparent); }
+
+/* ---------- the drafting room ---------- */
+html[data-mode="illustrated"] .cut-read, html[data-mode="illustrated"] .cut-pc, html[data-mode="illustrated"] .cut-seg, html[data-mode="illustrated"] .cut-gg__sym { border-radius: 3px; }
+html[data-mode="illustrated"] .cut-pc { border-width: 1.5px; background: var(--card); }
+html[data-mode="illustrated"] .cut-pc.is-right { background: color-mix(in srgb, var(--good) 8%, var(--card)); }
+html[data-mode="illustrated"] .cut-pc.is-wrong { background: color-mix(in srgb, var(--bad) 7%, var(--card)); }
+html[data-mode="illustrated"] .cut-read { background: var(--sheet); border-width: 1.5px; }
+html[data-mode="illustrated"] .cut-seg { border-width: 1.5px; border-color: var(--graphite); }
+html[data-mode="illustrated"] .cut-seg button[aria-checked="true"] { background: var(--graphite); color: var(--card); }
+html[data-mode="illustrated"] .cut-seen i.on { background: var(--zd); }
+html[data-mode="illustrated"] .cut-kg__name { color: var(--zd); }
+
+/* ---------- phones ---------- */
+@media (max-width: 760px) {
+  .cut-gap, .cut-keep { grid-template-columns: 1fr; }
+  .cut-read { min-height: 0; }
+  .cut-kg__pcs[data-n="3"], .cut-kg__pcs[data-n="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cut-pc { min-height: 100px; }
+  .cut-qf .cte-choices .g-choice b { font-size: 16px; }
+}
+@media (max-width: 400px) {
+  .cut-gg__ch .g-choice { padding: 12px 6px; }
+  .cut-gg__ch .g-choice b { font-size: 14px; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) .cut-keep__slug, html:not([data-motion="full"]) .cut-strip__pc { transition: none; }
+  html:not([data-motion="full"]) .cut-kg__card.is-stamp .cut-pc, html:not([data-motion="full"]) .cut-gg__fig.is-hit .cut-clr__punch { animation: none; }
+  html:not([data-motion="full"]) .cut-gg__fig.is-hit .cut-crack { animation: none; stroke-dashoffset: 0; }
+}
+html[data-motion="reduce"] .cut-keep__slug, html[data-motion="reduce"] .cut-strip__pc { transition: none; }
+html[data-motion="reduce"] .cut-kg__card.is-stamp .cut-pc, html[data-motion="reduce"] .cut-gg__fig.is-hit .cut-clr__punch { animation: none; }
+html[data-motion="reduce"] .cut-gg__fig.is-hit .cut-crack { animation: none; stroke-dashoffset: 0; }
