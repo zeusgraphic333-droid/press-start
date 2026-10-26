@@ -60,6 +60,8 @@ paint a background), graphite lines in ISO weights, a red pencil for corrections
   `k.center()` lines carry `class="k-center"`; `k.text(x, y, 'L_{0}')` / `'mm^{2}'` for subscripts and superscripts;
   `k.plot()` gives dashed and centre lines their pattern back at the end of the draw, also under reduced motion, and
   holds arrowheads back until the pen reaches them; `k.dim(…, { upright: true })` keeps a value horizontal.
+- **One entrance tween per element:** two `from` tweens on the same element (say an `ink` and a `stamp`) leave it frozen
+  at the first one's start (invisible). Wrap it in a `<g>` and animate the group for the second effect.
 - **Inline styles win:** an entrance `t.from(el, { opacity: 0 })` leaves an inline `opacity` on the element, which
   beats a later `setAttribute('opacity', …)`. Animate it with GSAP again (`gsap.to/set`), not with attributes.
 - **Markers:** arrowheads are shared markers (`url(#arr)`, `arr-red`, `arr-blue`, `arr-hot`, `dot`); `plot()` animates

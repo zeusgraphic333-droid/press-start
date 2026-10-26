@@ -58,7 +58,7 @@ export default {
         { t: 'say', who: 'usta', text: 'Pull a piece of metal. One kind gets longer and thinner until it’s a wire. Another snaps in two without stretching. The first is ductile; the second is brittle.' },
         { t: 'quote', text: 'Ductility: It is the ability of a material to be deformed plastically without rupture under tensile load. Due to this property material can lengthy into fine wire without fracture.', ref: 'L2 · S11' },
         { t: 'p', text: 'Spot three phrases: **plastically** (a permanent change, like plasticity in the stress zone), **without rupture** (it doesn’t tear), **under tensile load** (while being pulled). The result: **fine wire**. The slide’s “lengthy” means “be drawn out longer”.' },
-        { t: 'quote', text: 'Brittleness is the property of a material opposite to ductility. So cast iron is a brittle material.', ref: 'L2 · S11' },
+        { scene: 'brittle', t: 'quote', text: 'Brittleness is the property of a material opposite to ductility. So cast iron is a brittle material.', ref: 'L2 · S11' },
         { t: 'compare', left: { title: 'Ductile', en: 'Ductility', art: ductileArt(), text: 'The same pull: it stretches and thins until it is a **fine wire**, without breaking.' }, right: { title: 'Brittle', en: 'Brittleness', art: brittleArt(), text: 'The same pull: it **snaps** in two, almost without stretching. Like cast iron.' }, note: 'Same load. One draws into wire; the other breaks.' },
         { t: 'check', q: 'pr04' },
         { t: 'trap', text: 'A question says “opposite to ductility” and offers malleability or elasticity. The slide is clear: the opposite of ductility is **brittleness**.', wrong: 'Brittleness is the opposite of malleability', right: 'Brittleness is the property of a material opposite to ductility' },
@@ -136,7 +136,7 @@ export default {
       blocks: [
         { t: 'say', who: 'usta', text: 'A designer doesn’t only pick a material that looks good. They ask: will it machine easily? Will it weld? Two properties answer that.' },
         { t: 'quote', text: 'MACHINABILITY: The ease with which a given material may be worked or shaped with a cutting tool is called machinability. Machinability depends on chemical composition, structure and mechanical properties.', ref: 'L2 · S13' },
-        { t: 'quote', text: 'WELDABILITY: It is the ability of material to be joined by welding. Weldability depends on chemical composition, physical properties and heat treatment to which they are subjected.', ref: 'L2 · S13' },
+        { scene: 'weldable', t: 'quote', text: 'WELDABILITY: It is the ability of material to be joined by welding. Weldability depends on chemical composition, physical properties and heat treatment to which they are subjected.', ref: 'L2 · S13' },
         { t: 'compare', left: { title: 'Machinability', en: 'Machinability', art: machineArt(), text: 'A **cutting tool** takes chips off and shapes the part.' }, right: { title: 'Weldability', en: 'Weldability', art: weldArt(), text: 'Two parts **joined by welding** with a bead.' } },
         { t: 'table', head: ['', 'Machinability', 'Weldability'], rows: [
           ['1', 'chemical composition', 'chemical composition'],
@@ -167,7 +167,7 @@ export default {
           { title: 'The rest is on slide 15', en: 'expansion · magnetism · melting · corrosion', text: 'Thermal expansion, ferromagnetism, melting point and corrosion resistance. The next chapters.', art: PHYS_ICON.expansion }
         ] },
         { t: 'check', q: 'pr26' },
-        { t: 'trap', text: 'Electrical or thermal? Both start “the ease with which”. Electrical: **conducts a current**. Thermal: **heat flows within and through**.', wrong: 'Thermal conductivity = the ease with which a material conducts a current', right: 'Thermal conductivity = the ease with which heat flows within and through a material' },
+        { scene: 'conductivity', t: 'trap', text: 'Electrical or thermal? Both start “the ease with which”. Electrical: **conducts a current**. Thermal: **heat flows within and through**.', wrong: 'Thermal conductivity = the ease with which a material conducts a current', right: 'Thermal conductivity = the ease with which heat flows within and through a material' },
         { t: 'check', q: 'pr30' },
         { t: 'tip', text: 'Mechanical = they change (work hardening, heat treatment). Physical = they stay (inherent).' }
       ]
@@ -180,7 +180,7 @@ export default {
         { t: 'demo', id: 'pr-heat-demo', title: 'Heat the two bars', caption: 'Turn up the heat. The growth is drawn exaggerated so you can see it. The low-melting bar grows more… until it reaches its melting point.', mount: heatBars(HB) },
         { t: 'p', text: 'So: **high melting point → little expansion**, and **low melting point → more expansion**. That’s what “inversely proportional” means. And the unit 1/°C is one over a degree, not a degree.' },
         { t: 'check', q: 'pr32' },
-        { t: 'quote', text: 'Melting point is the energy required to separate a material’s atoms, changing its state from solid to liquid.', ref: 'L2 · S15' },
+        { scene: 'melting', t: 'quote', text: 'Melting point is the energy required to separate a material’s atoms, changing its state from solid to liquid.', ref: 'L2 · S15' },
         { t: 'check', q: 'pr36' },
         { t: 'trap', text: '“Inversely” means the opposite way round. The exam may say “directly proportional” or “more expansion”. No: higher melting point, less expansion. And don’t forget the exception: “Steel is a significant exception.”', wrong: 'Higher-melt temperature materials have more expansion', right: 'Higher-melt temperature materials have less expansion (steel is a significant exception)' },
         { t: 'check', q: 'pr34' },

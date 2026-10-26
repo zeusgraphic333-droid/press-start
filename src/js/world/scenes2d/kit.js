@@ -45,6 +45,8 @@ export function installDefs() {
   // arrowheads (dimension lines, leaders, forces): marker-start / marker-end
   const head = (id, c, w = 10, h = 7) => `<marker id="${id}" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="${w}" markerHeight="${h}" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0 0L10 3.5L0 7z" fill="${c}"/></marker>`;
   p += head('arr', G) + head('arr-red', INK.red) + head('arr-blue', INK.blue) + head('arr-hot', INK.hot, 16, 12);
+  // big heads for k.arrow() force arrows in the other inks
+  p += head('arrF-g', G, 16, 12) + head('arrF-red', INK.red, 16, 12) + head('arrF-blue', INK.blue, 16, 12) + head('arrF-tblue', INK.tblue, 16, 12) + head('arrF-water', INK.water, 16, 12);
   p += `<marker id="dot" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="6" markerHeight="6" markerUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.6" fill="${G}"/></marker>`;
   // a hand-drawn wobble for pencil marks (use sparingly: filters cost)
   p += `<filter id="pencil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter>`;
@@ -135,8 +137,9 @@ export function leader(x, y, tx, ty, label = '', { color = INK.graphite, size = 
   const mk = dot ? 'dot' : color === INK.red ? 'arr-red' : 'arr';
   return `<g class="k-leader"><polyline points="${f1(tx)},${f1(ty)} ${f1(x)},${f1(y)}" fill="none" stroke="${color}" stroke-width="${W.thin}" marker-end="url(#${mk})"/><line x1="${f1(tx)}" y1="${f1(ty)}" x2="${f1(sx)}" y2="${f1(ty)}" stroke="${color}" stroke-width="${W.thin}"/>${label ? text(sx + (right ? 6 : -6), ty + size * .35, label, { size, fill: color, anchor: right ? 'start' : 'end', family, weight }) : ''}</g>`;
 }
-/** a force / motion arrow: a fat shaft with a filled head (safety orange by default) */
-export const arrow = (x1, y1, x2, y2, { color = INK.hot, w = 6, extra = '' } = {}) => `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="${color}" stroke-width="${w}" stroke-linecap="butt" marker-end="url(#${color === INK.hot ? 'arr-hot' : color === INK.red ? 'arr-red' : 'arr'})" ${extra}/>`;
+const FORCE_HEAD = { [INK.hot]: 'arr-hot', [INK.red]: 'arrF-red', [INK.blue]: 'arrF-blue', [INK.tblue]: 'arrF-tblue', [INK.water]: 'arrF-water', [INK.graphite]: 'arrF-g' };
+/** a force / motion arrow: a fat shaft with a filled head (safety orange by default; red, blue, tblue, water, graphite also get matching heads) */
+export const arrow = (x1, y1, x2, y2, { color = INK.hot, w = 6, extra = '' } = {}) => `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" stroke="${color}" stroke-width="${w}" stroke-linecap="butt" marker-end="url(#${FORCE_HEAD[color] || 'arr-hot'})" ${extra}/>`;
 /** an angle dimension: an arc of radius r around (cx, cy) from a0° to a1° (SVG angles: 0 = right, 90 = down) */
 export function angle(cx, cy, r, a0, a1, label = '', { color = INK.graphite, size = 15 } = {}) {
   const p = a => [cx + r * Math.cos(a * Math.PI / 180), cy + r * Math.sin(a * Math.PI / 180)];

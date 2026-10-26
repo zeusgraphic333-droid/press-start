@@ -59,7 +59,7 @@ export default {
         { t: 'say', who: 'usta', text: 'شد حتة معدن. واحد بيطول ويرفع لحد ما يبقى سلك. وواحد بيطق نصين من غير ما يطول. الأول مطيلي، والتاني قصيف.' },
         { t: 'quote', text: 'Ductility: It is the ability of a material to be deformed plastically without rupture under tensile load. Due to this property material can lengthy into fine wire without fracture.', ref: 'L2 · S11', ar: 'المطيلية: قدرة الخامة إنها تتشوه تشوه دائم من غير ما تتقطع، تحت حمل شد. وبسببها الخامة تتسحب سلك رفيع من غير كسر.' },
         { t: 'p', text: 'لاحظ ٣ كلمات: **plastically** = تشوه دائم (زي اللدونة في منطقة الإجهاد). **without rupture** = من غير قطع. **under tensile load** = تحت شد. والنتيجة: **fine wire**. وكلمة <en>lengthy</en> في السلايد قصدها «يتسحب ويطول».' },
-        { t: 'quote', text: 'Brittleness is the property of a material opposite to ductility. So cast iron is a brittle material.', ref: 'L2 · S11', ar: 'القصافة (الهشاشة): عكس المطيلية. وعشان كده الحديد الزهر خامة قصيفة.' },
+        { scene: 'brittle', t: 'quote', text: 'Brittleness is the property of a material opposite to ductility. So cast iron is a brittle material.', ref: 'L2 · S11', ar: 'القصافة (الهشاشة): عكس المطيلية. وعشان كده الحديد الزهر خامة قصيفة.' },
         { t: 'compare', left: { title: 'مطيلي', en: 'Ductility', art: ductileArt(), text: 'نفس الشد: بيتمط ويرفع لحد ما يبقى **سلك رفيع**، ومن غير كسر.' }, right: { title: 'قصيف', en: 'Brittleness', art: brittleArt(), text: 'نفس الشد: **بيطق** نصين، تقريبًا من غير ما يطول. زي الحديد الزهر.' }, note: 'نفس الحمل. واحد بيتسحب سلك، والتاني بيتكسر.' },
         { t: 'check', q: 'pr04' },
         { t: 'trap', text: 'السؤال بيقول «opposite to ductility» ويحطلك <en>Malleability</en> أو <en>Elasticity</en> في الاختيارات. السلايد واضح: عكس المطيلية = **القصافة** <en>Brittleness</en>.', wrong: '<en>Brittleness is the opposite of malleability</en>', right: '<en>Brittleness is the property of a material opposite to ductility</en>' },
@@ -137,7 +137,7 @@ export default {
       blocks: [
         { t: 'say', who: 'usta', text: 'المصمم مش بيختار خامة شكلها حلو وبس. بيسأل: هتتخرط بسهولة؟ هتتلحم؟ الإجابة في خاصيتين.' },
         { t: 'quote', text: 'MACHINABILITY: The ease with which a given material may be worked or shaped with a cutting tool is called machinability. Machinability depends on chemical composition, structure and mechanical properties.', ref: 'L2 · S13', ar: 'قابلية التشغيل بالماكينات: سهولة تشكيل الخامة بأداة قطع. وبتعتمد على التركيب الكيميائي، والبنية، والخواص الميكانيكية.' },
-        { t: 'quote', text: 'WELDABILITY: It is the ability of material to be joined by welding. Weldability depends on chemical composition, physical properties and heat treatment to which they are subjected.', ref: 'L2 · S13', ar: 'قابلية اللحام: قدرة الخامة إنها تتوصل باللحام. وبتعتمد على التركيب الكيميائي، والخواص الفيزيائية، والمعالجة الحرارية اللي اتعرضت لها.' },
+        { scene: 'weldable', t: 'quote', text: 'WELDABILITY: It is the ability of material to be joined by welding. Weldability depends on chemical composition, physical properties and heat treatment to which they are subjected.', ref: 'L2 · S13', ar: 'قابلية اللحام: قدرة الخامة إنها تتوصل باللحام. وبتعتمد على التركيب الكيميائي، والخواص الفيزيائية، والمعالجة الحرارية اللي اتعرضت لها.' },
         { t: 'compare', left: { title: 'قابلية التشغيل', en: 'Machinability', art: machineArt(), text: 'أداة قطع <en>cutting tool</en> بتشيل رايش وتشكّل القطعة.' }, right: { title: 'قابلية اللحام', en: 'Weldability', art: weldArt(), text: 'قطعتين بيتوصلوا بخط لحام <en>welding</en>.' } },
         { t: 'table', head: ['', 'التشغيل <en>Machinability</en>', 'اللحام <en>Weldability</en>'], rows: [
           ['1', '<en>chemical composition</en>', '<en>chemical composition</en>'],
@@ -168,7 +168,7 @@ export default {
           { title: 'والباقي في سلايد 15', en: 'expansion · magnetism · melting · corrosion', text: 'التمدد الحراري، والمغناطيسية، ونقطة الانصهار، ومقاومة التآكل. الفصول الجاية.', art: PHYS_ICON.expansion }
         ] },
         { t: 'check', q: 'pr26' },
-        { t: 'trap', text: 'كهربي ولا حراري؟ الاتنين بيبدأوا بـ «the ease with which». الكهربي: <en>conducts a current</en> (تيار). الحراري: <en>heat flows within and through</en> (حرارة).', wrong: '<en>Thermal conductivity = the ease with which a material conducts a current</en>', right: '<en>Thermal conductivity = the ease with which heat flows within and through a material</en>' },
+        { scene: 'conductivity', t: 'trap', text: 'كهربي ولا حراري؟ الاتنين بيبدأوا بـ «the ease with which». الكهربي: <en>conducts a current</en> (تيار). الحراري: <en>heat flows within and through</en> (حرارة).', wrong: '<en>Thermal conductivity = the ease with which a material conducts a current</en>', right: '<en>Thermal conductivity = the ease with which heat flows within and through a material</en>' },
         { t: 'check', q: 'pr30' },
         { t: 'tip', text: 'ميكانيكية = بتتغير (تشغيل على البارد، ومعالجة حرارية). فيزيائية = ثابتة (أصيلة).' }
       ]
@@ -181,7 +181,7 @@ export default {
         { t: 'demo', id: 'pr-heat-demo', title: 'سخّن القضيبين', caption: 'زوّد السخونية. التمدد مرسوم مكبّر عشان يبان. اللي انصهاره واطي بيطول أكتر… لحد ما يوصل لنقطة انصهاره.', mount: heatBars(HB) },
         { t: 'p', text: 'يعني: **انصهار عالي ← تمدد قليل**. و**انصهار واطي ← تمدد كبير**. ده معنى «تناسب عكسي» <en>inversely proportional</en>. والوحدة <en>1/°C</en>: واحد على درجة، مش درجة.' },
         { t: 'check', q: 'pr32' },
-        { t: 'quote', text: 'Melting point is the energy required to separate a material’s atoms, changing its state from solid to liquid.', ref: 'L2 · S15', ar: 'نقطة الانصهار: الطاقة اللازمة عشان تفصل ذرات الخامة عن بعض، فتتحول من صلب لسايل.' },
+        { scene: 'melting', t: 'quote', text: 'Melting point is the energy required to separate a material’s atoms, changing its state from solid to liquid.', ref: 'L2 · S15', ar: 'نقطة الانصهار: الطاقة اللازمة عشان تفصل ذرات الخامة عن بعض، فتتحول من صلب لسايل.' },
         { t: 'check', q: 'pr36' },
         { t: 'trap', text: '«inversely» = عكسي. الامتحان ممكن يقول <en>directly proportional</en> أو <en>more expansion</en>. لأ: أعلى انصهار = أقل تمدد. وما تنساش الاستثناء: <en>Steel is a significant exception</en>.', wrong: '<en>Higher-melt temperature materials have more expansion</en>', right: '<en>Higher-melt temperature materials have less expansion (steel is a significant exception)</en>' },
         { t: 'check', q: 'pr34' },

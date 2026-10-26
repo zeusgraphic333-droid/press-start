@@ -41,7 +41,7 @@ export const SCENES_BY_ZONE = {
     elongation: ['Strain & elongation', 'الانفعال والاستطالة', 'How much longer it got']
   },
   props: {
-    anvil: ['Properties of metals', 'كل معدن ليه شخصية', 'Mechanical and physical'],
+    anvil: ['Properties of metals', 'كل معدن ليه شخصية', 'Eight mechanical properties, one blow each'],
     hardness: ['Hardness', 'الصلادة', 'Resists penetration and scratching'],
     ductile: ['Ductility', 'المطيلية', 'Drawn into fine wire'],
     brittle: ['Brittleness', 'القصافة (الهشاشة)', 'Breaks without stretching'],
