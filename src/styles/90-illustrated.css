@@ -101,7 +101,7 @@ html[data-mode="illustrated"] [data-screen="zone-compound"] { --zc: #3B6FD8 !imp
 html[data-mode="illustrated"] [data-screen="zone-cut"] { --zc: #4E9AD8 !important; --zd: #1F5E94 !important; --zon: #fff !important; }
 html[data-mode="illustrated"] [data-screen^="boss"], html[data-mode="illustrated"] .screen[data-screen*="boss"] { --zc: #F05A1E !important; --zd: #B53A0E !important; --zon: #fff !important; }
 html[data-mode="illustrated"] [data-screen="archive"] { --zc: #3E7BD6 !important; --zd: #1F4E9A !important; --zon: #fff !important; }
-html[data-mode="illustrated"] .screen { --zt: var(--zd) !important; }
+html[data-mode="illustrated"] *, html[data-mode="illustrated"] *::before, html[data-mode="illustrated"] *::after { --zt: var(--zd); }
 /* the district colour as text always uses its dark partner on paper */
 html[data-mode="illustrated"] :is(.tab[aria-selected="true"] .tab__n, .zhero__meta .hud-num, .chap__en, mark, .chip--zone) { color: var(--zd); }
 

@@ -47,7 +47,7 @@ html[dir="ltr"] .fc__k { left: auto; right: 16px; }
 /* intel */
 .intel__sec { padding: 22px 0; border-top: 1px solid var(--line); }
 .intel__sec h3 { font: 800 22px/1.2 var(--f-display); display: flex; gap: 12px; align-items: baseline; margin-bottom: 14px; }
-.intel__sec h3 .hud-num { color: var(--zc); font-size: 22px; }
+.intel__sec h3 .hud-num { color: var(--zt); font-size: 22px; }
 .intel__src { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 14.5px; color: var(--fg-2); }
 .intel__src a { color: var(--fg); }
 

@@ -13,7 +13,7 @@
 .hud__top { position: absolute; top: 0; inset-inline: 0; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px clamp(16px, 2.6vw, 34px); opacity: 0; transform: translateY(-10px); transition: opacity .9s var(--ease-out) .2s, transform .9s var(--ease-out) .2s; }
 .hud.is-shown .hud__top { opacity: 1; transform: none; }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--fg); }
-.brand__mark { width: 38px; height: 38px; color: var(--zc); transition: color .6s; filter: drop-shadow(0 0 10px var(--zglow)); }
+.brand__mark { width: 38px; height: 38px; color: var(--zt); transition: color .6s; filter: drop-shadow(0 0 10px var(--zglow)); }
 .brand__mark svg { width: 100%; height: 100%; }
 .brand__txt { display: grid; line-height: 1; gap: 4px; }
 .brand__txt b { font: 800 24px/0.86 var(--f-stencil); letter-spacing: .07em; white-space: nowrap; }
@@ -49,7 +49,7 @@
 .node.is-active .node__dot { transform: scale(1.5); }
 .node.is-active .node__dot::after { content: ''; position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--zc); animation: pulse-ring 2s var(--ease-out) infinite; }
 .node.is-active .node__ar { color: var(--fg); font-size: 18px; }
-.node.is-active .node__n { color: var(--zc); }
+.node.is-active .node__n { color: var(--zt); }
 .node--bonus .node__ar::after { content: attr(data-bonus); font: 400 11px var(--f-text); color: var(--fg-3); }
 .node:focus-visible { outline: none; }
 .node:focus-visible .node__dot { outline: 2px solid var(--zc); outline-offset: 5px; }
@@ -60,7 +60,7 @@
 html[dir="ltr"] .sel::before { inset: -30% -40% -20% -25%; } /* the shade reaches toward the eye, which sits on the other side in English */
 .hud.is-shown .sel { opacity: 1; transform: none; }
 .sel__meta { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--fg-3); margin-bottom: 10px; }
-.sel__meta .hud-num { font-size: 17px; color: var(--zc); }
+.sel__meta .hud-num { font-size: 17px; color: var(--zt); }
 .sel__tag { color: var(--fg-2); }
 .sel__title { font: 900 clamp(48px, 5.6vw, 88px)/1 var(--f-display); letter-spacing: -.02em; margin: 0 0 6px; }
 .sel__title .mask > span { transition-duration: .9s; }

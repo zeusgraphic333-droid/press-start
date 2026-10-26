@@ -15,7 +15,7 @@ export const capOf = (info = []) => isEN() ? [info[0], info[2] ?? (/[\u0600-\u06
 function lum(hex) { const n = parseInt(hex.slice(1), 16); const r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255; const f = c => c <= .03928 ? c / 12.92 : Math.pow((c + .055) / 1.055, 2.4); return .2126 * f(r) + .7152 * f(g) + .0722 * f(b); }
 export function zoneVars(color, dark) {
   const on = lum(color) > 0.3 ? '#0A0C0F' : '#FFFFFF';
-  return `--zc:${color};--zd:${dark};--zon:${on};--zglow:${color}59;--zt:var(--zc);`;
+  return `--zc:${color};--zd:${dark};--zon:${on};--zglow:${color}59;`;
 }
 
 /**

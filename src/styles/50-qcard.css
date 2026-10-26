@@ -1,7 +1,7 @@
 /* ---------- question card ---------- */
 .qc { --ink: var(--fg); --paper: transparent; --blue: var(--zc); --pink: var(--pink); --bad: var(--bad); }
 .qc__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-.qc__meta .chip:first-child { border-color: color-mix(in srgb, var(--zc) 55%, transparent); color: var(--zc); }
+.qc__meta .chip:first-child { border-color: color-mix(in srgb, var(--zc) 55%, transparent); color: var(--zt); }
 .qc__lv[data-lv="1"] { color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
 .qc__lv[data-lv="2"] { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 40%, transparent); }
 .qc__lv[data-lv="3"] { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 40%, transparent); }

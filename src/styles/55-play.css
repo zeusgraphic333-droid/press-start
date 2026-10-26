@@ -4,15 +4,15 @@
 .gamecard:hover { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--zc) 7%, transparent)); padding-inline-start: 12px; }
 html[dir="ltr"] .gamecard:hover { background: linear-gradient(270deg, transparent, color-mix(in srgb, var(--zc) 7%, transparent)); }
 .gamecard__n { font-size: 34px; line-height: .8; color: var(--fg-4); transition: color .3s; }
-.gamecard:hover .gamecard__n { color: var(--zc); }
+.gamecard:hover .gamecard__n { color: var(--zt); }
 .gamecard__txt { display: grid; gap: 4px; }
 .gamecard__txt > b { font: 800 clamp(21px, 2.2vw, 27px)/1.2 var(--f-display); }
-.gamecard__txt bdi { font: 500 13px/1.2 var(--f-text); color: var(--zc); }
+.gamecard__txt bdi { font: 500 13px/1.2 var(--f-text); color: var(--zt); }
 .gamecard__how { font-size: 15px; line-height: 1.7; color: var(--fg-2); margin-top: 4px; }
 .gamecard__meta { display: grid; justify-items: end; gap: 4px; font-size: 12.5px; color: var(--fg-3); }
 .gamecard__go { color: var(--fg-3); transition: transform .4s var(--ease-out), color .3s; }
 .gamecard__go svg { width: 22px; height: 22px; }
-.gamecard:hover .gamecard__go { color: var(--zc); transform: translateX(-6px); }
+.gamecard:hover .gamecard__go { color: var(--zt); transform: translateX(-6px); }
 html[dir="ltr"] .gamecard:hover .gamecard__go { transform: translateX(6px); }
 .gamestage, .gamestage * { scroll-margin-top: 16px; }
 .gamestage__bar { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
@@ -47,7 +47,7 @@ html[dir="ltr"] .gamecard:hover .gamecard__go { transform: translateX(6px); }
 .qstart__row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin: 22px 0 26px; }
 .qstart__best { display: grid; gap: 4px; font-size: 12.5px; color: var(--fg-3); }
 .qstart__rules { list-style: none; margin: 0; padding: 18px 0 0; border-top: 1px solid var(--line); display: grid; gap: 10px; color: var(--fg-2); font-size: 15.5px; }
-.qstart__rules .hud-num { color: var(--zc); font-size: 17px; margin-inline-end: 8px; }
+.qstart__rules .hud-num { color: var(--zt); font-size: 17px; margin-inline-end: 8px; }
 .qrun__top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; align-items: center; margin-bottom: 22px; }
 .qrun__n { font: 500 22px/1 var(--f-hud); color: var(--fg); order: -1; }
 .qrun__combo { display: inline-flex; align-items: center; gap: 6px; color: var(--gold); font-size: 13px; animation: rise .4s var(--ease-out); }

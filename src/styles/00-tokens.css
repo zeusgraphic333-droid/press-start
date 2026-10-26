@@ -82,6 +82,8 @@
   --ease-back: cubic-bezier(.34, 1.4, .64, 1);
   color-scheme: dark;
 }
+/* --zt follows whatever --zc an element inherits (a screen, the hub…): computed per element */
+*, *::before, *::after { --zt: var(--zc); }
 /* English pages: headings in the condensed signage face */
 html[lang="en"] { --f-display: 'Big Shoulders Display', 'Changa', 'Arial Narrow', sans-serif; }
 html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3 { letter-spacing: .005em; }
