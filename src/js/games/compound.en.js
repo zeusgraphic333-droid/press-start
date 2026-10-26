@@ -27,7 +27,7 @@ const whichGame = which({
     ['draw', 'can', 'A beverage can', 'Beverage cans are a deep drawing product.'],
     ['draw', 'panel', 'A car body panel', 'Automobile body panels = deep drawing.'],
     ['draw', 'sink', 'A double kitchen sink', 'The double sink appears with drawing (L4 · S17).'],
-    ['draw', 'tray', 'A box-shaped tray', 'Box-shaped = drawing. Spinning only makes round things.'],
+    ['draw', 'tray', 'A box-shaped tray: a punch pushes the blank into a die', 'Box-shaped = drawing. Spinning only makes round things.'],
     ['draw', null, '“A blank holder grips the blank while the punch pushes it into the die”', 'That’s drawing: punch, die, blank holder.'],
     ['draw', null, '“Called deep to tell it apart from wire and bar drawing”', 'That’s deep drawing.']
   ]

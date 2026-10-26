@@ -28,7 +28,7 @@ const whichGame = which({
     ['draw', 'can', `علبة كانز ${en('(Beverage can)')}`, 'Beverage cans من منتجات السحب العميق.'],
     ['draw', 'panel', `باب عربية ${en('(Car body panel)')}`, 'Automobile body panels = deep drawing.'],
     ['draw', 'sink', `حوض مطبخ مزدوج ${en('(Double sink)')}`, 'الحوض المزدوج اتعرض مع السحب العميق (L4 · S17).'],
-    ['draw', 'tray', `صينية شكل علبة ${en('(Box-shaped part)')}`, 'Box-shaped = drawing. البرم بيعمل حاجات مدورة بس.'],
+    ['draw', 'tray', `صينية شكل علبة، البنش بيزق البلانك جوه الداي ${en('(Box-shaped part)')}`, 'Box-shaped = drawing. البرم بيعمل حاجات مدورة بس.'],
     ['draw', null, `«${en('Blank holder')} ماسك البلانك، والبنش بيزقه جوه الداي»`, 'ده السحب: punch + die + blank holder.'],
     ['draw', null, '«اسمه deep عشان نفرّقه عن سحب السلك والقضبان»', 'ده الـ deep drawing.']
   ]
