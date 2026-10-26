@@ -21,8 +21,11 @@ const FONTS = [
   ['@fontsource-variable/big-shoulders-display', ['wght.css'], 'Big Shoulders Display', ['latin']],
   ['@fontsource-variable/big-shoulders-stencil-display', ['wght.css'], 'Big Shoulders Stencil Display', ['latin']],
   ['@fontsource/barlow-condensed', ['500.css', '600.css', '700.css'], 'Barlow Condensed', ['latin']],
-  ['@fontsource/italiana', ['400.css'], 'Italiana', ['latin']],
-  ['@fontsource-variable/archivo', ['wdth.css'], 'Archivo', ['latin']]
+];
+/** the ident's two faces, subset to the letters it shows (assets/fonts/README.md says how they were made) */
+const LOCAL_FONTS = [
+  ['assets/fonts/italiana-ident.woff2', 'Italiana', 'font-weight: 400; font-style: normal'],
+  ['assets/fonts/archivo-ident.woff2', 'Archivo', 'font-weight: 100 900; font-stretch: 62% 125%; font-style: normal']
 ];
 function fontFaces() {
   const nm = path.join(path.dirname(new URL(import.meta.url).pathname), 'node_modules');
@@ -38,6 +41,11 @@ function fontFaces() {
         .replace(/url\(\.\/files\/[^)]+\)/, `url(data:font/woff2;base64,${data})`);
       out += '@font-face ' + body + '\n';
     }
+  }
+  const here = path.dirname(new URL(import.meta.url).pathname);
+  for (const [file, family, desc] of LOCAL_FONTS) {
+    const data = fs.readFileSync(path.join(here, file)).toString('base64');
+    out += `@font-face {\n  font-family: '${family}';\n  ${desc.split('; ').join(';\n  ')};\n  font-display: swap;\n  src: url(data:font/woff2;base64,${data}) format('woff2');\n}\n`;
   }
   return out;
 }
