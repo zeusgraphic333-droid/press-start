@@ -1,1 +1,133 @@
-/* Zone styles — compound: its trials, demos and lesson art. Scope every rule under .z-compound or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — compound: lesson art, demos and trials. Every class starts with .cmp- (docs/BRIEF.md § Styles). */
+
+/* ---------- lesson art ---------- */
+.cmp-art { display: block; width: 100%; height: auto; max-width: 540px; margin-inline: auto; }
+.blk-cmp__art .cmp-art { max-width: 300px; }
+.cmp-profiles, .cmp-products { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 12px 8px; }
+.cmp-prof, .cmp-prod { margin: 0; display: grid; justify-items: center; gap: 4px; text-align: center; }
+.cmp-prof svg { width: 100%; max-width: 104px; height: auto; }
+.cmp-prof figcaption, .cmp-prod figcaption { font: 600 12.5px/1.25 var(--f-hud); letter-spacing: .02em; color: var(--fg-2); }
+.cmp-prod__g { width: 72px; height: 50px; color: var(--zc); }
+.cmp-prod__g svg { width: 100%; height: 100%; }
+.cmp-stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.cmp-stage { margin: 0; display: grid; gap: 4px; }
+.cmp-stage .cmp-art { max-width: none; }
+.cmp-stage figcaption { text-align: center; font: 600 13px/1.2 var(--f-display); color: var(--fg-2); }
+
+/* ---------- shared bits for the demos ---------- */
+.cmp-read { margin: 12px 0 0; font-size: 15.5px; line-height: 1.65; color: var(--fg-2); min-height: 2.6em; }
+.cmp-read b { color: var(--fg); }
+.cmp-range { display: grid; gap: 6px; margin: 10px 0 0; }
+.cmp-range__top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.cmp-range__top .hud-num { font-size: 22px; color: var(--zt); }
+.cmp-range input[type="range"] { width: 100%; margin: 0; accent-color: var(--zc); height: 28px; cursor: pointer; }
+
+/* 1 · spin it */
+.cmp-spin { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.cmp-spin__fig { flex: 1 1 280px; min-width: 0; }
+.cmp-spin__fig .cmp-art { max-width: 460px; }
+.cmp-spin__side { flex: 1 1 200px; min-width: 0; display: grid; gap: 12px; }
+.cmp-hold { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; white-space: normal; line-height: 1.25; min-height: 54px; }
+.cmp-hold.is-held { transform: scale(.97); box-shadow: 0 0 0 3px color-mix(in srgb, var(--zc) 40%, transparent), 0 0 22px var(--zglow); }
+.cmp-meter { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 4px 10px; }
+.cmp-meter .bar { grid-column: 1 / -1; height: 4px; }
+.cmp-meter .hud-num { font-size: 20px; color: var(--zt); }
+.cmp-meter__w { font: 600 14px/1.2 var(--f-display); color: var(--fg); }
+.cmp-meter .bar--wall > i { background: var(--fg-3); box-shadow: none; }
+.cmp-spin .cmp-read { margin: 0; }
+.cmp-reset { justify-self: start; }
+.cmp-spin.is-spinning .cmp-spin__d { animation: cmp-dash .45s linear infinite; }
+@keyframes cmp-dash { to { stroke-dashoffset: -12; } }
+
+/* 2 · tube hydroforming, step by step */
+.cmp-tube__fig .cmp-art { max-width: 520px; }
+.cmp-tube__bar { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.cmp-tube__bar .btn--icon { width: 40px; min-height: 40px; height: 40px; font: 600 18px/1 var(--f-hud); }
+.cmp-steps { display: flex; gap: 6px; direction: ltr; }
+.cmp-step { appearance: none; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--line-2); background: transparent; color: var(--fg-2); font: 600 17px/1 var(--f-text); cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+.cmp-step:hover { border-color: var(--zc); color: var(--fg); }
+.cmp-step[aria-pressed="true"] { border-color: var(--zc); background: var(--zc); color: var(--zon); }
+.cmp-tube .cmp-read { text-align: center; }
+
+/* 3 · deep drawing stroke */
+.cmp-draw__fig .cmp-art { max-width: 440px; }
+
+/* ---------- trials: shared ---------- */
+.cmp-fb { min-height: 2.9em; margin: 12px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.cmp-ok { color: var(--good); } .cmp-no { color: var(--bad); }
+.cmp-key { position: absolute; top: 6px; inset-inline-end: 8px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.cmp-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.cmp-end__score > .hud-num:first-child { font-size: clamp(90px, 13vw, 140px); line-height: .78; color: var(--fg); }
+.cmp-end__of { font-size: 34px; color: var(--fg-3); }
+.cmp-end__marks { display: flex; align-items: center; justify-content: center; gap: 12px; }
+
+/* 1 · which process? (the quick-fire engine is styled in 55-play.css; only this trial's touches here) */
+.cmp-qf .cte-art { margin-bottom: 6px; }
+.cmp-qf__art { display: block; width: 150px; height: 105px; color: var(--zc); }
+.cmp-qf__art svg { width: 100%; height: 100%; }
+.cmp-qf .g-prompt { font-size: clamp(20px, 2.3vw, 26px); margin: 4px 0 6px; }
+.cmp-qf .cte-sub { margin: 0 0 14px; }
+.cmp-qf .cte-choices .g-choice { min-height: 0; padding: 12px 8px 10px; gap: 4px 10px; align-items: center; }
+.cmp-qf__g { width: 34px; height: 34px; color: var(--zc); }
+.cmp-qf__g svg { width: 100%; height: 100%; }
+.cmp-qf .g-choice small { font: 500 11.5px/1.1 var(--f-hud); color: var(--fg-3); }
+
+/* 2 · label the machines */
+.cmp-lbl__t { margin: 0 0 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.cmp-lbl__t b { font: 800 clamp(20px, 2.3vw, 25px)/1.2 var(--f-display); }
+.cmp-lbl__t small { font: 500 13px/1 var(--f-hud); color: var(--zt); letter-spacing: .03em; }
+.cmp-lbl__fig { position: relative; width: 100%; max-width: 560px; margin: 0 auto; border: 1px solid var(--line); border-radius: 14px; background: var(--card); }
+.cmp-lbl__fig > svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; }
+.cmp-pin { position: absolute; z-index: 1; width: 30px; height: 30px; transform: translate(-50%, -50%); border-radius: 50%; border: 2px solid var(--zc); background: color-mix(in srgb, var(--card) 70%, var(--zc)); color: var(--fg); font: 700 14px/1 var(--f-hud); display: grid; place-items: center; cursor: pointer; box-shadow: 0 0 0 4px color-mix(in srgb, var(--zc) 18%, transparent); transition: transform .2s var(--ease-out), background .2s; }
+.cmp-pin:hover:not(:disabled), .cmp-pin.is-sel { transform: translate(-50%, -50%) scale(1.15); background: var(--zc); color: var(--zon); }
+.cmp-pin.is-ok { border-color: var(--good); background: var(--good); color: var(--void); box-shadow: none; cursor: default; }
+.cmp-lbl__q { margin: 12px 0 8px; text-align: center; font: 600 15px/1.4 var(--f-display); color: var(--fg-2); }
+.cmp-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.cmp-chip { position: relative; appearance: none; font: 600 15px/1.2 var(--f-text); color: var(--fg); background: rgba(236, 233, 226, .025); border: 1px solid var(--line-2); border-radius: 99px; padding: 9px 14px; cursor: pointer; transition: border-color .2s, background .2s, opacity .3s; }
+.cmp-chip:hover:not(:disabled) { border-color: var(--zc); }
+.cmp-chip[aria-pressed="true"] { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 22%, transparent); box-shadow: 0 0 14px var(--zglow); }
+.cmp-chip.is-done { opacity: .5; border-color: color-mix(in srgb, var(--good) 50%, transparent); cursor: default; }
+.cmp-chip.is-done::before { content: attr(data-n) ' · '; color: var(--good); font-family: var(--f-hud); }
+
+/* 3 · spin it */
+.cmp-spn__top { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 12px; align-items: center; }
+.cmp-spn__order { display: grid; justify-items: center; gap: 6px; padding: 12px; border: 1px dashed var(--line-3); border-radius: 12px; background: color-mix(in srgb, var(--zc) 6%, var(--card)); text-align: center; }
+.cmp-spn__order .label { margin: 0; }
+.cmp-spn__g { width: 110px; height: 77px; color: var(--zc); }
+.cmp-spn__g svg { width: 100%; height: 100%; }
+.cmp-spn__name { font: 800 clamp(19px, 2.2vw, 24px)/1.2 var(--f-display); }
+.cmp-spn__name small { display: block; font: 500 12.5px/1.2 var(--f-hud); color: var(--fg-3); }
+.cmp-spn__lathe .cmp-art { max-width: 420px; }
+.cmp-spn__q { margin: 12px 0 10px; text-align: center; font: 700 clamp(17px, 2vw, 20px)/1.35 var(--f-display); }
+.cmp-spn__acts { display: grid; gap: 10px; }
+.cmp-mandrels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.cmp-mandrel { position: relative; padding: 12px 6px 10px; gap: 3px; min-height: 0; }
+.cmp-mandrel .cmp-mandrel__g { width: 38px; height: 38px; color: var(--zc); }
+.cmp-mandrel .cmp-mandrel__g svg { width: 100%; height: 100%; }
+.cmp-mandrel b { font: 700 15.5px/1.15 var(--f-display); }
+.cmp-mandrel small { font: 500 11px/1.1 var(--f-hud); color: var(--fg-3); }
+.cmp-spn.is-spinning .cmp-spin__d { animation: cmp-dash .45s linear infinite; }
+@media (max-width: 560px) {
+  .cmp-spn__top { grid-template-columns: 1fr; }
+  .cmp-spn__order { grid-template-columns: auto minmax(0, 1fr); justify-items: start; text-align: start; padding: 8px 12px; }
+  .cmp-spn__g { width: 72px; height: 50px; }
+  .cmp-qf__art { width: 120px; height: 84px; }
+  .cmp-pin { width: 26px; height: 26px; font-size: 13px; }
+  .cmp-chip { padding: 8px 12px; font-size: 14px; }
+}
+
+/* ---------- the drafting room ---------- */
+html[data-mode="illustrated"] .cmp-step { border-radius: 2px; border-width: 1.5px; }
+html[data-mode="illustrated"] .cmp-step[aria-pressed="true"] { background: var(--graphite); border-color: var(--graphite); color: #fff; box-shadow: inset 0 -3px 0 var(--zc); }
+html[data-mode="illustrated"] .cmp-prod__g { color: var(--zd); }
+html[data-mode="illustrated"] .cmp-hold.is-held { box-shadow: inset 0 -4px 0 var(--zc); }
+html[data-mode="illustrated"] .cmp-lbl__fig, html[data-mode="illustrated"] .cmp-spn__order { border-radius: 3px; border-width: 1.5px; background: #fff; }
+html[data-mode="illustrated"] .cmp-chip { border-radius: 2px; border-width: 1.5px; background: #fff; }
+html[data-mode="illustrated"] .cmp-chip[aria-pressed="true"] { box-shadow: inset 0 -3px 0 var(--zc); background: color-mix(in srgb, var(--zc) 14%, #fff); }
+html[data-mode="illustrated"] .cmp-pin { box-shadow: none; border-color: var(--graphite); background: #fff; }
+html[data-mode="illustrated"] .cmp-pin.is-sel, html[data-mode="illustrated"] .cmp-pin:hover:not(:disabled) { background: var(--graphite); color: #fff; }
+html[data-mode="illustrated"] .cmp-pin.is-ok { background: var(--good); border-color: var(--good); color: #fff; }
+html[data-mode="illustrated"] :is(.cmp-qf__art, .cmp-qf__g, .cmp-spn__g, .cmp-mandrel__g) { color: var(--zd); }
+
+@media (prefers-reduced-motion: reduce) { :is(.cmp-spin, .cmp-spn).is-spinning .cmp-spin__d { animation: none; } .cmp-pin { transition: none; } }
+html[data-motion="reduce"] :is(.cmp-spin, .cmp-spn).is-spinning .cmp-spin__d { animation: none; }

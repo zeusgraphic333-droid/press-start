@@ -1,1 +1,150 @@
-/* Zone styles — iron: its trials, demos and lesson art. Scope every rule under .z-iron or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — iron: lesson art, demos and trials. Every class starts with .irn- (docs/BRIEF.md § Styles). */
+
+/* ---------- lesson art ---------- */
+.irn-art { display: block; width: 100%; height: auto; max-width: 520px; margin-inline: auto; }
+.blk-cmp__art .irn-art { max-width: 300px; }
+
+/* ---------- shared bits for the demos ---------- */
+.irn-read { margin: 12px 0 0; display: block; font-size: 15.5px; line-height: 1.6; color: var(--fg-2); min-height: 2.6em; }
+.irn-read > b { color: var(--fg); font-weight: 600; }
+.irn-read > small { display: block; margin-top: 4px; font-size: 13px; color: var(--fg-3); text-align: start; }
+.irn-read.is-ok > b { color: var(--good); }
+.irn-range { display: grid; gap: 6px; margin: 0 0 14px; }
+.irn-range__top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.irn-range__top .hud-num { font-size: 22px; color: var(--zt); }
+.irn-range input[type="range"] { width: 100%; margin: 0; accent-color: var(--zc); height: 28px; cursor: pointer; }
+
+/* 1 · the melt check */
+.irn-melt { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; }
+.irn-melt__pot { flex: 1 1 200px; display: grid; place-items: center; }
+.irn-melt__side { flex: 1 1 220px; min-width: 0; }
+.irn-pot { width: 100%; max-width: 280px; height: auto; }
+
+/* 2 · strike the base */
+.irn-damp { display: grid; gap: 10px; }
+.irn-damp__row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb, var(--card) 70%, transparent); }
+.irn-damp__name { flex: 0 0 104px; display: grid; gap: 2px; }
+.irn-damp__name b { font: 700 18px/1.2 var(--f-display); }
+.irn-damp__name small { font: 500 12.5px/1.2 var(--f-hud); letter-spacing: .04em; color: var(--fg-3); }
+.irn-damp__w { flex: 1 1 180px; height: 64px; min-width: 0; }
+.irn-damp__row.is-hit { animation: irn-knock .5s var(--ease-out); }
+@keyframes irn-knock { 0% { border-color: var(--hot); } 100% { border-color: var(--line); } }
+.irn-damp__acts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+.irn-damp__acts .irn-read { flex: 1 1 240px; margin: 0; }
+
+/* 3 · who gets this job? */
+.irn-find__chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.irn-chip { appearance: none; font: 500 13.5px/1.25 var(--f-text); color: var(--fg-2); background: transparent; border: 1px solid var(--line-2); border-radius: 99px; padding: 7px 12px; cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+.irn-chip:hover { border-color: var(--zc); color: var(--fg); }
+.irn-chip[aria-pressed="true"] { border-color: var(--zc); color: var(--fg); background: color-mix(in srgb, var(--zc) 16%, transparent); }
+.irn-find__irons { display: grid; grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); gap: 8px; }
+.irn-tile { display: grid; justify-items: center; align-content: start; gap: 2px; text-align: center; padding: 10px 6px 9px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); transition: opacity .3s, border-color .3s, box-shadow .3s, transform .3s var(--ease-out); }
+.irn-tile__g { width: 34px; height: 34px; color: var(--zc); margin-bottom: 4px; }
+.irn-tile__g svg { width: 100%; height: 100%; }
+.irn-tile b { font: 700 15px/1.2 var(--f-display); }
+.irn-tile small { font: 500 11.5px/1.2 var(--f-hud); color: var(--fg-3); letter-spacing: .03em; }
+.irn-find.is-picking .irn-tile:not(.is-on) { opacity: .32; }
+.irn-tile.is-on { border-color: var(--zc); box-shadow: 0 0 0 1px var(--zc), 0 0 18px var(--zglow); transform: translateY(-2px); }
+.irn-two { display: inline-block; font: 700 12.5px/1 var(--f-display); color: var(--hot); border: 1px solid color-mix(in srgb, var(--hot) 55%, transparent); border-radius: 4px; padding: 4px 7px; margin-inline-end: 4px; }
+
+/* ---------- trials: shared ---------- */
+.irn-hud-r { display: flex; gap: 8px; align-items: center; }
+.irn-combo { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.irn-combo[hidden] { display: none; }
+.irn-key { position: absolute; top: 6px; inset-inline-end: 8px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.irn-fb { min-height: 2.9em; margin: 14px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.irn-ok { color: var(--good); } .irn-no { color: var(--bad); }
+.irn-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.irn-end__score > .hud-num:first-child { font-size: clamp(90px, 13vw, 140px); line-height: .78; color: var(--fg); }
+.irn-end__of { font-size: 34px; color: var(--fg-3); }
+.irn-end__marks { display: flex; align-items: center; justify-content: center; gap: 12px; }
+
+/* 1 · foundry orders */
+.irn-fdy .g-timer { margin: -4px 0 14px; }
+.irn-fdy__floor { display: grid; grid-template-columns: minmax(0, 1fr) 112px; gap: 12px; align-items: stretch; }
+.irn-ticket { position: relative; padding: 12px 14px 14px; border: 1px dashed var(--line-3); border-radius: 12px; background: color-mix(in srgb, var(--zc) 6%, var(--card)); overflow: hidden; }
+.irn-ticket.is-in { animation: irn-slide .45s var(--ease-out); }
+@keyframes irn-slide { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+.irn-ticket header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px; }
+.irn-ticket__no { font-size: 15px; color: var(--zt); letter-spacing: .08em; }
+.irn-ticket__tag { font: 500 12px/1 var(--f-hud); letter-spacing: .08em; text-transform: uppercase; color: var(--fg-3); }
+.irn-ticket__body { display: flex; gap: 12px; align-items: center; }
+.irn-ticket__g { flex: none; width: 46px; height: 46px; color: var(--zc); }
+.irn-ticket__g svg { width: 100%; height: 100%; }
+.irn-ticket__part { display: block; font: 800 clamp(20px, 2.4vw, 26px)/1.2 var(--f-display); }
+.irn-ticket__spec { display: block; margin-top: 3px; font-size: 14.5px; line-height: 1.5; color: var(--fg-2); }
+.irn-stamp { position: absolute; top: 10px; inset-inline-end: 10px; padding: 3px 10px; border: 2px solid currentColor; border-radius: 4px; font: 700 18px/1.1 var(--f-stencil); letter-spacing: .08em; text-transform: uppercase; transform: rotate(-8deg); animation: irn-stamp .35s var(--ease-back); background: color-mix(in srgb, var(--card) 80%, transparent); }
+.irn-stamp.is-ok { color: var(--good); } .irn-stamp.is-no { color: var(--bad); }
+@keyframes irn-stamp { from { opacity: 0; transform: rotate(-8deg) scale(1.6); } to { opacity: 1; transform: rotate(-8deg) scale(1); } }
+.irn-mold { display: grid; grid-template-rows: 1fr auto; gap: 6px; padding: 10px; border: 1px solid var(--line-2); border-radius: 12px; background: repeating-linear-gradient(45deg, transparent 0 6px, color-mix(in srgb, var(--fg) 5%, transparent) 6px 7px); }
+.irn-mold__cav { position: relative; display: grid; place-items: center; min-height: 64px; border: 1.5px solid var(--line-3); border-radius: 8px; overflow: hidden; background: var(--card); }
+.irn-mold__fill { position: absolute; inset: auto 0 0; height: 0; background: color-mix(in srgb, var(--zc) 40%, transparent); box-shadow: 0 0 16px var(--zglow); transition: height .7s var(--ease-out); }
+.irn-mold.is-poured .irn-mold__fill { height: 100%; }
+.irn-mold__g { position: relative; width: 40px; height: 40px; color: var(--fg); opacity: 0; transition: opacity .4s .45s; }
+.irn-mold__g svg { width: 100%; height: 100%; }
+.irn-mold.is-poured .irn-mold__g { opacity: 1; }
+.irn-mold__n { min-height: 1.2em; text-align: center; font: 600 13px/1.2 var(--f-display); color: var(--fg-2); }
+.irn-fdy__q { margin: 16px 0 10px; text-align: center; font: 700 clamp(18px, 2vw, 21px)/1.3 var(--f-display); }
+.irn-ladles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.irn-ladle { position: relative; padding: 12px 6px 10px; gap: 3px; min-height: 0; }
+.irn-ladle .irn-ladle__g { width: 30px; height: 30px; color: var(--zc); }
+.irn-ladle .irn-ladle__g svg { width: 100%; height: 100%; }
+.irn-ladle b { font: 700 16px/1.15 var(--f-display); }
+.irn-ladle small { font: 500 11.5px/1.1 var(--f-hud); letter-spacing: .03em; color: var(--fg-3); }
+
+/* 2 · foundry routes */
+.irn-rte__order { display: grid; gap: 2px; padding: 12px 14px; border: 1px dashed var(--line-3); border-radius: 12px; background: color-mix(in srgb, var(--zc) 6%, var(--card)); }
+.irn-rte__target { font: 800 clamp(22px, 2.6vw, 28px)/1.2 var(--f-display); color: var(--zt); }
+.irn-rte__target small { font: 500 14px/1 var(--f-hud); color: var(--fg-3); letter-spacing: .03em; }
+.irn-rte__for { font-size: 14.5px; color: var(--fg-2); }
+.irn-rte__line { list-style: none; margin: 16px 0 6px; padding: 12px; min-height: 70px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.irn-rte__st { display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border: 1px solid var(--line-2); border-radius: 10px; }
+.irn-rte__st b { font: 700 15px/1.2 var(--f-display); }
+.irn-rte__st small { font: 500 11px/1 var(--f-hud); color: var(--fg-3); }
+.irn-rte__g { width: 22px; height: 22px; color: var(--zc); }
+.irn-rte__g:empty { display: none; }
+.irn-rte__g svg { width: 100%; height: 100%; }
+.irn-rte__st.is-start { border-color: var(--line-3); }
+.irn-rte__st.is-q { border-style: dashed; color: var(--fg-3); }
+.irn-rte__st.is-bad { border-color: var(--bad); color: var(--bad); }
+.irn-rte__step { padding: 5px 10px; border-radius: 99px; border: 1px dashed color-mix(in srgb, var(--zc) 60%, transparent); color: var(--zt); font: 600 13.5px/1.2 var(--f-display); }
+.irn-rte__arrow { color: var(--fg-3); font: 600 16px/1 var(--f-hud); }
+html[dir="rtl"] .irn-rte__arrow { transform: scaleX(-1); }
+.irn-rte__q { margin: 14px 0 8px; font: 600 14px/1.2 var(--f-display); color: var(--fg-3); }
+.irn-rte__steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.irn-step { position: relative; display: grid; gap: 2px; justify-items: start; text-align: start; padding: 10px 26px 9px 12px; padding-inline: 12px 26px; border: 1px solid var(--line-2); border-radius: 12px; background: rgba(236, 233, 226, .025); color: var(--fg); cursor: pointer; transition: border-color .2s, background .2s; }
+.irn-step:hover:not(:disabled) { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 8%, transparent); }
+.irn-step:disabled { opacity: .4; cursor: default; }
+.irn-step b { font: 700 15px/1.25 var(--f-display); }
+.irn-step small { font: 500 11.5px/1.25 var(--f-hud); color: var(--fg-3); }
+.irn-rte__acts { justify-content: flex-start; margin-top: 14px; }
+
+/* 3 · odd one out (the quick-fire engine is styled in 55-play.css; only this trial's touches here) */
+.irn-qf .g-prompt { font-size: clamp(19px, 2.2vw, 24px); }
+.irn-qf__t { font: 500 15.5px/1.45 var(--f-text); }
+
+@media (max-width: 560px) {
+  .irn-fdy__floor { grid-template-columns: minmax(0, 1fr) 88px; gap: 8px; }
+  .irn-ticket { padding: 10px 11px 12px; }
+  .irn-ticket__g { width: 36px; height: 36px; }
+  .irn-ladles { gap: 6px; }
+  .irn-ladle { padding: 10px 4px 8px; }
+  .irn-ladle b { font-size: 14.5px; }
+  .irn-stamp { font-size: 15px; top: 8px; }
+}
+
+/* ---------- the drafting room ---------- */
+html[data-mode="illustrated"] .irn-damp__row, html[data-mode="illustrated"] .irn-tile { border-radius: 3px; border-width: 1.5px; background: #fff; }
+html[data-mode="illustrated"] .irn-chip { border-radius: 2px; border-width: 1.5px; }
+html[data-mode="illustrated"] .irn-tile.is-on { box-shadow: inset 0 -4px 0 var(--zc); border-color: var(--graphite); transform: none; }
+html[data-mode="illustrated"] .irn-tile__g { color: var(--zd); }
+html[data-mode="illustrated"] .irn-two { border-radius: 2px; }
+html[data-mode="illustrated"] .irn-ticket, html[data-mode="illustrated"] .irn-rte__order { border-radius: 3px; border: 1.5px dashed var(--graphite); background: #fff; }
+html[data-mode="illustrated"] .irn-mold, html[data-mode="illustrated"] .irn-mold__cav, html[data-mode="illustrated"] .irn-rte__line, html[data-mode="illustrated"] .irn-rte__st, html[data-mode="illustrated"] .irn-step { border-radius: 3px; }
+html[data-mode="illustrated"] .irn-mold__fill { box-shadow: none; }
+html[data-mode="illustrated"] .irn-stamp { border-radius: 2px; background: #fff; }
+html[data-mode="illustrated"] .irn-ladle .irn-ladle__g, html[data-mode="illustrated"] .irn-ticket__g, html[data-mode="illustrated"] .irn-rte__g { color: var(--zd); }
+
+@media (prefers-reduced-motion: reduce) { .irn-damp__row.is-hit, .irn-ticket.is-in, .irn-stamp { animation: none; } .irn-tile, .irn-mold__fill, .irn-mold__g { transition: none; } }
+html[data-motion="reduce"] :is(.irn-damp__row.is-hit, .irn-ticket.is-in, .irn-stamp) { animation: none; }
+html[data-motion="reduce"] :is(.irn-mold__fill, .irn-mold__g) { transition: none; }
