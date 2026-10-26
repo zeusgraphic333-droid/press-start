@@ -5,7 +5,7 @@ import { renderLesson, lessonProgress } from './learn.js';
 import { GLYPH, ZONE_GLYPH } from './glyphs.js';
 import { ICON, marks } from './icons.js';
 import { esc, rich } from '../core/util.js';
-import { state, visit, award, emit } from '../core/state.js';
+import { state, visit, award, emit, on } from '../core/state.js';
 import api from '../core/api.js';
 import { mountZoneQuiz } from './quiz.js';
 import { sfx } from '../core/sfx.js';
@@ -36,6 +36,11 @@ export function openZone(id, tab = 'learn', origin, content = {}) {
     }
   });
   scr.setCaption(0, ...capOf(SCENE_INFO[ZONE_FORMATION[id]]));
+  // a trial can change the scene (api.scene): the caption follows it while the Play tab is showing
+  const off = on('scene', ({ name } = {}) => {
+    if (!scr.el.isConnected) return off();
+    if (name && SCENE_INFO[name] && scr.panes?.play && !scr.panes.play.hidden) scr.setCaption(0, ...capOf(SCENE_INFO[name]));
+  });
   scr.setTab(tabs.some(x => x.id === tab) ? tab : 'learn');
   return scr;
 }
