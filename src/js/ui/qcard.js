@@ -51,7 +51,7 @@ export function mountQ(el, q, o = {}) {
   buttons.forEach((b, i) => b.addEventListener('click', () => choose(i)));
   const onKey = e => {
     if (!el.isConnected) return document.removeEventListener('keydown', onKey);
-    if (!el.contains(document.activeElement) && !el.classList.contains('qc--focus')) return;
+    if (!el.contains(document.activeElement) && !el.closest('.qc--focus')) return; // the quiz/boss mark the card's frame, the card is inside it
     const k = e.key.toUpperCase(); const idx = KEYS.indexOf(k) >= 0 ? KEYS.indexOf(k) : '1234'.indexOf(e.key);
     if (idx >= 0 && idx < buttons.length && !buttons[idx].disabled) { e.preventDefault(); buttons[idx].focus(); choose(idx); }
   };

@@ -48,12 +48,17 @@ paint a background), graphite lines in ISO weights, a red pencil for corrections
   your own repeating timelines must check `k.reduced()` first). The stage also freezes everything under reduced motion.
 - **Pivots in SVG:** GSAP measures a px `transformOrigin` from the element's own box. To rotate about a point in viewBox
   coordinates use `svgOrigin: '392 452'`.
+- **Scale/rotate about a point, set once:** give `transformOrigin`/`svgOrigin` on the first tween (or a `gsap.set`) and
+  keep it the same afterwards; an origin that appears only on a later "to" side leaves a permanent offset.
 - **Loops with fromTo:** a `fromTo` inside a repeating timeline renders its "from" state immediately — give loop
   `fromTo`s `immediateRender: false`.
 - **Chrome bug, clip + patterns:** a `clip-path` on a group whose children are *all* pattern fills (hatches) renders
   displaced. Put one plain (non-pattern) element in the group, or clip each child instead.
 - **Text direction:** the stage `<svg>` is `direction: ltr`; `k.text()` sets direction per string (rtl if Arabic), so
   `anchor: 'start' | 'end'` lands on the same side in either page direction.
+- **Kit extras:** `k.hatch('steel', { flip: true })` hatches the other way (two touching parts of one material);
+  `k.center()` lines carry `class="k-center"`; `k.text(x, y, 'L_{0}')` / `'mm^{2}'` for subscripts and superscripts;
+  `k.plot()` gives dashed and centre lines their pattern back at the end of the draw, also under reduced motion.
 - **Markers:** arrowheads are shared markers (`url(#arr)`, `arr-red`, `arr-blue`, `arr-hot`, `dot`); `plot()` animates
   lines with markers fine.
 

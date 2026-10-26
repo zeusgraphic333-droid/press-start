@@ -35,6 +35,10 @@ export function installDefs() {
   p += pat('glass', 13, ln(0, 0, 0, 13, .9, 'stroke-dasharray="7 3"') + ln(4, 0, 4, 13, .6, 'stroke-dasharray="2 8"')); // ANSI36 · glass
   p += pat('lead', 10, ln(0, 0, 0, 10) + ln(0, 5, 10, 5));                                  // ANSI37 · lead, zinc, magnesium
   p += pat('alu', 12, ln(0, 0, 0, 12) + ln(0, 6, 12, 6, .8, 'stroke-dasharray="2.5 2.5"'));  // ANSI38 · aluminium
+  // mirrored twins (…-r): where two parts of the same material touch, hatch one of them the other way
+  p += pat('iron-r', 9, ln(0, 0, 0, 9), -45) + pat('steel-r', 12, ln(0, 0, 0, 12) + ln(2.6, 0, 2.6, 12), -45) + pat('bronze-r', 14, ln(0, 0, 0, 14) + ln(7, 0, 7, 14, .9, 'stroke-dasharray="3 2.4"'), -45)
+    + pat('plastic-r', 16, ln(0, 0, 0, 16) + ln(2.4, 0, 2.4, 16) + ln(4.8, 0, 4.8, 16), -45) + pat('alu-r', 12, ln(0, 0, 0, 12) + ln(0, 6, 12, 6, .8, 'stroke-dasharray="2.5 2.5"'), -45)
+    + pat('lead-r', 10, ln(0, 0, 0, 10) + ln(0, 5, 10, 5), -45);
   p += `<pattern id="hatch-water" width="26" height="12" patternUnits="userSpaceOnUse"><line x1="2" y1="4" x2="14" y2="4" stroke="${INK.water}" stroke-width="1.3" stroke-linecap="round"/><line x1="16" y1="10" x2="22" y2="10" stroke="${INK.water}" stroke-width="1.3" stroke-linecap="round"/></pattern>`;
   p += `<pattern id="hatch-stipple" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="3" r=".9" fill="${G}"/><circle cx="9" cy="6" r=".7" fill="${G}"/><circle cx="5" cy="11" r=".8" fill="${G}"/><circle cx="12" cy="12" r=".6" fill="${G}"/></pattern>`;
   p += `<pattern id="hatch-grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke="${INK.cyan}" stroke-width=".7"/></pattern>`;
@@ -54,7 +58,11 @@ export function installDefs() {
 /* ---------- drawing helpers (return SVG markup strings) ---------- */
 const f1 = v => +(+v).toFixed(1);
 const attr = o => Object.entries(o).filter(([, v]) => v !== undefined && v !== null && v !== false && v !== '').map(([k, v]) => `${k}="${v}"`).join(' ');
-export const hatch = (material = 'iron') => `url(#hatch-${material})`;
+const FLIPS = ['iron', 'steel', 'bronze', 'plastic', 'alu', 'lead'];
+/** section hatch fill: k.hatch('steel') · k.hatch('steel', { flip: true }) runs the lines the other way (two touching parts) */
+export const hatch = (material = 'iron', { flip = false } = {}) => `url(#hatch-${material}${flip && FLIPS.includes(material) ? '-r' : ''})`;
+/** merge a class into an `extra` attribute string (a second class="" attribute would be dropped by the parser) */
+const withClass = (cls, extra = '') => /class="/.test(extra) ? extra.replace(/class="([^"]*)"/, `class="${cls} $1"`) : `class="${cls}" ${extra}`;
 /** a line; default = thick graphite outline. extra: any attributes (class, opacity, stroke-dasharray…) */
 export const line = (x1, y1, x2, y2, stroke = INK.graphite, w = W.thick, extra = '') => `<line ${attr({ x1: f1(x1), y1: f1(y1), x2: f1(x2), y2: f1(y2), stroke, 'stroke-width': w, 'stroke-linecap': 'round' })} ${extra}/>`;
 export const path = (d, fill = 'none', extra = '') => `<path d="${d}" fill="${fill}" ${extra}/>`;
@@ -74,7 +82,7 @@ export const stroke = {
   red: `stroke="${INK.red}" stroke-width="${W.med}" stroke-linecap="round"`
 };
 /** a centre line (dash-dot chain): axes of symmetry, pitch circles, the neutral axis */
-export const center = (x1, y1, x2, y2, extra = '') => `<line ${attr({ x1: f1(x1), y1: f1(y1), x2: f1(x2), y2: f1(y2) })} ${stroke.center} ${extra}/>`;
+export const center = (x1, y1, x2, y2, extra = '') => `<line ${attr({ x1: f1(x1), y1: f1(y1), x2: f1(x2), y2: f1(y2) })} ${stroke.center} ${withClass('k-center', extra)}/>`;
 /** regular polygon / star points */
 export const ngon = (cx, cy, r, n, rot = -90) => Array.from({ length: n }, (_, i) => { const a = (rot + i * 360 / n) * Math.PI / 180; return [f1(cx + r * Math.cos(a)), f1(cy + r * Math.sin(a))]; });
 export const star = (cx, cy, r1, r2, n = 5, rot = -90) => Array.from({ length: n * 2 }, (_, i) => { const r = i % 2 ? r2 : r1; const a = (rot + i * 180 / n) * Math.PI / 180; return [f1(cx + r * Math.cos(a)), f1(cy + r * Math.sin(a))]; });
@@ -86,13 +94,27 @@ const FAM = {
   ar: "'Changa', 'Readex Pro', sans-serif",
   dim: "'Barlow Condensed', 'Arial Narrow', sans-serif"
 };
-/** text. family: 'dim' (Barlow Condensed: dimensions, labels — the default) · 'display' · 'stencil' · 'text' · 'ar' */
+/** 'L_{0}' → L with a subscript 0 · 'mm^{2}' → superscript (dy shifts: they work in every browser, unlike baseline-shift) */
+function scripts(s, size) {
+  const str = String(s); if (!/[_^]\{/.test(str)) return str;
+  const sh = f1(size * .28), fs = f1(size * .68); let out = '', shift = 0;
+  str.split(/([_^]\{[^}]*\})/).forEach(seg => {
+    if (!seg) return;
+    const m = seg.match(/^([_^])\{([^}]*)\}$/);
+    const want = m ? (m[1] === '_' ? sh : -sh) : 0, body = m ? m[2] : seg;
+    const dy = f1(want - shift); shift = want;
+    out += (m || dy) ? `<tspan${dy ? ` dy="${dy}"` : ''}${m ? ` font-size="${fs}"` : ''}>${body}</tspan>` : body;
+  });
+  return out;
+}
+/** text. family: 'dim' (Barlow Condensed: dimensions, labels — the default) · 'display' · 'stencil' · 'text' · 'ar'.
+ *  Subscripts and superscripts: 'L_{0}', 'mm^{2}'. */
 export function text(x, y, s, { size = 16, fill = INK.graphite, family = 'dim', weight = 600, anchor = 'middle', extra = '', dir = '', rotate = 0, spacing = 0 } = {}) {
   const fam = FAM[family] || family;
   // the page may be RTL: anchors would flip with it, so each text carries its own direction (Arabic text → rtl)
   const d = dir || (/[؀-ۿ]/.test(String(s)) ? 'rtl' : 'ltr');
   const tr = rotate ? ` transform="rotate(${f1(rotate)} ${f1(x)} ${f1(y)})"` : '';
-  return `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" font-family="${fam}" font-size="${size}" font-weight="${weight}" fill="${fill}"${spacing ? ` letter-spacing="${spacing}"` : ''}${tr} ${extra} direction="${d}">${s}</text>`;
+  return `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" font-family="${fam}" font-size="${size}" font-weight="${weight}" fill="${fill}"${spacing ? ` letter-spacing="${spacing}"` : ''}${tr} ${extra} direction="${d}">${scripts(s, size)}</text>`;
 }
 /** an aligned dimension between two points: extension lines, a dimension line with arrows, the value on top.
  *  off = distance from the feature (sign picks the side) · color for a highlighted dimension (INK.red) */
@@ -152,8 +174,10 @@ export function plot(t, els, { at = 0, stagger = .08, dur = .7, ease = 'power2.i
     let L = 0; try { L = el.getTotalLength(); } catch (e) { }
     if (!L) { t.from(el, { opacity: 0, duration: .3 }, at + i * stagger); return; }
     L = Math.ceil(L) + 2;
-    const keep = el.getAttribute('stroke-dasharray');
-    t.fromTo(el, { strokeDasharray: `${L} ${L}`, strokeDashoffset: L }, { strokeDashoffset: 0, duration: dur, ease, onComplete: () => { if (keep) el.setAttribute('stroke-dasharray', keep); else el.style.strokeDasharray = ''; el.style.strokeDashoffset = ''; } }, at + i * stagger);
+    t.fromTo(el, { strokeDasharray: `${L} ${L}`, strokeDashoffset: L }, { strokeDashoffset: 0, duration: dur, ease }, at + i * stagger);
+    // then hand the line back its own dash pattern (centre, hidden lines): a zero-length set, so it also lands when
+    // the stage jumps an entrance to its end (reduced motion), where onComplete callbacks are skipped
+    t.set(el, { clearProps: 'strokeDasharray,strokeDashoffset' }, at + i * stagger + dur);
   });
   return t;
 }
