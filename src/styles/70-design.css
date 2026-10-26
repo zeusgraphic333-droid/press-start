@@ -1,1 +1,187 @@
-/* Zone styles — design: its trials, demos and lesson art. Scope every rule under .z-design or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — design: its lesson art, two demos (the lens bench, figure 1-1) and three trials. Every class starts with
+   .dsg-; colours come from the design tokens only, so the night shift and the drafting room both work. Mobile first. */
+
+/* ---------- shared bits ---------- */
+.dsg-famart, .dsg-panel { display: block; }
+.dsg-sym { width: 18px; height: 18px; flex: none; vertical-align: middle; }
+.dsg-sym circle { fill: none; stroke: var(--zt); stroke-width: 1.4; }
+.dsg-sym--3 circle { fill: var(--zc); }
+.dsg-sym--2 circle { fill: color-mix(in srgb, var(--zc) 38%, transparent); }
+.dsg-sym--1 path { fill: var(--zc); stroke: none; }
+.dsg-sym.is-big { width: 30px; height: 30px; }
+.dsg-chip { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 8px; font: 500 13px/1.25 var(--f-text); color: var(--fg); border: 1px solid var(--line-2); overflow-wrap: anywhere; }
+.dsg-chip--p { border-style: dashed; border-color: color-mix(in srgb, var(--zc) 55%, transparent); background: transparent; }
+.dsg-chip--o { border-color: transparent; background: color-mix(in srgb, var(--zc) 16%, var(--card)); }
+.dsg-seg { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.dsg-seg > button { appearance: none; border: 0; background: none; color: var(--fg-2); font: 600 14px/1 var(--f-hud); letter-spacing: .03em; padding: 9px 11px; border-radius: 8px; cursor: pointer; transition: background .25s, color .25s; }
+.dsg-seg > button:hover { color: var(--fg); }
+.dsg-seg > button[aria-selected="true"] { background: var(--zc); color: var(--zon); }
+
+/* ---------- considerations board (L1 · S3) ---------- */
+.dsg-cons { display: grid; gap: 12px; }
+.dsg-cons__key { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.dsg-cons__cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.dsg-cons__col { display: grid; align-content: start; gap: 8px; padding: 10px; border: 1px solid var(--line); border-radius: 12px; }
+.dsg-cons__col h6 { margin: 0 0 2px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; font: 700 18px/1.1 var(--f-latin); color: var(--zt); letter-spacing: .02em; }
+.dsg-cons__col h6 .hud-num { font-size: 13px; color: var(--fg-3); }
+.dsg-cons__col h6 small { font: 500 12px/1 var(--f-text); color: var(--fg-3); }
+.dsg-cons__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.dsg-cons__list + .dsg-cons__list { padding-top: 8px; border-top: 1px dashed var(--line-2); }
+.dsg-cons__list .dsg-chip { font-size: 12.5px; padding: 4px 8px; }
+@media (max-width: 620px) { .dsg-cons__cols { grid-template-columns: 1fr; } }
+
+/* ---------- demo 1: the lens bench ---------- */
+.dsg-lens { display: grid; gap: 12px; }
+.dsg-lens__fig svg { width: 100%; height: auto; display: block; }
+.dsg-lens__seg { stroke: var(--ink-3); stroke-width: 1.2; opacity: .3; fill: none; transition: opacity .45s, stroke .45s; }
+.dsg-lens__seg.is-past { opacity: .6; }
+.dsg-lens__seg.is-on { stroke: var(--zc); stroke-width: 1.8; opacity: 1; stroke-dasharray: 7 6; animation: dsg-flow 1.1s linear infinite; }
+@keyframes dsg-flow { to { stroke-dashoffset: -26; } }
+.dsg-lens__lens ellipse { fill: color-mix(in srgb, var(--zc) 30%, transparent); stroke: var(--zt); stroke-width: 1.4; transition: fill .4s; }
+.dsg-lens__lens.is-on ellipse { fill: var(--zc); }
+.dsg-lens__focus { fill: var(--card); stroke: var(--ink-3); stroke-width: 1.2; opacity: .6; transition: all .4s; }
+.dsg-lens__focus.is-on { fill: var(--hot); stroke: var(--hot); opacity: 1; }
+.dsg-lens__mk { color: var(--fg-3); cursor: pointer; outline: none; }
+.dsg-lens__mk path { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 2 4; }
+.dsg-lens__mk circle { fill: var(--card); stroke: var(--ink-3); stroke-width: 1.4; transition: all .3s; }
+.dsg-lens__mk:hover circle, .dsg-lens__mk:focus-visible circle { stroke: var(--zc); }
+.dsg-lens__mk.is-past { color: var(--fg-2); }
+.dsg-lens__mk.is-on { color: var(--zon); }
+.dsg-lens__mk.is-on circle { fill: var(--zc); stroke: var(--zc); }
+.dsg-lens__mk.is-on path { stroke: var(--zc); stroke-dasharray: none; }
+.dsg-lens__read { min-height: 132px; display: grid; align-content: start; gap: 8px; }
+.dsg-lens__read p { margin: 0; }
+.dsg-lens__intro { color: var(--fg-2); font-size: 16px; line-height: 1.7; }
+.dsg-lens__h { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; }
+.dsg-lens__h .hud-num { color: var(--zt); font-size: 18px; }
+.dsg-lens__h b { font: 700 19px/1.25 var(--f-latin); letter-spacing: .02em; color: var(--fg); }
+.dsg-lens__h small { font: 500 14px/1.3 var(--f-text); color: var(--fg-3); }
+.dsg-lens__p { font-size: 16.5px; line-height: 1.75; color: var(--fg); }
+.dsg-lens__c { display: flex; gap: 8px; align-items: baseline; font-size: 14px; line-height: 1.6; color: var(--fg-2); }
+.dsg-lens__c .chip { flex: none; }
+.dsg-lens__acts { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (prefers-reduced-motion: reduce) { .dsg-lens__seg.is-on { animation: none; stroke-dasharray: none; } }
+html[data-motion="reduce"] .dsg-lens__seg.is-on { animation: none; stroke-dasharray: none; }
+
+/* ---------- demo 2: figure 1-1 ---------- */
+.dsg-mx { display: grid; gap: 12px; min-width: 0; }
+.dsg-mx__wrap { overflow-x: auto; direction: ltr; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.dsg-mx__t { border-collapse: collapse; width: 100%; font: 500 13px/1.2 var(--f-hud); letter-spacing: .02em; }
+.dsg-mx__t th, .dsg-mx__t td { padding: 0; border-bottom: 1px solid var(--line); text-align: center; }
+.dsg-mx__t thead th { padding: 8px 4px; color: var(--fg-2); font-weight: 600; vertical-align: bottom; }
+.dsg-mx__t thead th.dsg-mx__corner { text-align: left; padding-left: 10px; color: var(--fg-3); }
+.dsg-mx__t.is-all thead th:not(.dsg-mx__corner) span { writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; display: inline-block; font-size: 12px; }
+.dsg-mx__t tbody th { text-align: left; }
+.dsg-mx__t tr.is-g > * { border-top: 1px solid var(--line-2); }
+.dsg-mx__rh { appearance: none; border: 0; background: none; color: var(--fg-2); font: inherit; text-align: left; padding: 6px 8px 6px 10px; cursor: pointer; display: grid; gap: 1px; width: 100%; }
+.dsg-mx__rh small { font: 500 10.5px/1 var(--f-text); color: var(--fg-3); }
+.dsg-mx__rh:hover { color: var(--fg); }
+.dsg-mx__t tr.is-key th { box-shadow: inset 3px 0 0 var(--zc); }
+.dsg-mx__t tr.is-key .dsg-mx__rh { color: var(--fg); font-weight: 700; }
+.dsg-mx__c { appearance: none; border: 0; background: none; padding: 6px 4px; min-width: 30px; min-height: 32px; cursor: pointer; display: grid; place-items: center; width: 100%; border-radius: 6px; }
+.dsg-mx__c:hover { background: color-mix(in srgb, var(--zc) 12%, transparent); }
+.dsg-mx__t td.is-hit { background: color-mix(in srgb, var(--zc) 20%, transparent); }
+.dsg-mx__t.is-all .dsg-mx__c { min-width: 22px; padding: 5px 1px; }
+.dsg-mx__t.is-all .dsg-sym { width: 15px; height: 15px; }
+.dsg-mx__legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0; font: 500 13px/1.2 var(--f-hud); color: var(--fg-2); letter-spacing: .02em; }
+.dsg-mx__legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.dsg-mx__keyhint i { display: inline-block; width: 3px; height: 14px; background: var(--zc); border-radius: 2px; }
+.dsg-mx__read { min-height: 76px; border-top: 1px dashed var(--line-2); padding-top: 10px; }
+.dsg-mx__read p { margin: 0 0 6px; font-size: 15px; line-height: 1.6; color: var(--fg-2); }
+.dsg-mx__ans { display: flex; align-items: center; gap: 10px; color: var(--fg) !important; font: 500 16px/1.4 var(--f-text) !important; }
+.dsg-mx__ans em { font-style: normal; color: var(--zt); font-weight: 700; }
+.dsg-mx__sum { color: var(--fg) !important; }
+
+/* ---------- drafting room ---------- */
+html[data-mode="illustrated"] .dsg-chip--o { background: color-mix(in srgb, var(--zc) 22%, #fff); }
+html[data-mode="illustrated"] .dsg-seg { border-radius: 3px; border-width: 1.5px; }
+html[data-mode="illustrated"] .dsg-seg > button { border-radius: 2px; }
+html[data-mode="illustrated"] .dsg-seg > button[aria-selected="true"] { background: var(--graphite); color: #fff; box-shadow: inset 0 -3px 0 var(--zc); }
+html[data-mode="illustrated"] .dsg-mx__wrap, html[data-mode="illustrated"] .dsg-cons__col { border-radius: 3px; border-width: 1.5px; }
+html[data-mode="illustrated"] .dsg-lens__mk.is-on { color: var(--graphite); }
+
+/* ---------- trials: shared ---------- */
+.dsg-key { position: absolute; top: 6px; inset-inline-end: 8px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.dsg-ok { color: var(--good); }
+.dsg-no { color: var(--bad); }
+.dsg-end .glyph { color: var(--zc); }
+.dsg-end__xp { margin: 0; }
+
+/* ---------- trial 1: Which family? ---------- */
+.dsg-ft { display: grid; gap: 12px; }
+.dsg-ft__map { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.dsg-ft__mf { display: grid; gap: 5px; justify-items: center; padding: 6px 4px; border: 1px solid var(--line); border-radius: 10px; }
+.dsg-ft__mf b { font: 600 12.5px/1 var(--f-hud); letter-spacing: .03em; color: var(--fg-2); }
+.dsg-ft__mf span { display: flex; gap: 4px; }
+.dsg-ft__mf i { width: 12px; height: 12px; border-radius: 3px; border: 1px solid var(--line-3); transition: background .4s, border-color .4s, box-shadow .4s; }
+.dsg-ft__mf i.is-on { background: var(--zc); border-color: var(--zc); box-shadow: 0 0 8px var(--zglow); }
+.dsg-ft__job { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 14px; align-items: center; padding: 14px 16px; }
+.dsg-ft__art svg { width: 100%; height: auto; display: block; }
+.dsg-ft__txt { margin: 0; font: 500 17px/1.7 var(--f-text); color: var(--fg); }
+.dsg-ft__q { margin: 0; text-align: center; font: 800 clamp(20px, 2.4vw, 26px)/1.3 var(--f-display); }
+.dsg-ft__ch .g-choice { position: relative; min-height: 60px; padding: 14px 12px; font-size: 16px; }
+.dsg-ft__ch .g-choice small { font: 500 12.5px/1.2 var(--f-text); color: var(--fg-3); }
+.dsg-ft__fb, .dsg-lz__fb { min-height: 2.8em; margin: 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+@media (max-width: 520px) {
+  .dsg-ft__job { grid-template-columns: 84px minmax(0, 1fr); gap: 10px; padding: 12px; }
+  .dsg-ft__txt { font-size: 15.5px; line-height: 1.65; }
+  .dsg-ft__mf b { font-size: 11px; }
+  .dsg-ft__mf i { width: 10px; height: 10px; }
+}
+
+/* ---------- trial 2: Through the lenses ---------- */
+.dsg-lz { display: grid; gap: 12px; }
+.dsg-lz__card { display: grid; justify-items: center; gap: 4px; padding: 16px; text-align: center; }
+.dsg-lz__card b { font: 700 clamp(24px, 3vw, 32px)/1.15 var(--f-latin); letter-spacing: .02em; color: var(--zt); }
+.dsg-lz__card small { font: 500 14px/1.3 var(--f-text); color: var(--fg-2); min-height: 1.3em; }
+.dsg-lz__board { display: grid; grid-template-columns: 26px repeat(3, minmax(0, 1fr)); gap: 6px; align-items: stretch; }
+.dsg-lz__lens { font: 700 15px/1.1 var(--f-latin); letter-spacing: .03em; color: var(--fg); text-align: center; padding: 4px 0; }
+.dsg-lz__row { display: grid; place-items: center; }
+.dsg-lz__row > span { writing-mode: vertical-rl; transform: rotate(180deg); font: 600 12px/1 var(--f-hud); letter-spacing: .06em; color: var(--fg-3); white-space: nowrap; }
+.dsg-lz__bin { position: relative; appearance: none; min-height: 92px; padding: 22px 6px 8px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--card); color: var(--fg); cursor: pointer; display: grid; align-content: start; text-align: start; font: inherit; transition: border-color .25s, background .25s; }
+.dsg-lz__bin--p { border-style: dashed; }
+.dsg-lz__bin--o { background: color-mix(in srgb, var(--zc) 7%, var(--card)); }
+.dsg-lz__bin:hover { border-color: var(--zc); }
+.dsg-lz__bin.is-right { border-color: var(--good); }
+.dsg-lz__bin.is-wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 8%, var(--card)); }
+.dsg-lz__got { display: flex; flex-wrap: wrap; gap: 3px; }
+.dsg-lz__chip { font: 500 11.5px/1.2 var(--f-text); padding: 3px 6px; border-radius: 6px; background: color-mix(in srgb, var(--zc) 20%, transparent); color: var(--fg); overflow-wrap: anywhere; animation: rise .35s var(--ease-out); }
+.dsg-lz__chip.is-fix { background: transparent; border: 1px dashed var(--bad); }
+
+/* ---------- trial 3: Can it be welded? (the shared quick-fire engine, styled for this zone) ---------- */
+.dsg-cell { width: 100%; height: auto; }
+.dsg-qf .cte-intro { display: grid; gap: 12px; padding: 24px clamp(16px, 3vw, 28px); }
+.dsg-qf .cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.dsg-qf .cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.dsg-qf .cte-intro__t { font: 900 clamp(28px, 3.4vw, 40px)/1.1 var(--f-display); }
+.dsg-qf .cte-intro__p { color: var(--fg-2); font-size: 17px; margin: 0; }
+.dsg-qf .cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.dsg-qf .cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.dsg-qf .cte-rules .hud-num { color: var(--zt); font-size: 17px; flex: none; }
+.dsg-qf .cte-kbd { font-size: 13px; color: var(--fg-3); }
+.dsg-qf .cte-kbd kbd { font: 500 13px/1 var(--f-hud); border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.dsg-qf .cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.dsg-qf .cte-streak { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.dsg-qf .cte-streak[hidden] { display: none; }
+.dsg-qf .cte-round .g-timer { margin: -4px 0 14px; }
+.dsg-qf .cte-art { display: grid; place-items: center; margin: 0 auto 10px; width: min(100%, 380px); }
+.dsg-qf .cte-sub { text-align: center; color: var(--fg-3); margin: -10px 0 14px; font-size: 15px; }
+.dsg-qf .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.dsg-qf .cte-choices .g-choice { position: relative; min-height: 76px; gap: 6px; }
+.dsg-qf .cte-choices .g-choice small { font: 500 12.5px/1.2 var(--f-text); color: var(--fg-3); }
+.dsg-qf .cte-key { position: absolute; top: 7px; inset-inline-end: 9px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.dsg-qf .cte-fb { min-height: 2.8em; margin: 14px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.dsg-qf .cte-ok { color: var(--good); }
+.dsg-qf .cte-no { color: var(--bad); }
+.dsg-qf .cte-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.dsg-qf .cte-end__score .hud-num:first-child { font-size: clamp(72px, 10vw, 110px); line-height: .85; color: var(--fg); }
+.dsg-qf .cte-end__of { font-size: 30px; color: var(--fg-3); }
+.dsg-qf .cte-end__marks { display: flex; align-items: center; gap: 10px; justify-content: center; }
+.dsg-qf .cte-end__meta { color: var(--fg-3); font-size: 14px; margin: 0; }
+
+/* ---------- trials in the drafting room ---------- */
+html[data-mode="illustrated"] .dsg-ft__mf, html[data-mode="illustrated"] .dsg-lz__bin { border-radius: 3px; border-width: 1.5px; }
+html[data-mode="illustrated"] .dsg-ft__mf i { border-radius: 1px; }
+html[data-mode="illustrated"] .dsg-ft__mf i.is-on { box-shadow: none; background: var(--zc); border-color: var(--zd); }
+html[data-mode="illustrated"] .dsg-lz__bin--o { background: color-mix(in srgb, var(--zc) 10%, #fff); }
+html[data-mode="illustrated"] .dsg-lz__chip { background: color-mix(in srgb, var(--zc) 30%, #fff); border-radius: 2px; }

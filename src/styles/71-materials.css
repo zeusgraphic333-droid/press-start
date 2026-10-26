@@ -1,1 +1,148 @@
-/* Zone styles — materials: its trials, demos and lesson art. Scope every rule under .z-materials or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — materials: its lesson art, two demos (mix an alloy, the classification path) and three trials. Every class
+   starts with .mat-; colours come from the design tokens only, so the night shift and the drafting room both work. */
+
+/* ---------- demo 1: mix an alloy ---------- */
+.mat-ax { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; align-items: center; }
+.mat-ax__fig svg { width: 100%; height: auto; display: block; overflow: visible; }
+.mat-ax__row { transition: transform .7s var(--ease-out); }
+.mat-ax__row circle { fill: color-mix(in srgb, var(--fig-steel) 50%, transparent); stroke: var(--ink-2); stroke-width: 1.3; transition: fill .35s, stroke .35s; }
+.mat-ax__row circle.is-b { fill: color-mix(in srgb, var(--zc) 80%, transparent); stroke: var(--zt); }
+.mat-ax__row.is-slid { transform: translateX(26px); }
+.mat-ax__row.is-jam { animation: mat-jam .8s var(--ease-out); }
+@keyframes mat-jam { 0% { transform: translateX(0); } 30% { transform: translateX(7px); } 50% { transform: translateX(3px); } 65% { transform: translateX(5px); } 100% { transform: translateX(0); } }
+.mat-ax__arrow { stroke: var(--hot); stroke-width: 2.4; fill: none; }
+.mat-ax__plane { stroke: var(--zc); stroke-width: 1; stroke-dasharray: 3 4; opacity: .7; }
+.mat-ax__side { display: grid; gap: 12px; }
+.mat-ax__read { margin: 0; display: grid; gap: 4px; min-height: 104px; align-content: start; }
+.mat-ax__read b { font: 700 21px/1.2 var(--f-display); }
+.mat-ax__read bdi { color: var(--zt); font-size: 14.5px; }
+.mat-ax__read span { color: var(--fg-2); font-size: 15px; line-height: 1.65; }
+.mat-ax__acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.mat-ax__note { margin: 0; font-size: 13px; line-height: 1.6; color: var(--fg-3); }
+@media (max-width: 620px) { .mat-ax { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .mat-ax__row, .mat-ax__row.is-jam { transition: none; animation: none; } }
+html[data-motion="reduce"] .mat-ax__row, html[data-motion="reduce"] .mat-ax__row.is-jam { transition: none; animation: none; }
+
+/* ---------- demo 2: the classification as an outline ---------- */
+.mat-tp { display: grid; gap: 12px; }
+.mat-tp__tree { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.mat-tp__row { position: relative; padding-left: calc(var(--d) * 18px); }
+.mat-tp__row:not([data-k="root"])::before { content: ''; position: absolute; left: calc(var(--d) * 18px - 13px); top: -3px; height: calc(.65em + 3px); width: 9px; border-left: 1px solid var(--line-3); border-bottom: 1px solid var(--line-3); }
+.mat-tp__lbl { display: inline-block; font: 600 13.5px/1.35 var(--f-hud); letter-spacing: .04em; color: var(--fg-3); transition: color .3s; }
+.mat-tp__lbl small { font: 500 12px/1 var(--f-text); letter-spacing: 0; color: var(--fg-4); margin-inline-start: 4px; }
+.mat-tp__row.is-on > .mat-tp__lbl { color: var(--zt); }
+.mat-tp__row.is-on::before { border-color: var(--zc); }
+.mat-tp__leaves { display: flex; flex-wrap: wrap; gap: 5px; margin: 5px 0 4px; }
+.mat-tp__chip { appearance: none; border: 1px solid var(--line-2); background: var(--card); color: var(--fg); font: 500 13px/1.2 var(--f-text); padding: 6px 9px; border-radius: 8px; cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+.mat-tp__chip:hover { border-color: var(--zc); }
+.mat-tp__chip.is-on { background: var(--zc); color: var(--zon); border-color: var(--zc); }
+.mat-tp__etc { align-self: center; font: 500 13px/1 var(--f-text); color: var(--fg-3); }
+.mat-tp__read { margin: 0; min-height: 52px; padding-top: 10px; border-top: 1px dashed var(--line-2); display: grid; gap: 4px; color: var(--fg-2); font-size: 15px; line-height: 1.6; }
+.mat-tp__crumbs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 6px; font: 600 14px/1.3 var(--f-hud); letter-spacing: .03em; color: var(--fg-2); }
+.mat-tp__crumbs i { font-style: normal; color: var(--fg-4); }
+.mat-tp__crumbs b { color: var(--zt); font-size: 16px; }
+.mat-tp__read small { font-size: 14px; color: var(--fg-2); }
+
+/* ---------- drafting room ---------- */
+html[data-mode="illustrated"] .mat-tp__chip { border-radius: 2px; border-width: 1.5px; background: #fff; }
+html[data-mode="illustrated"] .mat-tp__chip.is-on { background: var(--graphite); color: #fff; border-color: var(--graphite); box-shadow: inset 0 -3px 0 var(--zc); }
+
+/* ---------- trials: shared ---------- */
+.mat-key { position: absolute; top: 6px; inset-inline-end: 8px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.mat-ok { color: var(--good); }
+.mat-no { color: var(--bad); }
+.mat-end .glyph { color: var(--zc); }
+.mat-end__xp { margin: 0; }
+.mat-sr__hr { display: flex; gap: 8px; align-items: center; }
+.mat-sr__combo { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.mat-sr__combo[hidden] { display: none; }
+
+/* ---------- trial 1: the stockroom ---------- */
+.mat-sr { display: grid; gap: 12px; }
+.mat-sr .g-timer { margin-top: -4px; }
+.mat-sr__crate { display: grid; justify-items: center; gap: 4px; padding: 18px 16px; text-align: center; background: color-mix(in srgb, var(--zc) 6%, var(--card)); }
+.mat-sr__crate b { font: 700 clamp(26px, 3.4vw, 36px)/1.1 var(--f-latin); letter-spacing: .02em; color: var(--zt); }
+.mat-sr__crate small { font: 500 15px/1.3 var(--f-text); color: var(--fg-2); min-height: 1.3em; }
+.mat-sr__crate.is-in { animation: mat-drop .45s var(--ease-out); }
+@keyframes mat-drop { from { transform: translateY(-10px); opacity: 0; } to { transform: none; opacity: 1; } }
+.mat-sr__board { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 10px; }
+.mat-sr__grp { display: grid; gap: 6px; align-content: start; }
+.mat-sr__grp h6, .mat-sr__poly { margin: 0; font: 600 12px/1 var(--f-hud); letter-spacing: .08em; color: var(--fg-3); text-align: center; padding-bottom: 5px; border-bottom: 1px solid var(--line-2); }
+.mat-sr__bins { display: grid; gap: 6px; }
+.mat-sr__bins--m { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mat-sr__bins--n { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mat-sr__poly { grid-column: 1 / 3; grid-row: 1; align-self: end; }
+.mat-sr__bins--n .mat-sr__bin { grid-row: 2; }
+.mat-sr__bins--n .mat-sr__bin[data-g="ceramics"] { grid-column: 3; grid-row: 1 / 3; }
+.mat-sr__bin { position: relative; appearance: none; min-height: 96px; padding: 20px 6px 8px; border-radius: 12px; border: 1px solid var(--line-2); background: var(--card); color: var(--fg); cursor: pointer; display: grid; justify-items: center; align-content: center; gap: 3px; font: inherit; text-align: center; transition: border-color .25s, background .25s; }
+.mat-sr__bin b { font: 700 15px/1.15 var(--f-latin); letter-spacing: .02em; overflow-wrap: anywhere; }
+.mat-sr__bin small { font: 500 11px/1.2 var(--f-hud); color: var(--fg-3); letter-spacing: .03em; }
+.mat-sr__n { font-size: 18px; color: var(--zt); }
+.mat-sr__bin:hover { border-color: var(--zc); }
+.mat-sr__bin.is-right { border-color: var(--good); background: color-mix(in srgb, var(--good) 9%, var(--card)); }
+.mat-sr__bin.is-wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 9%, var(--card)); }
+.mat-sr__fb, .mat-tb__fb { min-height: 2.8em; margin: 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+@media (max-width: 560px) {
+  .mat-sr__board { grid-template-columns: 1fr; }
+  .mat-sr__bin { min-height: 74px; }
+}
+
+/* ---------- trial 2: rebuild the tree ---------- */
+.mat-tb { display: grid; gap: 12px; }
+.mat-tb__card { display: grid; gap: 10px; padding: 16px; }
+.mat-tb__name { margin: 0; font: 600 13px/1 var(--f-hud); letter-spacing: .06em; color: var(--fg-3); text-transform: uppercase; }
+.mat-tb__tree { display: grid; gap: 8px; }
+.mat-tb__head { margin: 0; font: 700 18px/1.1 var(--f-latin); color: var(--zt); letter-spacing: .03em; }
+.mat-tb__row { display: grid; grid-template-columns: minmax(96px, 30%) minmax(0, 1fr); gap: 8px; align-items: center; animation: rise .35s var(--ease-out); }
+.mat-tb__row > b { font: 700 14px/1.2 var(--f-latin); letter-spacing: .02em; color: var(--fg); }
+.mat-tb__slots { display: flex; flex-wrap: wrap; gap: 5px; }
+.mat-tb__slot { min-width: 64px; min-height: 30px; padding: 5px 8px; border-radius: 8px; border: 1px dashed var(--line-3); font: 500 12.5px/1.25 var(--f-text); color: var(--fg); display: inline-grid; place-items: center; }
+.mat-tb__slot.is-cur { border: 1.5px solid var(--zc); color: var(--zt); font-weight: 700; box-shadow: 0 0 12px var(--zglow); animation: mat-pulse 1.4s ease-in-out infinite; }
+@keyframes mat-pulse { 50% { box-shadow: 0 0 2px var(--zglow); } }
+.mat-tb__slot.is-full { border-style: solid; border-color: color-mix(in srgb, var(--zc) 55%, transparent); background: color-mix(in srgb, var(--zc) 16%, transparent); }
+.mat-tb__slot.is-auto { border-color: color-mix(in srgb, var(--bad) 50%, transparent); background: transparent; }
+.mat-tb__q { margin: 0; text-align: center; font: 800 clamp(19px, 2.2vw, 24px)/1.3 var(--f-display); }
+.mat-tb__ch { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mat-tb__ch .g-choice { position: relative; min-height: 54px; font-size: 15px; padding: 14px 10px 10px; }
+@media (min-width: 700px) { .mat-tb__ch { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (prefers-reduced-motion: reduce) { .mat-tb__slot.is-cur { animation: none; } .mat-sr__crate.is-in { animation: none; } }
+html[data-motion="reduce"] .mat-tb__slot.is-cur, html[data-motion="reduce"] .mat-sr__crate.is-in { animation: none; }
+
+/* ---------- trial 3: Pure or alloy? (the shared quick-fire engine, styled for this zone) ---------- */
+.mat-lat { width: 100%; height: auto; }
+.mat-qf .cte-intro { display: grid; gap: 12px; padding: 24px clamp(16px, 3vw, 28px); }
+.mat-qf .cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.mat-qf .cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.mat-qf .cte-intro__t { font: 900 clamp(28px, 3.4vw, 40px)/1.1 var(--f-display); }
+.mat-qf .cte-intro__p { color: var(--fg-2); font-size: 17px; margin: 0; }
+.mat-qf .cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.mat-qf .cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.mat-qf .cte-rules .hud-num { color: var(--zt); font-size: 17px; flex: none; }
+.mat-qf .cte-kbd { font-size: 13px; color: var(--fg-3); }
+.mat-qf .cte-kbd kbd { font: 500 13px/1 var(--f-hud); border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.mat-qf .cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.mat-qf .cte-streak { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.mat-qf .cte-streak[hidden] { display: none; }
+.mat-qf .cte-round .g-timer { margin: -4px 0 14px; }
+.mat-qf .cte-art { display: grid; place-items: center; margin: 0 auto 10px; width: min(100%, 300px); }
+.mat-qf .cte-sub { text-align: center; color: var(--fg-3); margin: -10px 0 14px; font-size: 15px; }
+.mat-qf .g-prompt [dir="ltr"] { font-family: var(--f-text); font-weight: 600; font-size: .78em; }
+.mat-qf .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.mat-qf .cte-choices .g-choice { position: relative; min-height: 70px; gap: 4px; }
+.mat-qf .cte-choices .g-choice b { font: 700 18px/1.1 var(--f-latin); letter-spacing: .02em; }
+.mat-qf .cte-choices .g-choice small { font: 500 12px/1.2 var(--f-text); color: var(--fg-3); }
+.mat-qf .cte-key { position: absolute; top: 7px; inset-inline-end: 9px; font: 500 12px/1 var(--f-hud); color: var(--fg-4); }
+.mat-qf .cte-fb { min-height: 2.8em; margin: 14px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.mat-qf .cte-ok { color: var(--good); }
+.mat-qf .cte-no { color: var(--bad); }
+.mat-qf .cte-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.mat-qf .cte-end__score .hud-num:first-child { font-size: clamp(72px, 10vw, 110px); line-height: .85; color: var(--fg); }
+.mat-qf .cte-end__of { font-size: 30px; color: var(--fg-3); }
+.mat-qf .cte-end__marks { display: flex; align-items: center; gap: 10px; justify-content: center; }
+.mat-qf .cte-end__meta { color: var(--fg-3); font-size: 14px; margin: 0; }
+
+/* ---------- trials in the drafting room ---------- */
+html[data-mode="illustrated"] .mat-sr__bin, html[data-mode="illustrated"] .mat-tb__slot { border-radius: 3px; border-width: 1.5px; }
+html[data-mode="illustrated"] .mat-sr__crate { background: color-mix(in srgb, var(--zc) 10%, #fff); }
+html[data-mode="illustrated"] .mat-tb__slot.is-cur { box-shadow: none; animation: none; border-color: var(--graphite); background: color-mix(in srgb, var(--zc) 25%, #fff); }
+html[data-mode="illustrated"] .mat-tb__slot.is-full { background: color-mix(in srgb, var(--zc) 22%, #fff); }
