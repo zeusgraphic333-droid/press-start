@@ -1,1 +1,139 @@
-/* Zone styles — props: its trials, demos and lesson art. Scope every rule under .z-props or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — props: its demos, trials and lesson art. Every class starts with .prp- (docs/BRIEF.md § Styles). */
+
+/* ---------- shared bits ---------- */
+.prp-read { display: grid; gap: 4px; margin: 0; min-height: 64px; }
+.prp-read b { font: 800 clamp(19px, 2.1vw, 24px)/1.3 var(--f-display); color: var(--fg); }
+.prp-read small { font-size: 14px; line-height: 1.6; color: var(--fg-3); }
+.prp-range { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 4px 12px; width: 100%; }
+.prp-range .hud-num { font-size: 28px; line-height: .9; color: var(--fg); }
+.prp-range input { grid-column: 1 / -1; width: 100%; accent-color: var(--zc); min-height: 28px; }
+.prp-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.prp-seg button { appearance: none; display: grid; gap: 2px; padding: 9px 12px; text-align: start; background: transparent; border: 1px solid var(--line-2); border-radius: 12px; color: var(--fg-2); font: 600 16px/1.2 var(--f-display); cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+.prp-seg button small { font: 500 12px/1.2 var(--f-text); color: var(--fg-3); }
+.prp-seg button:hover { border-color: var(--zc); color: var(--fg); }
+.prp-seg button[aria-checked="true"] { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 14%, transparent); color: var(--fg); }
+.prp-ok { color: var(--good); }
+.prp-no { color: var(--bad); }
+
+/* ---------- demo: wire or sheet ---------- */
+.prp-ws, .prp-hb { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+.prp-ws__fig svg, .prp-hb__fig svg, .prp-ch__fig svg { width: 100%; height: auto; display: block; }
+.prp-ws__side, .prp-hb__side { display: grid; gap: 10px; align-content: start; }
+.prp-ws__side .label { margin: 4px 0 0; }
+
+/* ---------- demo: change it ---------- */
+.prp-ch { display: grid; gap: 14px; }
+.prp-ch__fig { max-width: 420px; margin: 0 auto; width: 100%; }
+.prp-ch__btns { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.prp-ch__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.prp-ch__col { border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; background: var(--card); }
+.prp-ch__col--m { border-color: color-mix(in srgb, var(--zc) 45%, transparent); }
+.prp-ch__col ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 6px; }
+.prp-ch__col li { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 15px; color: var(--fg); }
+.prp-ch__tag { font: 600 11.5px/1 var(--f-text); font-style: normal; padding: 3px 7px; border-radius: 99px; color: var(--fg-3); }
+.prp-ch__col li.is-changed .prp-ch__tag { color: var(--zon); background: var(--zc); }
+.prp-ch__col li.is-changed { animation: prp-jolt .5s var(--ease-out) var(--d, 0ms) both; }
+.prp-ch__col li.is-same .prp-ch__tag { color: var(--fg-2); border: 1px solid var(--line-2); }
+@keyframes prp-jolt { 0% { transform: translateX(0); } 30% { transform: translateX(-5px); } 60% { transform: translateX(4px); } 100% { transform: translateX(0); } }
+
+/* ---------- demo: heat the bars ---------- */
+.prp-hb__chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ---------- trial 1: the quick-fire kit, styled inside this zone ---------- */
+.prp-qf .cte-intro { display: grid; gap: 12px; padding: 26px clamp(18px, 3vw, 30px); }
+.prp-qf .cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.prp-qf .cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.prp-qf .cte-intro__t { font: 900 clamp(30px, 3.6vw, 44px)/1.1 var(--f-display); margin: 0; }
+.prp-qf .cte-intro__p { color: var(--fg-2); font-size: 17px; max-width: 38em; margin: 0; }
+.prp-qf .cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.prp-qf .cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.prp-qf .cte-rules .hud-num { color: var(--zt); font-size: 17px; flex: none; }
+.prp-qf .cte-kbd { font-size: 13px; color: var(--fg-3); }
+.prp-qf .cte-kbd kbd, .prp-qf .cte-key { font: 500 13px/1 var(--f-hud); }
+.prp-qf .cte-kbd kbd { border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.prp-qf .cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.prp-qf .cte-streak { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.prp-qf .cte-streak[hidden] { display: none; }
+.prp-qf .cte-round .g-timer { margin: -4px 0 14px; }
+.prp-qf .cte-art { display: grid; place-items: center; margin: 0 auto 10px; width: min(100%, 340px); background: var(--card-2); border: 1px solid var(--line); border-radius: 14px; padding: 8px; }
+.prp-qf .cte-art svg { width: 100%; height: auto; max-height: 170px; }
+.prp-qf .g-prompt { margin: 4px 0 4px; font-size: clamp(20px, 2.4vw, 26px); }
+.prp-qf .cte-sub { text-align: center; color: var(--fg-2); margin: 0 0 16px; font-size: 16px; line-height: 1.6; }
+.prp-qf .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.prp-qf .cte-choices .g-choice { position: relative; min-height: 64px; gap: 4px; padding: 12px 14px; align-content: center; }
+.prp-qf .g-choice b { font: 700 17px/1.25 var(--f-display); }
+.prp-qf .g-choice small { font: 500 12px/1.2 var(--f-text); color: var(--fg-3); }
+.prp-qf .cte-key { position: absolute; top: 7px; inset-inline-end: 9px; color: var(--fg-4); }
+.prp-qf .cte-fb { min-height: 2.8em; margin: 14px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.prp-qf .cte-ok { color: var(--good); }
+.prp-qf .cte-no { color: var(--bad); }
+.prp-qf .cte-end { display: grid; justify-items: center; gap: 10px; }
+.prp-qf .cte-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.prp-qf .cte-end__score > .hud-num:first-child { font-size: clamp(90px, 13vw, 140px); line-height: .78; color: var(--fg); }
+.prp-qf .cte-end__of { font-size: 34px; color: var(--fg-3); }
+.prp-qf .cte-end__marks { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.prp-qf .cte-end__meta { font-size: 13.5px; color: var(--fg-3); }
+.prp-qf .cte-end__meta .hud-num { color: var(--gold); font-size: 17px; }
+
+/* ---------- trial 2: the sorting conveyor ---------- */
+.prp-st { --s: 1; display: grid; gap: 12px; overflow: hidden; }
+html[dir="rtl"] .prp-st { --s: -1; }
+.prp-st__lane { display: grid; place-items: center; min-height: 128px; border: 1px dashed var(--line-2); border-radius: 16px; background: repeating-linear-gradient(90deg, transparent 0 22px, color-mix(in srgb, var(--fg) 4%, transparent) 22px 24px); }
+.prp-st__card { display: grid; justify-items: center; gap: 4px; padding: 16px 22px; min-width: 210px; max-width: 92%; text-align: center; background: var(--card-2); border: 1.5px solid var(--zc); border-radius: 14px; box-shadow: 0 8px 22px rgba(0, 0, 0, .25); transition: transform .45s var(--ease-out), opacity .45s; }
+.prp-st__card b { font: 800 clamp(21px, 2.6vw, 27px)/1.2 var(--f-latin); letter-spacing: .01em; color: var(--fg); }
+.prp-st__card span { font-size: 15px; color: var(--fg-2); }
+.prp-st__card.is-in { animation: prp-in .4s var(--ease-out); }
+.prp-st__card.is-to-a { transform: translate(calc(var(--s) * -42%), 70%) scale(.55); opacity: 0; }
+.prp-st__card.is-to-b { transform: translate(calc(var(--s) * 42%), 70%) scale(.55); opacity: 0; }
+@keyframes prp-in { from { transform: translateY(-30px); opacity: 0; } to { transform: none; opacity: 1; } }
+.prp-st__bins { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.prp-st__bin { appearance: none; position: relative; display: grid; justify-items: center; gap: 4px; padding: 14px 10px 12px; min-height: 108px; background: transparent; border: 1.5px solid var(--line-2); border-bottom-width: 5px; border-radius: 14px; color: var(--fg); cursor: pointer; text-align: center; transition: border-color .2s, background .2s, transform .15s; }
+.prp-st__bin:hover { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 8%, transparent); }
+.prp-st__bin:active { transform: scale(.98); }
+.prp-st__bin b { font: 800 19px/1.2 var(--f-display); }
+.prp-st__bin small { font-size: 12.5px; line-height: 1.4; color: var(--fg-3); }
+.prp-st__k { position: absolute; top: 7px; inset-inline-start: 10px; font-size: 13px; color: var(--fg-4); }
+.prp-st__n { position: absolute; top: 6px; inset-inline-end: 10px; font-size: 18px; color: var(--zt); }
+.prp-st__fb { margin: 0; min-height: 3.2em; text-align: center; color: var(--fg-2); font-size: 15px; line-height: 1.6; }
+.prp-st__map { width: 100%; text-align: start; border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 8px; }
+.prp-st__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.prp-st__col > div { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.prp-st__col .chip { white-space: normal; font-size: 12px; }
+
+/* ---------- trial 3: spot the swap ---------- */
+.prp-sw { display: grid; gap: 10px; }
+.prp-sw__q { margin: 2px 0 0; font-size: clamp(19px, 2.3vw, 25px); }
+.prp-sw__term { margin: 0; text-align: center; font: 700 17px/1.3 var(--f-display); color: var(--zt); }
+.prp-sw__term bdi { font: 500 14px/1 var(--f-text); color: var(--fg-3); }
+.prp-sw__def { text-align: left; line-height: 2.5; font-size: 17px; padding: 6px 2px; }
+.prp-sw__ch { appearance: none; display: inline; position: relative; margin: 0 2px; padding: 5px 9px 5px 22px; font: 500 16.5px/1.6 var(--f-text); color: var(--fg); background: color-mix(in srgb, var(--fg) 4%, transparent); border: 1px solid var(--line-2); border-radius: 10px; cursor: pointer; box-decoration-break: clone; -webkit-box-decoration-break: clone; transition: border-color .2s, background .2s; }
+.prp-sw__ch:hover:not(:disabled) { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 10%, transparent); }
+.prp-sw__ch:disabled { cursor: default; opacity: .7; }
+.prp-sw__k { position: absolute; top: 3px; left: 6px; font: 600 11px/1 var(--f-hud); color: var(--fg-4); }
+.prp-sw__ch.is-swap { opacity: 1; color: var(--fg-2); text-decoration: line-through; text-decoration-color: var(--bad); border-color: var(--bad); background: color-mix(in srgb, var(--bad) 8%, transparent); }
+.prp-sw__ch.is-wrong { opacity: 1; border-color: var(--fg-3); animation: fx-shake .4s; }
+.prp-sw__fix { display: inline; padding: 4px 8px; border-radius: 10px; font: 600 16.5px/1.6 var(--f-text); color: var(--fg); background: color-mix(in srgb, var(--good) 16%, transparent); border: 1px solid color-mix(in srgb, var(--good) 55%, transparent); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.prp-sw__fb { margin: 0; min-height: 3.2em; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.prp-sw__acts[hidden] { display: none; }
+.prp-end { gap: 10px; }
+.prp-end__marks { display: flex; align-items: center; gap: 12px; justify-content: center; }
+
+/* ---------- the drafting room ---------- */
+html[data-mode="illustrated"] .prp-seg button, html[data-mode="illustrated"] .prp-st__bin, html[data-mode="illustrated"] .prp-ch__col, html[data-mode="illustrated"] .prp-sw__ch, html[data-mode="illustrated"] .prp-sw__fix { border-radius: 3px; }
+html[data-mode="illustrated"] .prp-st__card { background: #fff; border-radius: 3px; box-shadow: 4px 4px 0 rgba(27, 38, 48, .12); }
+html[data-mode="illustrated"] .prp-st__lane { border-radius: 3px; }
+html[data-mode="illustrated"] .prp-qf .cte-art { background: #fff; border-radius: 3px; }
+html[data-mode="illustrated"] .prp-ch__col li.is-changed .prp-ch__tag { color: #fff; background: var(--zd); }
+
+/* ---------- phones ---------- */
+@media (max-width: 760px) {
+  .prp-ws, .prp-hb { grid-template-columns: 1fr; }
+}
+@media (max-width: 420px) {
+  .prp-ch__cols, .prp-st__cols { grid-template-columns: 1fr; }
+  .prp-st__bin { min-height: 96px; padding: 12px 8px 10px; }
+  .prp-st__bin small { font-size: 11.5px; }
+  .prp-sw__def { font-size: 16px; line-height: 2.4; }
+  .prp-sw__ch, .prp-sw__fix { font-size: 15.5px; }
+  .prp-qf .cte-choices .g-choice { padding: 10px; min-height: 58px; }
+}

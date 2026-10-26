@@ -1,1 +1,124 @@
-/* Zone styles — strength: its trials, demos and lesson art. Scope every rule under .z-strength or a class prefix of your own (see docs/BRIEF.md § Styles). */
+/* Zone styles — strength: its demos, trials and lesson art. Every class starts with .str- (docs/BRIEF.md § Styles). */
+
+/* ---------- shared bits ---------- */
+.str-read { display: grid; gap: 4px; margin: 0; min-height: 64px; }
+.str-read b { font: 800 clamp(19px, 2.1vw, 24px)/1.3 var(--f-display); color: var(--fg); }
+.str-read small { font-size: 14px; line-height: 1.6; color: var(--fg-3); }
+.str-range { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 4px 12px; width: 100%; }
+.str-range .hud-num { font-size: 28px; line-height: .9; color: var(--fg); }
+.str-range input { grid-column: 1 / -1; width: 100%; accent-color: var(--zc); min-height: 28px; }
+.str-ok { color: var(--good); }
+.str-no { color: var(--bad); }
+
+/* ---------- demo: pick a load ---------- */
+.str-lp { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: center; }
+.str-lp__fig svg { width: 100%; max-width: 260px; height: auto; display: block; margin: 0 auto; }
+.str-lp__side { display: grid; gap: 14px; }
+.str-seg { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.str-seg button { appearance: none; position: relative; display: grid; align-items: center; padding: 10px 12px; min-height: 58px; text-align: start; background: transparent; border: 1px solid var(--line-2); border-radius: 12px; color: var(--fg-2); font: 600 16px/1.2 var(--f-display); cursor: pointer; transition: border-color .2s, background .2s, color .2s; }
+.str-seg button:hover { border-color: var(--zc); color: var(--fg); }
+.str-seg button[aria-checked="true"] { border-color: var(--zc); background: color-mix(in srgb, var(--zc) 14%, transparent); color: var(--fg); }
+.str-seg__t { display: grid; gap: 2px; }
+.str-seg__t small { font: 500 12px/1.2 var(--f-text); color: var(--fg-3); }
+.str-seg__k { position: absolute; top: 5px; inset-inline-end: 7px; font: 500 11px/1 var(--f-hud); color: var(--fg-4); border: 0; background: none; }
+
+/* ---------- demo: ride the curve ---------- */
+.str-cr { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+.str-cr__fig svg { width: 100%; height: auto; display: block; }
+.str-cr__side { display: grid; gap: 14px; align-content: start; }
+.str-cr__btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.str-cr__dot { transition: r .2s; }
+
+/* ---------- demo: stretch and measure ---------- */
+.str-sm { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; align-items: center; }
+.str-sm__fig svg { width: 100%; height: auto; display: block; }
+.str-sm__side { display: grid; gap: 10px; align-content: start; }
+.str-sm__math { margin: 0; font: 500 16px/1.5 var(--f-hud); color: var(--fg-2); text-align: left; }
+.str-sm__math b { font-size: 20px; color: var(--fg); }
+.str-sm__p { color: var(--zt) !important; }
+.str-sm__wrong { margin: 0; min-height: 1.5em; font-size: 13.5px; color: var(--bad); }
+.str-sm__glabel { margin: 4px 0 0; }
+.str-sm__goals { display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ---------- trial 1: the quick-fire kit, styled inside this zone ---------- */
+.str-qf .cte-intro { display: grid; gap: 12px; padding: 26px clamp(18px, 3vw, 30px); }
+.str-qf .cte-meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.str-qf .cte-meta .hud-num { color: var(--fg); font-size: 17px; }
+.str-qf .cte-intro__t { font: 900 clamp(30px, 3.6vw, 44px)/1.1 var(--f-display); margin: 0; }
+.str-qf .cte-intro__p { color: var(--fg-2); font-size: 17px; max-width: 38em; margin: 0; }
+.str-qf .cte-rules { list-style: none; margin: 4px 0 6px; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 8px; color: var(--fg-2); font-size: 15px; }
+.str-qf .cte-rules li { display: flex; align-items: baseline; gap: 12px; }
+.str-qf .cte-rules .hud-num { color: var(--zt); font-size: 17px; flex: none; }
+.str-qf .cte-kbd { font-size: 13px; color: var(--fg-3); }
+.str-qf .cte-kbd kbd, .str-qf .cte-key { font: 500 13px/1 var(--f-hud); }
+.str-qf .cte-kbd kbd { border: 1px solid var(--line-3); border-radius: 6px; padding: 2px 6px; }
+.str-qf .cte-hud-r { display: flex; gap: 8px; align-items: center; }
+.str-qf .cte-streak { color: var(--gold); border-color: color-mix(in srgb, var(--gold) 45%, transparent); }
+.str-qf .cte-streak[hidden] { display: none; }
+.str-qf .cte-round .g-timer { margin: -4px 0 14px; }
+.str-qf .cte-art { display: grid; place-items: center; margin: 0 auto 10px; width: min(100%, 340px); background: var(--card-2); border: 1px solid var(--line); border-radius: 14px; padding: 8px; }
+.str-qf .cte-art svg { width: 100%; height: auto; }
+.str-qf .g-prompt { margin: 4px 0 4px; font-size: clamp(20px, 2.4vw, 26px); }
+.str-qf .cte-sub { text-align: center; color: var(--fg-2); margin: 0 0 16px; font-size: 16px; line-height: 1.6; }
+.str-qf .cte-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.str-qf .cte-choices .g-choice { position: relative; min-height: 64px; grid-template-columns: 36px minmax(0, 1fr); justify-items: start; align-items: center; text-align: start; gap: 10px; padding: 12px 14px; }
+.str-qf .g-choice b { font: 700 18px/1.2 var(--f-display); }
+.str-qf .g-choice small { grid-column: 2; margin-top: -6px; font: 500 12px/1.2 var(--f-text); color: var(--fg-3); }
+.str-qf .g-choice .str-qf__ic { grid-row: span 2; width: 36px; height: 36px; color: var(--zc); }
+.str-qf .g-choice .str-qf__ic svg { width: 100%; height: 100%; }
+.str-qf .cte-key { position: absolute; top: 7px; inset-inline-end: 9px; color: var(--fg-4); }
+.str-qf .cte-fb { min-height: 2.8em; margin: 14px 0 0; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.str-qf .cte-ok { color: var(--good); }
+.str-qf .cte-no { color: var(--bad); }
+.str-qf .cte-end { display: grid; justify-items: center; gap: 10px; }
+.str-qf .cte-end__score { display: flex; align-items: baseline; justify-content: center; gap: 6px; }
+.str-qf .cte-end__score > .hud-num:first-child { font-size: clamp(90px, 13vw, 140px); line-height: .78; color: var(--fg); }
+.str-qf .cte-end__of { font-size: 34px; color: var(--fg-3); }
+.str-qf .cte-end__marks { display: flex; align-items: center; gap: 12px; justify-content: center; }
+.str-qf .cte-end__meta { font-size: 13.5px; color: var(--fg-3); }
+.str-qf .cte-end__meta .hud-num { color: var(--gold); font-size: 17px; }
+
+/* ---------- trials 2 and 3: the curve on the card ---------- */
+.str-rc, .str-hr { display: grid; gap: 10px; }
+.str-rc__q { margin: 2px 0 6px; font-size: clamp(19px, 2.3vw, 25px); }
+.str-rc__plot { position: relative; width: 100%; max-width: 560px; margin: 0 auto; }
+.str-rc__plot svg, .str-hr__plot svg { width: 100%; height: auto; display: block; }
+.str-rc__pt { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 2px solid var(--zc); background: var(--card); color: var(--fg); font: 700 16px/1 var(--f-hud); display: grid; place-items: center; cursor: pointer; padding: 0; transition: transform .15s, background .2s, border-color .2s; }
+.str-rc__pt:hover:not(:disabled) { transform: scale(1.12); background: color-mix(in srgb, var(--zc) 22%, var(--card)); }
+.str-rc__pt:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+.str-rc__pt:disabled { cursor: default; opacity: .55; }
+.str-rc__pt.is-right { opacity: 1; border-color: var(--good); background: var(--good); color: var(--void); }
+.str-rc__pt.is-wrong { opacity: 1; border-color: var(--bad); background: var(--bad); color: var(--void); }
+/* answered: the markers shrink so the revealed names can be read */
+.str-rc__plot.is-done .str-rc__pt { width: 20px; height: 20px; margin: -10px 0 0 -10px; font-size: 11px; border-width: 1.5px; }
+.str-rc__fb, .str-hr__fb { margin: 0; min-height: 3.2em; text-align: center; color: var(--fg-2); font-size: 15.5px; line-height: 1.6; }
+.str-rc__fb b, .str-hr__fb b { color: var(--fg); }
+.str-rc__fb .str-ok, .str-hr__fb .str-ok { color: var(--good); }
+.str-rc__fb .str-no, .str-hr__fb .str-no { color: var(--bad); }
+.str-rc__acts[hidden], .str-hr__acts[hidden] { display: none; }
+.str-hr__goal { margin: 0; text-align: center; font: 700 clamp(17px, 2vw, 21px)/1.45 var(--f-display); color: var(--fg); }
+.str-hr__plot { width: 100%; max-width: 520px; margin: 0 auto; }
+.str-hr__hold { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; max-width: 520px; margin: 0 auto; }
+.str-hr__hold.is-on { background: var(--zc); color: var(--zon); box-shadow: 0 0 0 4px color-mix(in srgb, var(--zc) 30%, transparent); }
+.str-end { gap: 10px; }
+.str-end__marks { display: flex; align-items: center; gap: 12px; justify-content: center; }
+
+/* ---------- the drafting room ---------- */
+html[data-mode="illustrated"] .str-seg button, html[data-mode="illustrated"] .str-rc__pt { border-radius: 3px; }
+html[data-mode="illustrated"] .str-rc__pt { border-radius: 50%; background: #fff; }
+html[data-mode="illustrated"] .str-rc__pt.is-right { background: var(--good); color: #fff; }
+html[data-mode="illustrated"] .str-rc__pt.is-wrong { background: var(--bad); color: #fff; }
+html[data-mode="illustrated"] .str-qf .cte-art { background: #fff; border-radius: 3px; }
+html[data-mode="illustrated"] .str-hr__hold.is-on { box-shadow: inset 0 -4px 0 var(--zd); }
+
+/* ---------- phones ---------- */
+@media (max-width: 760px) {
+  .str-lp, .str-cr, .str-sm { grid-template-columns: 1fr; }
+  .str-lp__fig svg { max-width: 220px; }
+}
+@media (max-width: 420px) {
+  .str-seg button { padding: 8px 10px; font-size: 15px; }
+  .str-rc__pt { width: 30px; height: 30px; margin: -15px 0 0 -15px; font-size: 15px; }
+  .str-qf .cte-choices .g-choice { grid-template-columns: 30px minmax(0, 1fr); padding: 10px; min-height: 58px; }
+  .str-qf .g-choice .str-qf__ic { width: 30px; height: 30px; }
+}
